@@ -13,5 +13,20 @@ namespace CountryLiving
         {
             Debug.WriteLine("Reservation created");
         }
+        
+        public void SeeReservation(int reservationID)
+        {
+            Debug.WriteLine("Looking at reservation");
+        }
+
+        public void EditReservation()
+        {
+            Debug.WriteLine("Editing reservation");
+        }
+
+        public void DeleteReservation(int reservationID)
+        {
+            Debug.WriteLine("Reservation deleted");
+        }
     }
 }
