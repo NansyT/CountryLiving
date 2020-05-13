@@ -1,0 +1,6 @@
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\bin\Debug\CountryLiving.dll
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\bin\Debug\CountryLiving.pdb
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\obj\Debug\CountryLiving.csprojAssemblyReference.cache
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\obj\Debug\CountryLiving.csproj.CoreCompileInputs.cache
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\obj\Debug\CountryLiving.dll
+C:\Users\Nansy\source\repos\CountryLiving\CountryLiving\obj\Debug\CountryLiving.pdb
