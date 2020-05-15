@@ -1,5 +1,4 @@
-﻿using CountryLiving;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace LandLyst
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VælgVærelse.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VælgVærelse : Page
     {
-        public MainWindow()
+        public VælgVærelse()
         {
             InitializeComponent();
-            mainFrame.Navigate(new StartSide());
         }
-
     }
 }
