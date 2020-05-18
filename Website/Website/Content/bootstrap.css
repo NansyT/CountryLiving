@@ -45,13 +45,7 @@ template {
 a {
   background-color: transparent;
 }
-.textalign{
-    text-align: center;
-}
-textStyle{
-    font-size: 20px;
-    font-family: 'Berlin Sans FB';
-}
+
 a:active,
 a:hover {
   outline: 0;
@@ -93,10 +87,6 @@ sup {
 }
 sub {
   bottom: -0.25em;
-}
-.img-front {
-  margin-bottom: 10px;
-  margin-top: 10p x;
 }
 svg:not(:root) {
   overflow: hidden;
