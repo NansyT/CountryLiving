@@ -45,12 +45,16 @@ h2 {
     padding-bottom: 15px    
 }
 
+.segment-one {
+    margin-left: 25%;
+}
+
 .segment-one h2 {
     font-family: Poppins;
     text-transform: uppercase;
     color: #fff;
     letter-spacing: 3px;
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 
 .segment-two h2 {
@@ -58,12 +62,11 @@ h2 {
     font-family: Poppins;
     text-transform: uppercase;
 }
-
-    .segment-two h2:before {
-        content: '|';
-        color: #c65039;
-        padding-right: 10px;
-    }
+.segment-two h2:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
+}
 
 .segment-two ul {
     margin: 0;
@@ -71,15 +74,15 @@ h2 {
     list-style: none;
 }
 
-    .segment-two ul li {
-        border-bottom: 1px solid rgba(255,255,255,0.3);
-        line-height: 40px;
-    }
+.segment-two ul li {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    line-height: 40px;
+}
 
-        .segment-two ul li a {
-            color: #999;
-            text-decoration: none;
-        }
+.segment-two ul li a {
+    color: #999;
+    text-decoration: none;
+}
 
 .footer-bottom-text {
     text-align: center;
