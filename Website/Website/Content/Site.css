@@ -29,3 +29,59 @@ textarea {
         padding: 0;
     }
 }
+
+p {
+    color: #999;
+    line-height: 25px;
+}
+
+h2 {
+    color: #fff;
+    font-size: 18px;
+}
+
+.footer-top {
+    background-color: #111;
+    padding-bottom: 15px    
+}
+
+.segment-one h2 {
+    font-family: Poppins;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 3px;
+    margin: 10px 0;
+}
+
+.segment-two h2 {
+    color: #fff;
+    font-family: Poppins;
+    text-transform: uppercase;
+}
+
+    .segment-two h2:before {
+        content: '|';
+        color: #c65039;
+        padding-right: 10px;
+    }
+
+.segment-two ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .segment-two ul li {
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        line-height: 40px;
+    }
+
+        .segment-two ul li a {
+            color: #999;
+            text-decoration: none;
+        }
+
+.footer-bottom-text {
+    text-align: center;
+    background-color: #000;
+}
