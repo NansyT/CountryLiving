@@ -54,7 +54,12 @@ h2 {
     text-transform: uppercase;
     color: #fff;
     letter-spacing: 3px;
-    margin: 10px 0 0;
+}
+
+.segment-one h2:before {
+    content: '|';
+    color: #c65039;
+    padding-right: 10px;
 }
 
 .segment-two h2 {
