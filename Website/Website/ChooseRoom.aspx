@@ -1,6 +1,16 @@
-﻿<%@ Page Title="Se værelser" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChooseRoom.aspx.cs" Inherits="Website._ChooseRoom" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChooseRoom.aspx.cs" Inherits="Website.ChooseRoom" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<!DOCTYPE html>
 
-    <h2>Hej - test</h2>
-</asp:Content>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <p>TEST</p>
+        </div>
+    </form>
+</body>
+</html>

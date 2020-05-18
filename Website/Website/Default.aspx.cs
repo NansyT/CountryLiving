@@ -11,7 +11,11 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("ChooseRoom");
+        }
+
+        protected void ChooseRoombtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChooseRoom.aspx");
         }
     }
 }
