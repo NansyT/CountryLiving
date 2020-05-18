@@ -104,6 +104,13 @@ h2 {
 }
 
 .chooseroombutton {
+    padding: 10px 10px 10px 10px;
     margin-left: 46%;
-    border-radius: 20%;
+    border-radius: 40%;
+}
+
+.calendar {
+    margin-top: 10px;
+    margin-left: 40px;
+    display: inline;
 }
