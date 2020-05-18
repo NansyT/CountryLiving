@@ -88,3 +88,12 @@ h2 {
     text-align: center;
     background-color: #000;
 }
+
+.img-front {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.textalign {
+    text-align: center;
+}
