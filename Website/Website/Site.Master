@@ -61,11 +61,30 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
         </div>
-
     </form>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-one">
+                        <h2>Om os</h2>
+                        <p>awdhawdwdaw dawdawd awdawd Philip awdawdaw awdawda grfaweadaw adwdaw dawdaw ffgaeawdawdadawd awdawd</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 segment-two">
+                        <h2>Kontakt os her</h2>
+                        <ul>
+                            <li><a>(facebook-link)</a></li>
+                            <li><a>(instragram-link)</a></li>
+                            <li><a>(e-mail)</a></li>
+                            <li><a>(nummer)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom-text">Alle rettigheder er forbeholdt til &copy;LandLyst.2020</p>
+    </footer>
 </body>
 </html>
