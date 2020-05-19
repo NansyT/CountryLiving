@@ -1,11 +1,29 @@
 ﻿body {
 }
 
-.calendardesign {
-    margin-top: 10px;
-    margin-left: 40px;
+.checkbox1 {
+    width: 300px;
+}  
+
+
+.checkbox1 input[type=checkbox] {
+display: none;
 }
 
-.calendar {
-    display: inline;
+.checkbox1 input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
 }
+/* checkbox1 */
+/* unchecked icon */
+
+.checkbox1 input[type=checkbox] + label:before {
+    content: "\f096";
+    letter-spacing: 10px;
+}
+/* checked icon */
+
+.checkbox1 input[type=checkbox]:checked + label:before {
+    letter-spacing: 7px;
+    content: "\f046";
+}  
