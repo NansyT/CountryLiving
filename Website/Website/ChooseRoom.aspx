@@ -8,15 +8,17 @@
     <div class="row">
         <div style="margin: 80%; margin-top: 10px;">
             <div style="height: 490px; border: 0; border-left: 3px; border-style: solid; border-color: #0295BE">
-                <asp:CheckBoxList CssClass="checkbox1" ID="Filter_Checkboxlist" runat="server" Visible="false">
-                    <asp:ListItem>Enkelteseng</asp:ListItem>
-                    <asp:ListItem>Dobbeltseng</asp:ListItem>
-                    <asp:ListItem>2 enkeltesenge</asp:ListItem>
-                    <asp:ListItem>Altan</asp:ListItem>
-                    <asp:ListItem>Badekar</asp:ListItem>
-                    <asp:ListItem>Jacuzzi</asp:ListItem>
-                    <asp:ListItem>Eget køkken</asp:ListItem>
-                </asp:CheckBoxList>
+                <table style="width: 90%; margin-left: 20px; border-style: hidden;" class="table table-bordered table-hover dataTable">
+                    <asp:CheckBoxList CssClass="checkbox1" ID="Filter_Checkboxlist" runat="server" Visible="false">
+                        <asp:ListItem>Enkelteseng</asp:ListItem>
+                        <asp:ListItem>Dobbeltseng</asp:ListItem>
+                        <asp:ListItem>2 enkeltesenge</asp:ListItem>
+                        <asp:ListItem>Altan</asp:ListItem>
+                        <asp:ListItem>Badekar</asp:ListItem>
+                        <asp:ListItem>Jacuzzi</asp:ListItem>
+                        <asp:ListItem>Eget køkken</asp:ListItem>
+                    </asp:CheckBoxList>
+                </table>
             </div>
         </div>
     </div>
