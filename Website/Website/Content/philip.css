@@ -1,9 +1,20 @@
 ﻿body {
-}
-.logoimg {
-    width: 50%;
+
 }
 .headline {
     text-align: center;
-    padding-right: 10%;
+}
+.navbar-header{
+    float: none !important;
+    text-align: center !important;
+}
+.body_login {
+    height: 100vh;
+    min-height: 550px;
+    background-image: url('../Pictures/CL.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden;
 }
