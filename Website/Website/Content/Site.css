@@ -1,6 +1,6 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 50px;
+    padding-top: 119px;
     padding-bottom: 20px;
 }
 
@@ -106,9 +106,6 @@ h2 {
 .chooseroombutton {
     padding: 10px 10px 10px 10px;
     margin-left: 46%;
+    font-size: 30px;
     border-radius: 40%;
-}
-
-.img-front {
-    width: 50%;
 }

@@ -41,21 +41,32 @@
             </Scripts>
         </asp:ScriptManager>
 
+
+
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    </button>--%>
+                    <div class="row">
+                        <div class="headline">
+                            <a href="~/">
+                                <h1>LANDLYST</h1>
+                            </a>
+                        </div>
+                    </div>                    
                 </div>
                 <div class="navbar-collapse collapse">
+                    <div class="row"></div>
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Hjem</a></li>
-                        <li><a runat="server" href="~/About">Logind</a></li>
+                        <li><a runat="server" href="~/Login">Log ind</a></li>
                     </ul>
+                    <div class="row"></div>
                 </div>
             </div>
         </div>
