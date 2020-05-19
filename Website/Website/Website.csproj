@@ -117,6 +117,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\tobias.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DitValgteVærelse.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -129,8 +130,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Pictures\Badeværelse.PNG" />
     <Content Include="Pictures\CL.png" />
     <Content Include="Pictures\Landlyst.PNG" />
+    <Content Include="Pictures\Soveværelse 1.PNG" />
+    <Content Include="Pictures\Soveværelse 2.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -195,6 +199,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DitValgteVærelse.aspx.cs">
+      <DependentUpon>DitValgteVærelse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DitValgteVærelse.aspx.designer.cs">
+      <DependentUpon>DitValgteVærelse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
