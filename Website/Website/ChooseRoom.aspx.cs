@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class _Default : Page
+    public partial class ChooseRoom : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
 
-        protected void ChooseRoombtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ChooseRoom.aspx");
         }
     }
 }

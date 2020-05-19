@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - Landlyst</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -14,6 +14,9 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="~/Content/tobias.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/marcus.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/philip.css"/>
 
 </head>
 <body>
@@ -38,6 +41,9 @@
             </Scripts>
         </asp:ScriptManager>
 
+
+
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -46,14 +52,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <div class="row">
+                        <a href="~/"> <img class="logoimg" src="Pictures/CL.png" alt="Logo" /> </a>
+                    </div>
+                    <div class="row">
+                        <ul class="nav navbar-nav">
+                            <li><a runat="server" href="~/">Hjem</a></li>
+                            <li><a runat="server" href="~/About">Logind</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
+                        <h1 class="headline">LANDLYST</h1>
+                    <div class="row"></div>
+                    <%--<ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Hjem</a></li>
+                        <li><a runat="server" href="~/About">Logind</a></li>
+                    </ul>--%>
+                    <div class="row"></div>
                 </div>
             </div>
         </div>
