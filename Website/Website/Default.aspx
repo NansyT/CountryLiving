@@ -11,4 +11,8 @@
         <input class="button" id="Button1" type="button" value="Find et værelse" />
 
     </div>
+<<<<<<< Updated upstream
+=======
+    <asp:Button class="buttonStyle" runat="server" OnClick="ChooseRoombtn_Click" Text="Se værelser"/>
+>>>>>>> Stashed changes
 </asp:Content>
