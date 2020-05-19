@@ -64,7 +64,7 @@
                     <div class="row"></div>
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Hjem</a></li>
-                        <li><a runat="server" href="~/about">Log ind</a></li>
+                        <li><a runat="server" href="~/Login">Log ind</a></li>
                     </ul>
                     <div class="row"></div>
                 </div>
