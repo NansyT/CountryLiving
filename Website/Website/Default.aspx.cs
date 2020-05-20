@@ -15,7 +15,7 @@ namespace Website
 
         protected void ChooseRoombtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ChooseRoom");
+            Response.Redirect("ChooseRoom.aspx");
         }
     }
 }

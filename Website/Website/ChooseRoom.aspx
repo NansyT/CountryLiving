@@ -24,15 +24,3 @@
 
 </asp:Content>
 
-<!-- Lav/fix border på CheckBoxList -->
-<!-- Style Filter knap -->
-<!-- Kig på Calendar med Nanna -->
-
-<!-- Design:
-
-Box uden om dato.
-
- Start dato: (nu + 7 dage frem) (mini calendar)
- Slut dato: (nu + 14 dage frem) (mini calendar)
-
--->
