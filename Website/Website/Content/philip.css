@@ -56,22 +56,6 @@ table {
     background: rgba(0,0,0,0.5);
 }
 
-.user {
-    width: 125px;
-    height: 125px;
-    overflow: hidden;
-    top: calc(-125px/2);
-    padding: 0px 100px;
-    position: absolute;
-}
-
-/*h2 {
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    color: rgb(255, 127, 9);
-}*/
-
 .lblUsername, .lblPassword {
     font-weight: bold;
     color: #fff;
@@ -115,4 +99,11 @@ table {
     font-style: italic;
     padding: 16px 0;
     margin: 0 0 0 40px;
+}
+.registerbox {
+    width: 30%;
+    padding: 3rem;
+    margin: auto;
+    background: rgba(0,0,0,0.5);
+    margin-top: 1rem;
 }
