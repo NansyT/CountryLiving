@@ -3,6 +3,7 @@
 
 .checkbox1 {
     width: 300px;
+    position: static;
 }
 
 .checkbox1 input[type=checkbox] {
@@ -21,8 +22,20 @@
     letter-spacing: 10px;
 }
 /* checked icon */
-
 .checkbox1 input[type=checkbox]:checked + label:before {
     letter-spacing: 7px;
     content: "\f046";
 }  
+
+.dato_design {
+    width: 235px;
+    margin-top: 30px;
+    padding-left: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 2px solid;
+}
+
+.datoinput {
+    width: 115px;
+    border-style: none;
+}
