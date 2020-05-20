@@ -14,7 +14,7 @@ namespace Website
 
         }
 
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        protected void SubmitLogin(object sender, EventArgs e)
         {
 
         }

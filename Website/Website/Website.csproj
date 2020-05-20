@@ -133,6 +133,7 @@
     <Content Include="Pictures\Badeværelse.PNG" />
     <Content Include="Pictures\CL.png" />
     <Content Include="Pictures\Landlyst.PNG" />
+    <Content Include="Pictures\login.png" />
     <Content Include="Pictures\Soveværelse 1.PNG" />
     <Content Include="Pictures\Soveværelse 2.PNG" />
     <Content Include="Scripts\bootstrap.js" />
