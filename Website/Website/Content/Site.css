@@ -99,13 +99,8 @@ h2 {
     margin-top: 10px;
 }
 
-.textalign {
-    text-align: center;
-}
-
 .chooseroombutton {
     padding: 10px 10px 10px 10px;
-    margin-left: 46%;
     font-size: 30px;
     border-radius: 40%;
 }
