@@ -3,12 +3,10 @@
 
 .checkbox1 {
     width: 300px;
-    position: fixed;
-}  
-
+}
 
 .checkbox1 input[type=checkbox] {
-display: none;
+    display: none;
 }
 
 .checkbox1 input[type=checkbox] + label:before {

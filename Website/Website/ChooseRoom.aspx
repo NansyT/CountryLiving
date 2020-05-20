@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChooseRoom.aspx.cs" Inherits="Website.ChooseRoom" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div>
+        <div>
+            <asp:Label ID="StartdatoLabel" runat="server" Text=" "></asp:Label>
+            <asp:Label ID="SlutdatoLabel" runat="server" Text=" "></asp:Label>
+        </div>
+    </div>
     
     <div style="margin-left: 80%; margin-top: 10px;">
         <asp:Button ID="Filter_Button" runat="server" OnClick="Filter_Button_Click" Text="Filter" />
@@ -23,4 +29,3 @@
     </div>
 
 </asp:Content>
-
