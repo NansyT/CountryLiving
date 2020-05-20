@@ -11,9 +11,9 @@
     <DockPanel x:Name="DPVV" >
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
             <Rectangle Width="20"/>
-            <Button x:Name="Opretbtn" Content="Opret reservation" Padding="5" Height="30" />
+            <Button x:Name="Opretbtn" Content="Opret reservation" Padding="5" Height="30" Click="Opretbtn_Click" />
             <Rectangle Width="20"/>
-            <Button x:Name="Ventendebtn" Content="Ventende reservation" Padding="5" Height="30" />
+            <Button x:Name="Ventendebtn" Content="Ventende reservation" Padding="5" Height="30" Click="Ventendebtn_Click" />
         </StackPanel>
         <DataGrid>
             <!-- Alle reserveringer db her-->

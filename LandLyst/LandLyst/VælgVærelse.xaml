@@ -11,7 +11,7 @@
     <DockPanel x:Name="DPVV" >
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
             <Rectangle Width="20"/>
-            <Button x:Name="tilbagebtn" Content="Tilbage" Padding="5" Height="30" />
+            <Button x:Name="tilbagebtn" Content="Tilbage" Padding="5" Height="30" Click="Tilbagebtn_Click" />
         </StackPanel>
         <DataGrid>
 <!-- Content fra db her-->

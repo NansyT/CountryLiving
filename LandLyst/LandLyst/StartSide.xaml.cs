@@ -24,5 +24,15 @@ namespace LandLyst
         {
             InitializeComponent();
         }
+
+        private void Opretbtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ventendebtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace LandLyst
         {
             InitializeComponent();
         }
+
+        private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
