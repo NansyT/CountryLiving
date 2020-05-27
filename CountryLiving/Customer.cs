@@ -62,5 +62,9 @@ namespace CountryLiving
             emailInput = email;
             passwordInput = password;
         }
+        public Customer()
+        {
+
+        }
     }
 }
