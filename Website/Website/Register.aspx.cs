@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace Website
 {
@@ -16,7 +17,13 @@ namespace Website
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
-
+            Debug.WriteLine(txtname.Text);
+            Debug.WriteLine(txtaddress.Text);
+            Debug.WriteLine(txtzipcode.Text);
+            Debug.WriteLine(txtcity.Text);
+            Debug.WriteLine(txtnumber.Text);
+            Debug.WriteLine(txtmail.Text);
+            Debug.WriteLine(txtPassword.Text);
         }
     }
 }
