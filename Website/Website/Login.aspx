@@ -1,11 +1,15 @@
-﻿<%@ Page Title="Log ind" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Website.Login" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Website.Login" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="body_login">
-        <asp:Login ID="Login1" runat="server" BackColor="#FFFBD6" BorderColor="#FFDFAD" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" TextLayout="TextOnTop">
-            <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
-            <LoginButtonStyle BackColor="White" BorderColor="#CC9966" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#990000" />
-            <TextBoxStyle Font-Size="0.8em" />
-            <TitleTextStyle BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
-        </asp:Login>
+        <div class="loginbox">
+            <h2>Log In Here</h2>
+            <h3>Har du ikke en bruger? Så lav en <a href="Register.aspx">her!</a></h3>
+            <asp:Label Text="Username" CssClass="log_Reg_lbl" runat="server"  />
+            <asp:TextBox runat="server" ID="txtUsername" CssClass="log_Reg_txt" placeholder="Enter Username"/>
+            <asp:Label Text="Password" CssClass="log_Reg_lbl" runat="server" />
+            <asp:TextBox runat="server" ID="txtPassword" CssClass="log_Reg_txt" placeholder="*************" TextMode="Password"/>
+            <asp:Label Text="Incorrect username or password" ID="lblIncorrectMessage" CssClass="lblIncorrectMessage" runat="server" Visible="false"/>
+            <asp:Button Text="Submit" CssClass="btnSubmit" runat="server" onclick="SubmitLogin"/>
+        </div>
     </div>
 </asp:Content>

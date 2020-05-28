@@ -1,4 +1,4 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
+﻿/* Move down content because we have a fixed navbar that is 119px tall */
 body {
     padding-top: 119px;
     padding-bottom: 20px;
@@ -99,10 +99,8 @@ h2 {
     margin-top: 10px;
 }
 
-.textalign {
-    text-align: center;
+.chooseroombutton {
+    padding: 10px 10px 10px 10px;
+    font-size: 30px;
+    border-radius: 40%;
 }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes

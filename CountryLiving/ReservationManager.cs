@@ -28,5 +28,6 @@ namespace CountryLiving
         {
             Debug.WriteLine("Reservation deleted");
         }
+
     }
 }
