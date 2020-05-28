@@ -39,3 +39,7 @@
     width: 115px;
     border-style: none;
 }
+
+ol {
+    display: block;
+}
