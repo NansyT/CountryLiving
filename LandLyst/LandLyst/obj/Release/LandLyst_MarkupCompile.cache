@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\
+C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Release\
 LandLyst
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\App.xaml
 6151999509
 
 10-1717142716
-14165884122
+13-1505183044
 Booking.xaml;MainWindow.xaml;Reservationer.xaml;VentendeRes.xaml;VælgVærelse.xaml;VærelsesInfo.xaml;
 
 True

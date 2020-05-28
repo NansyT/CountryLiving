@@ -16,14 +16,18 @@ using System.Windows.Shapes;
 namespace LandLyst
 {
     /// <summary>
-    /// Interaction logic for VælgVærelse.xaml
+    /// Interaction logic for VærelsesInfo.xaml
     /// </summary>
-    public partial class VælgVærelse : Page
+    public partial class VærelsesInfo : Page
     {
-        public VælgVærelse()
+        public VærelsesInfo()
         {
             InitializeComponent();
         }
-
+        // NEED TO FIGURE THIS SHIT OUT!
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new VærelsesInfo());
+        }
     }
 }

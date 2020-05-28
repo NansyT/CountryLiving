@@ -24,8 +24,37 @@ namespace LandLyst
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new StartSide());
+            mainFrame.Navigate(new VælgVærelse());
+        }
+        
+        // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
+        private void Værelsebtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new VælgVærelse());
         }
 
+        private void Ventendebtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new VentendeRes());
+        }
+
+        private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (mainFrame.CanGoBack)
+            {
+                mainFrame.GoBack();
+            }
+        }
+
+        private void SeReservationer_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Reservationer());
+        }
+
+        private void VærelsesInfo_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new VærelsesInfo());
+        }
+        // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
     }
 }

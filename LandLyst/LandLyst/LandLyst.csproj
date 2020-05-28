@@ -58,12 +58,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="StartSide.xaml.cs">
-      <DependentUpon>StartSide.xaml</DependentUpon>
+    <Compile Include="Booking.xaml.cs">
+      <DependentUpon>Booking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reservationer.xaml.cs">
+      <DependentUpon>Reservationer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentendeRes.xaml.cs">
+      <DependentUpon>VentendeRes.xaml</DependentUpon>
     </Compile>
     <Compile Include="VælgVærelse.xaml.cs">
       <DependentUpon>VælgVærelse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VærelsesInfo.xaml.cs">
+      <DependentUpon>VærelsesInfo.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Booking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,11 +89,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="StartSide.xaml">
+    <Page Include="Reservationer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentendeRes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VælgVærelse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VærelsesInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
