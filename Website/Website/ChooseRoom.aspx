@@ -38,10 +38,9 @@
     <div>
         <%--Måske et link der kunne hjælpe med grid--%>
         <%--https://www.aspsnippets.com/Articles/Display-images-from-SQL-Server-Database-in-ASP.Net-GridView-control.aspx--%> 
-
-        <asp:DataList ID="DataList1" runat="server">
-            <HeaderTemplate>Hejsa</HeaderTemplate>
-        </asp:DataList>
+       <ol>
+           <li>Hejsa</li>
+       </ol>
     </div>
 
 

@@ -278,7 +278,6 @@ C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
-C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.csproj.CopyComplete
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.dll
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.pdb
