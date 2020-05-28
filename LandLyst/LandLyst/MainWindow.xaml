@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:LandLyst"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <Grid x:Name="grid">
-        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}"  />
+        <DockPanel>
+            <StackPanel Background="Brown" Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
+                <Rectangle Width="20"/>
+                <Button x:Name="Værelsebtn" Content="Se værelser" Padding="5" Height="30" Click="Værelsebtn_Click"/>
+                <Rectangle Width="20"/>
+                <Button x:Name="Ventendebtn" Content="Ventende reservationer" Padding="5" Height="30" Click="Ventendebtn_Click"/>
+                <Rectangle Width="20"/>
+                <Button x:Name="Tilbagebtn" Content="Tilbage" Padding="5" Height="30" Click="Tilbagebtn_Click"/>
+                <Rectangle Width="20"/>
+                <Button x:Name="SeReservationer" Content="Se reservationer" Padding="5" Height="30" Click="SeReservationer_Click"/>
+                <Rectangle Width="20"/>
+                <Button x:Name="VærelsesInfo" Content="Værelses info" Padding="5" Height="30" Click="VærelsesInfo_Click"/>
+            </StackPanel>
+            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}"  />
+        </DockPanel>
     </Grid>
 </Window>

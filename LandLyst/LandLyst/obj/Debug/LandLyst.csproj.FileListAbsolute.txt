@@ -35,5 +35,7 @@ C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\LandL
 C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\LandLyst.csproj.CopyComplete
 C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\LandLyst.exe
 C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\LandLyst.pdb
-C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\StartSide.g.cs
-C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\StartSide.baml
+C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\Booking.g.cs
+C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\VærelsesInfo.g.cs
+C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\Booking.baml
+C:\Users\Nansy\Documents\GitHub\Country-Living\LandLyst\LandLyst\obj\Debug\VærelsesInfo.baml

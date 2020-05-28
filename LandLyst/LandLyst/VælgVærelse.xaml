@@ -5,17 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LandLyst"
       mc:Ignorable="d" 
-      d:DesignHeight="419" d:DesignWidth="792"
+      d:DesignHeight="379" d:DesignWidth="792"
       Title="VælgVærelse">
-
+    <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel x:Name="DPVV" >
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
-            <Rectangle Width="20"/>
-            <Button x:Name="tilbagebtn" Content="Tilbage" Padding="5" Height="30" />
-        </StackPanel>
-        <DataGrid>
-<!-- Content fra db her-->
-        </DataGrid>
+        <TextBox Background="BlueViolet" Text="Search" DockPanel.Dock="Top" Height="30"/>
+        <Rectangle Fill="Beige"/>
     </DockPanel>
 </Page>
 
