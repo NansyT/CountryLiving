@@ -42,4 +42,14 @@
 
 ol {
     display: block;
+    list-style-type: decimal;
+    list-style: none;
+}
+
+.lipicturelist {
+    display: list-item;
+}
+
+.picturelistdiv {
+    display: block;
 }
