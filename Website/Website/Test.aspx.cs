@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CountryLiving;
+using Npgsql;
+
 
 namespace Website
 {
@@ -12,10 +15,17 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.Page.User.Identity.IsAuthenticated)
-            {
-                FormsAuthentication.RedirectToLoginPage();
-            }
+            
+        }
+        private void TestTest()
+        {
+            SqlManager test = new SqlManager();
+            test.InsertPerson("test8", "test", "test", 1234, 88888888, "testtest");
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            TestTest();
         }
     }
 }
