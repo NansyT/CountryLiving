@@ -540,3 +540,4 @@ C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\S
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Net.Sockets.dll
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache

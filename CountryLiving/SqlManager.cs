@@ -53,13 +53,24 @@ namespace CountryLiving
 
             cmd.Parameters.AddWithValue("email", emailpar);
             cmd.Parameters.AddWithValue("password", passwordpar);
-
-            cmd.Prepare();
             int output = Convert.ToInt32(cmd.ExecuteScalar());
             SqlConnection(false);
             return output;
 
 
+        }
+        public string GetCustomerName(string email)
+        {
+            SqlConnection(true);
+            var sql = "SELECT fullname FROM public.customer WHERE pk_email = @email";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("email", email);
+
+            cmd.Prepare();
+            string output = cmd.ExecuteReader().ToString();
+            SqlConnection(false);
+            return output;
         }
     }
 }
