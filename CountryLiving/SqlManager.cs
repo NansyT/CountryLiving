@@ -45,18 +45,20 @@ namespace CountryLiving
             SqlConnection(false);
 
         }
-        public void GetCustomers(string emailpar, string passwordpar)
+        public int GetCustomers(string emailpar, string passwordpar)
         {
             SqlConnection(true);
-            var sql = "INSERT INTO public.persons(\"Name\", \"Address\", zipcode, city, mobilenr, email, password) VALUES(@name, @address, @zip, @city, @mobil, @email, @password)";
+            var sql = "SELECT COUNT(*) FROM public.customer WHERE pk_email = @email AND password = @password ";
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("email", emailpar);
             cmd.Parameters.AddWithValue("password", passwordpar);
 
             cmd.Prepare();
-            cmd.ExecuteNonQuery();
+            int output = Convert.ToInt32(cmd.ExecuteScalar());
             SqlConnection(false);
+            return output;
+
 
         }
     }
