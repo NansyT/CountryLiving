@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
+using Npgsql;
 using CountryLiving;
 
 namespace Website
@@ -11,6 +14,16 @@ namespace Website
         {
             StartdatoInput.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
             SlutdatoInput.Value = DateTime.Now.AddDays(14).ToString("dd/MM/yyyy");
+            
+            //string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
+            //NpgsqlConnection con = new NpgsqlConnection(conS);
+            con.SqlConnection(true);
+            //NpgsqlDataAdapter sqlDa = new NpgsqlDataAdapter("SELECT * FROM room", con);
+            //DataTable dtbl = new DataTable();
+            //sqlDa.Fill(dtbl);
+            //displayrooms.DataSource = dtbl;
+            //displayrooms.DataBind();
+            con.SqlConnection(false);
         }
 
         protected void Filter_Button_Click(object sender, EventArgs e)

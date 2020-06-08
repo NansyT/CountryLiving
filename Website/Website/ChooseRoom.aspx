@@ -39,12 +39,12 @@
         <div class="picturelistdiv">
             <%--Måske et link der kunne hjælpe med grid--%>
             <%--https://www.aspsnippets.com/Articles/Display-images-from-SQL-Server-Database-in-ASP.Net-GridView-control.aspx--%> 
-           <ol class="test" aria-live="assertive" aria-relevant="all" role="status">
-               <li class="lipicturelist">Hejsa</li>
-               <li class="lipicturelist">Hejsa2</li>
-               <li class="lipicturelist">Hejsa3</li>
-               <li class="lipicturelist">Hejsa4</li>
-           </ol>
+           <asp:GridView ID="displayrooms" runat="server" AutoGenerateColumns="false">
+               <Columns>
+                   <asp:BoundField DataField="pk_room_id" HeaderText="Room nr:" />
+                   <asp:BoundField DataField="price" HeaderText="Room price:" />
+               </Columns>
+           </asp:GridView>
         </div>
     </section>
 
