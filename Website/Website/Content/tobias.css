@@ -42,4 +42,18 @@
 
 ol {
     display: block;
+    list-style-type: decimal;
+    list-style: none;
+}
+
+.lipicturelist {
+    margin-top: 10px;
+    display: list-item;
+    width: 500px;
+    height: 100px;
+    border: 1px solid;
+}
+
+.picturelistdiv {
+    display: block;
 }
