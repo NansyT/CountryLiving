@@ -1,29 +1,16 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
-using Npgsql;
 using CountryLiving;
 
 namespace Website
 {
     public partial class ChooseRoom : System.Web.UI.Page
     {
-        //SqlManager con = new SqlManager();
+        SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             StartdatoInput.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
             SlutdatoInput.Value = DateTime.Now.AddDays(14).ToString("dd/MM/yyyy");
-
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
-            con.Open();
-            NpgsqlDataAdapter sqlDa = new NpgsqlDataAdapter("SELECT * FROM room", con);
-            DataTable dtbl = new DataTable();
-            sqlDa.Fill(dtbl);
-            displayrooms.DataSource = dtbl;
-            displayrooms.DataBind();
-            con.Close();
         }
 
         protected void Filter_Button_Click(object sender, EventArgs e)
