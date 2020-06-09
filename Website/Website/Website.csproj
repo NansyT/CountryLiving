@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="BookingCompletion.aspx" />
     <Content Include="ChooseRoom.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -219,6 +220,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BookingCompletion.aspx.cs">
+      <DependentUpon>BookingCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookingCompletion.aspx.designer.cs">
+      <DependentUpon>BookingCompletion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChooseRoom.aspx.cs">
       <DependentUpon>ChooseRoom.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
