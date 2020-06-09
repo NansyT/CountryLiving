@@ -21,7 +21,7 @@
             <asp:Label Text="Mail" CssClass="log_Reg_lbl" runat="server"  />
             <asp:TextBox runat="server" ID="txtmail" CssClass="log_Reg_txt" placeholder="fx. ditnavn@dinmail.dk" TextMode="Email"/>
             
-            <asp:Label Text="Adgangskode" CssClass="log_Reg_lbl" runat="server" />
+            <asp:Label Text="Adgangskoe" CssClass="log_Reg_lbl" runat="server" />
             <asp:TextBox runat="server" ID="txtPassword" CssClass="log_Reg_txt" placeholder="*************" TextMode="Password"/>
 
             <asp:Button Text="Submit" CssClass="btnSubmit" runat="server" onclick="SubmitLogin"/>

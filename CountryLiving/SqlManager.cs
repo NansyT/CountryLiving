@@ -9,10 +9,8 @@ namespace CountryLiving
 {
     public class SqlManager
     {
-            private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            private static NpgsqlConnection con = new NpgsqlConnection(constring);
-        
-        
+        private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
+        private static NpgsqlConnection con = new NpgsqlConnection(constring);
         
         public void SqlConnection(bool openorclose)
         {
@@ -27,50 +25,24 @@ namespace CountryLiving
             }
 
         }
-        public void InsertPerson(string emailpar, string fullname, string addresspar, int zippar, int phonenrpar, string passwordpar) 
+        public void InsertPerson(string namepar, string addresspar, int zippar, string citypar, int phonenrpar, string emailpar, string passwordpar) 
         {
             SqlConnection(true);
-            var sql = "INSERT INTO public.customer(pk_email, fullname, \"address\", zip_code, phone_nr, password) VALUES(@email, @name, @address, @zip, @mobil, @password)";
+            var sql = "INSERT INTO public.persons(\"Name\", \"Address\", zipcode, city, mobilenr, email, password) VALUES(@name, @address, @zip, @city, @mobil, @email, @password)";
             var cmd = new NpgsqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("email", emailpar);
-            cmd.Parameters.AddWithValue("name", fullname);
+            cmd.Parameters.AddWithValue("name", namepar);
             cmd.Parameters.AddWithValue("address", addresspar);
             cmd.Parameters.AddWithValue("zip", zippar);
+            cmd.Parameters.AddWithValue("city", citypar);
             cmd.Parameters.AddWithValue("mobil", phonenrpar);
+            cmd.Parameters.AddWithValue("email", emailpar);
             cmd.Parameters.AddWithValue("password", passwordpar);
 
             cmd.Prepare();
             cmd.ExecuteNonQuery();
             SqlConnection(false);
 
-        }
-        public int GetCustomers(string emailpar, string passwordpar)
-        {
-            SqlConnection(true);
-            var sql = "SELECT COUNT(*) FROM public.customer WHERE pk_email = @email AND password = @password ";
-            var cmd = new NpgsqlCommand(sql, con);
-
-            cmd.Parameters.AddWithValue("email", emailpar);
-            cmd.Parameters.AddWithValue("password", passwordpar);
-            int output = Convert.ToInt32(cmd.ExecuteScalar());
-            SqlConnection(false);
-            return output;
-
-
-        }
-        public string GetCustomerName(string email)
-        {
-            SqlConnection(true);
-            var sql = "SELECT fullname FROM public.customer WHERE pk_email = @email";
-            var cmd = new NpgsqlCommand(sql, con);
-
-            cmd.Parameters.AddWithValue("email", email);
-
-            cmd.Prepare();
-            string output = cmd.ExecuteReader().ToString();
-            SqlConnection(false);
-            return output;
         }
     }
 }
