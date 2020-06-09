@@ -535,9 +535,7 @@ C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\S
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Net.Sockets.dll
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Threading.Tasks.Extensions.dll
-<<<<<<< HEAD
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
-=======
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\roslyn\System.Globalization.Calendars.dll
@@ -549,4 +547,3 @@ C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.ValueTuple.dll
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.ValueTuple.xml
 C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
->>>>>>> 6b2e9f7ea1d0a493c6e01284cc82a8c61a0cd151
