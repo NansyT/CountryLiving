@@ -1,7 +1,6 @@
 ﻿body {
 }
 
-
 .bookingBox {
     background-color: lightgray;
     width: 25%;
@@ -10,4 +9,10 @@
 .btnBooking{
     border-radius:3%;
     margin: 10px;
+}
+.grid-container{
+    background-color:lightgray;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto 25%;
 }

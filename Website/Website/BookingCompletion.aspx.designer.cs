@@ -11,7 +11,7 @@ namespace Website
 {
 
 
-    public partial class Test
+    public partial class BookingCompletion
     {
     }
 }
