@@ -12,15 +12,16 @@
             <p>Adresse</p>
             <p>Post Nr.</p>
             <p>By</p>
+            <p>E-mail</p>
             <p>Telefon Nr</p>
         </div>
         <div>
-            <p>Pris per nat</p>
-            <p>Fra Dato</p>
-            <p>Til Dato</p>
-            <p>Antal nætter</p>
-            <h3>Pris i alt</h3>
-            <input class="btnBooking" id="Button1" type="button" value="Book Nu" />
+            <p>Pris per nat:</p>
+            <p>Fra Dato:</p>
+            <p>Til Dato:</p>
+            <p>Antal nætter:</p>
+            <h3>Pris i alt:</h3>
+            <input class="btnCompleteBooking" id="Button1" type="button" value="Book Nu" />
         </div>
     </div>
 </asp:Content>
