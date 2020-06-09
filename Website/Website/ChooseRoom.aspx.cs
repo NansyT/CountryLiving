@@ -17,9 +17,11 @@ namespace Website
 
             string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
             NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
             con.Open();
-            displayrooms.DataSource = cmd.ExecuteReader();
+            NpgsqlDataAdapter sqlDa = new NpgsqlDataAdapter("SELECT * FROM room", con);
+            DataTable dtbl = new DataTable();
+            sqlDa.Fill(dtbl);
+            displayrooms.DataSource = dtbl;
             displayrooms.DataBind();
             con.Close();
         }
