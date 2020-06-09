@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    class CustomerManager:SqlManager
+    class CustomerManager : SqlManager
     {
 
-        private void CreateCustomer(string name, string address, int zipcode, string city, int phonenumber, string email, string password)
+        private void CreateCustomer(string name, string address, int zipcode, int phonenumber, string email, string password)
         {
-            Customer customer = new Customer(name, address, zipcode, city, phonenumber, email, password);
-            InsertPerson(customer.Name, customer.Address, customer.Zipcode, customer.City, customer.Phonenumber, customer.Email, customer.Password);
+            Customer customer = new Customer(email, name, address, zipcode, phonenumber, password);
+            InsertPerson(customer.Email, customer.Name, customer.Address, customer.Zipcode, customer.Phonenumber, customer.Password);
+        }
+        public void CheckCustomer(string email, string password)
+        {
+            GetCustomers(email, password);
         }
     }
 }

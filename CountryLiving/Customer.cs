@@ -11,7 +11,6 @@ namespace CountryLiving
         private string name;
         private string address;
         private int zipcode;
-        private string city;
         private int phonenumber;
         private string email;
         private string password;
@@ -31,11 +30,6 @@ namespace CountryLiving
             get { return zipcode; }
             private set { zipcode = value; }
         }
-        public string City
-        {
-            get { return city; }
-            private set { city = value; }
-        }
         public int Phonenumber
         {
             get { return phonenumber; }
@@ -52,14 +46,13 @@ namespace CountryLiving
             private set { password = value; }
         }
 
-        public Customer(string nameInput, string addressInput, int zipcodeInput, string cityInput, int phonenumberInput, string emailInput, string passwordInput)
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordInput)
         {
+            emailInput = email;
             nameInput = name;
             addressInput = address;
             zipcodeInput = zipcode;
-            cityInput = city;
             phonenumberInput = phonenumber;
-            emailInput = email;
             passwordInput = password;
         }
         public Customer()
