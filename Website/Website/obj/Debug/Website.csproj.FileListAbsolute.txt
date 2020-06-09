@@ -701,3 +701,25 @@ C:\Users\Nansy\Documents\GitHub\Country-Living\Website\Website\obj\Debug\Website
 C:\Users\Nansy\Documents\GitHub\Country-Living\Website\Website\obj\Debug\Website.csproj.CopyComplete
 C:\Users\Nansy\Documents\GitHub\Country-Living\Website\Website\obj\Debug\Website.dll
 C:\Users\Nansy\Documents\GitHub\Country-Living\Website\Website\obj\Debug\Website.pdb
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\CountryLiving.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\Npgsql.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Buffers.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Memory.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Numerics.Vectors.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Text.Encodings.Web.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Text.Json.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\CountryLiving.pdb
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\CountryLiving.dll.config
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\Npgsql.pdb
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\Npgsql.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Buffers.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Memory.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Numerics.Vectors.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Text.Encodings.Web.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Text.Json.xml
+C:\Users\tobi8268\Desktop\Eux - projektopgave\Country-Living\Website\Website\bin\System.Threading.Tasks.Extensions.xml
