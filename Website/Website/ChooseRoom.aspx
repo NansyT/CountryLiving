@@ -39,12 +39,40 @@
         <div class="picturelistdiv">
             <%--Måske et link der kunne hjælpe med grid--%>
             <%--https://www.aspsnippets.com/Articles/Display-images-from-SQL-Server-Database-in-ASP.Net-GridView-control.aspx--%> 
-           <asp:GridView ID="displayrooms" runat="server" AutoGenerateColumns="false">
-               <Columns>
-                   <asp:BoundField DataField="pk_room_id" HeaderText="Room nr:" />
-                   <asp:BoundField DataField="price" HeaderText="Room price:" />
-               </Columns>
-           </asp:GridView>
+           <asp:DataList ID="displayrooms" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CellSpacing="3" RepeatLayout="Table">
+               <ItemTemplate>
+                   <table class="table">
+                       <tr>
+                           <th colspan="2">
+                               <b>
+                                   Room: 
+                               </b>
+                                <b>
+                                    <%# Eval("pk_room_id") %>
+                                </b>
+                           </th>
+                       </tr>
+                       <tr>
+                           <td colspan="2">     
+                                <img src="Pictures/Soveværelse 1.PNG"/>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>
+                               Ekstra ydelser:
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>
+                               Pris:
+                           </td>
+                           <td>
+                               <%# Eval("price") %>
+                           </td>
+                       </tr>
+                   </table>
+               </ItemTemplate>
+           </asp:DataList>
         </div>
     </section>
 
