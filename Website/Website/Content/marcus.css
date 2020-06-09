@@ -1,2 +1,13 @@
 ﻿body {
 }
+
+
+.bookingBox {
+    background-color: lightgray;
+    width: 25%;
+    border-radius:5%;
+}
+.btnBooking{
+    border-radius:3%;
+    margin: 10px;
+}

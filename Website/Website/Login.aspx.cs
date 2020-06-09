@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CountryLiving;
 
 namespace Website
 {
@@ -17,14 +16,7 @@ namespace Website
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
-            string passwordstr = txtPassword.Text;
-            string emailstr = txtEmail.Text;
-            SqlManager con = new SqlManager();
-            int howmanyusers = con.GetCustomers(emailstr, passwordstr);
-            if ( howmanyusers == 1 )
-            {
 
-            }
         }
     }
 }
