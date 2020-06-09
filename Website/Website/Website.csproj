@@ -173,6 +173,7 @@
     <Content Include="Pictures\Soveværelse 1.PNG" />
     <Content Include="Pictures\Soveværelse 2.PNG" />
     <Content Include="Register.aspx" />
+    <Content Include="RoomDetails.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -256,6 +257,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomDetails.aspx.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomDetails.aspx.designer.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
