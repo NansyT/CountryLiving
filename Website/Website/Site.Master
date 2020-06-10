@@ -12,14 +12,16 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="~/Content/tobias.css"/>
-    <link rel="stylesheet" type="text/css" href="~/Content/marcus.css"/>
-    <link rel="stylesheet" type="text/css" href="~/Content/Site.css"/>
-    <link rel="stylesheet" type="text/css" href="~/Content/philip.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+    <link rel="stylesheet" type="text/css" href="~/Content/tobias.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/marcus.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/philip.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="CalendarPlugin/datetimepicker/jquery.datetimepicker.css" />
+
 
 </head>
 <body>
@@ -76,7 +78,7 @@
                                 <h1>LANDLYST</h1>
                             </a>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="navbar-collapse collapse">
                     <div class="row"></div>
@@ -118,4 +120,7 @@
         <p class="footer-bottom-text">Alle rettigheder er forbeholdt til &copy;LandLyst.2020</p>
     </footer>
 </body>
+<script src="CalendarPlugin/datetimepicker/jquery.js"></script>
+<script src="CalendarPlugin/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+<script src="Calendar.js"></script>
 </html>

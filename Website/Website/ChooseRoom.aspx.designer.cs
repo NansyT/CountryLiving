@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Website
-{
-
-
-    public partial class ChooseRoom
-    {
-
+namespace Website {
+    
+    
+    public partial class ChooseRoom {
+        
         /// <summary>
         /// Filter_Button control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Filter_Button;
-
+        
         /// <summary>
         /// Filter_Checkboxlist control.
         /// </summary>
@@ -31,41 +29,32 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList Filter_Checkboxlist;
-
+        
         /// <summary>
-        /// StartdatoLabel control.
+        /// StartDato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StartdatoLabel;
-
+        protected global::System.Web.UI.HtmlControls.HtmlInputText StartDato;
+        
         /// <summary>
-        /// StartdatoInput control.
+        /// SlutDato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl StartdatoInput;
-
+        protected global::System.Web.UI.HtmlControls.HtmlInputText SlutDato;
+        
         /// <summary>
-        /// SlutdatoLabel control.
+        /// VælgDato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SlutdatoLabel;
-
-        /// <summary>
-        /// SlutdatoInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl SlutdatoInput;
+        protected global::System.Web.UI.WebControls.Button VælgDato;
     }
 }
