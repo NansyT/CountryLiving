@@ -21,18 +21,17 @@
             </div>
         </div>
     </div>
-
+    <%--https://xdsoft.net/jqplugins/datetimepicker/ Calendar comes from here--%>
     <div>
-        <div class="dato_design">
-            <asp:Label ID="StartdatoLabel" runat="server" Text="Start dato:"></asp:Label>
-            <input class="datoinput" type="datetime" id="StartdatoInput" runat="server">
-            <!-- MINI KALENDER -->
+        <div>
+            <input ID="StartDato" runat="server" type="text">
         </div>
-        <div class="dato_design">
-            <asp:Label ID="SlutdatoLabel" runat="server" Text="Slut dato :"></asp:Label>
-            <input class="datoinput" type="datetime" id="SlutdatoInput" runat="server">
-            <!-- MINI KALENDER -->
+        <div>
+            <input id="SlutDato" runat="server" type="text" >
         </div>
+        <asp:button runat="server" id="VælgDato" Text="Vælg dato" OnClick="VælgDato_Click"></asp:button>
+        
+        
     </div>
     
     <section>

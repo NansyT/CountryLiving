@@ -9,8 +9,8 @@ namespace Website
         SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            StartdatoInput.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
-            SlutdatoInput.Value = DateTime.Now.AddDays(14).ToString("dd/MM/yyyy");
+            StartDato.Value = "Start Dato";
+            SlutDato.Value = "Slut Dato";
         }
 
         protected void Filter_Button_Click(object sender, EventArgs e)
@@ -22,6 +22,30 @@ namespace Website
             else
             {
                 Filter_Checkboxlist.Visible = true;
+            }
+        }
+        protected void VælgDato_Click(object sender, EventArgs e)
+        {
+            if (StartDato.Value != "Start Dato" && SlutDato.Value != "Slut Dato")
+            {
+                //Convertere vores dato fra string til DateTime
+                DateTime startDato = Convert.ToDateTime(StartDato.Value);
+                DateTime sluttDato = Convert.ToDateTime(StartDato.Value);
+                if (startDato < sluttDato)
+                {
+                    //Vi vil gerne ende her
+                    Debug.WriteLine("Date is after today");
+                }
+                else
+                {
+                    //Slut dato er før start...
+                    Debug.WriteLine("Din start dato skal være før din sidste dag");
+                }
+            }
+            else
+            {
+                //Der mangler datoer
+                Debug.WriteLine("Please enter date");
             }
         }
     }
