@@ -13,7 +13,7 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] != null)
+            if (Session["mail"] != null)
             {
                 Response.Redirect("Default.aspx");
             }
@@ -27,7 +27,7 @@ namespace Website
             int howmanyusers = con.GetCustomers(emailstr, passwordstr);
             if (howmanyusers == 1)
             {
-                Session["username"] = con.GetCustomerName(emailstr);
+                Session["mail"] = con.GetCustomerName(emailstr);
                 Response.Redirect("Default.aspx");
             }
         }
