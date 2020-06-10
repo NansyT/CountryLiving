@@ -27,7 +27,7 @@ namespace Website
             int howmanyusers = con.GetCustomers(emailstr, passwordstr);
             if (howmanyusers == 1)
             {
-                Session["mail"] = con.GetCustomerName(emailstr);
+                Session["mail"] = emailstr;
                 Response.Redirect("Default.aspx");
             }
         }
