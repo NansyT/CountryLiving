@@ -16,6 +16,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="~/Content/tobias.css"/>
     <link rel="stylesheet" type="text/css" href="~/Content/marcus.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css"/>
     <link rel="stylesheet" type="text/css" href="~/Content/philip.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
@@ -46,7 +47,7 @@
 
 
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

@@ -57,3 +57,14 @@ ol {
 .picturelistdiv {
     display: block;
 }
+
+.table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 200px;
+}
+
+.table td {
+    border: none;
+    padding: 5px;
+}

@@ -17,6 +17,8 @@ namespace Website
             NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM customer", con);
             con.Open();
             displayInfo.DataSource = cmd.ExecuteReader();
+            displayInfo.DataBind();
+            con.Close();
 
         }
     }
