@@ -9,6 +9,7 @@
 .btnBooking{
     border-radius:3px;
     margin: 10px;
+    height: 42px;
 }
 .btnCompleteBooking{
     width: 100%;
