@@ -1,7 +1,5 @@
 ﻿/* Move down content because we have a fixed navbar that is 119px tall */
 body {
-    padding-top: 119px;
-    padding-bottom: 20px;
 }
 
 /* Wrapping element */

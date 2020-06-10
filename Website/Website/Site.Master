@@ -47,49 +47,23 @@
         </asp:ScriptManager>
 
 
+        <div id="navheadline">
+               <a class="navbar-brand" href="#">
+                   <h1>LANDLYST</h1>
+               </a>
 
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <div id="navheadline">
-                <a class="navbar-brand" href="#">
-                    <h1>LANDLYST</h1>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                    <div id="navtabs">
+        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a runat="server" href="#">Hjem</a></li>
-                        <li class="nav-item"><a runat="server" href="~/Login">Log ind</a></li>
-                    </ul>
-                    </div>                    
-                </div>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="#">Hjem</a>                               
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Login">Log ind</a>
+                        </li>
+                    </ul>                  
         </nav>
 
-        <%--<div class="navbar navbar-inverse fixed-top">
-            <div class="container">
-                <div class="navbar-header">--%>
-                    <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>--%>
-<%--                    <div class="row">
-                        <div class="headline">
-                            <a href="~/">
-                                <h1>LANDLYST</h1>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <div class="row"></div>
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Hjem</a></li>
-                        <li><a runat="server" href="~/Login">Log ind</a></li>
-                    </ul>
-                    <div class="row"></div>
-                </div>
-            </div>
-        </div>--%>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

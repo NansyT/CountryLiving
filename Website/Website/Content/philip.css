@@ -111,11 +111,15 @@ table {
 
 /*CSS to navbar(header)*/
 #navheadline {
-    position:relative;
+    background-color: #343a40 !important;
+    text-align: center;
 }
 #navtabs {
     position: absolute;
 }
 .navbar-collapse collapse {
     position: relative !important;
+}
+.nav-item {
+    font-size:x-large !important;
 }
