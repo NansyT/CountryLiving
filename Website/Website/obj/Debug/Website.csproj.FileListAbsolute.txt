@@ -824,3 +824,11 @@ C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\bin\Antlr
 C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.csproj.CopyComplete
 >>>>>>> 0d8f7d4f752c0eae5ba4906e25feac3c159162d2
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Net.Http.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Net.Sockets.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\marc8847\Documents\GitHub\Country-Living\Website\Website\bin\roslyn\System.Threading.Tasks.Extensions.dll
