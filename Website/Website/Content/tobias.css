@@ -61,10 +61,26 @@ ol {
 .table {
     border: 1px solid #ccc;
     border-collapse: collapse;
-    width: 200px;
+    width: 300px;
+}
+
+.table th {
+    border: none;
+    width: 60px;
+    padding: 5px;
 }
 
 .table td {
     border: none;
+    text-decoration: underline;
     padding: 5px;
+}
+
+.user_page {
+    width: 300px;
+}
+
+.user_page img {
+    width: 100px;
+    height: 100px;
 }

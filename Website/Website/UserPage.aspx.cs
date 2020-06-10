@@ -14,7 +14,7 @@ namespace Website
         {
             string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
             NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM customer", con);
+            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM customer WHERE pk_email = \'tobi@gmail.com\'", con);
             con.Open();
             displayInfo.DataSource = cmd.ExecuteReader();
             displayInfo.DataBind();
