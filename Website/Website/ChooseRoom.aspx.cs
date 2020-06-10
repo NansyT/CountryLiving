@@ -9,6 +9,7 @@ namespace Website
         SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Skal ikke være her... flytter senere
             StartDato.Value = "Start Dato";
             SlutDato.Value = "Slut Dato";
         }
