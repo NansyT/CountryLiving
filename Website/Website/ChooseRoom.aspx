@@ -38,12 +38,11 @@
         <div class="picturelistdiv">
             <%--Måske et link der kunne hjælpe med grid--%>
             <%--https://www.aspsnippets.com/Articles/Display-images-from-SQL-Server-Database-in-ASP.Net-GridView-control.aspx--%> 
-           <ol class="test" aria-live="assertive" aria-relevant="all" role="status">
-               <li class="lipicturelist">Hejsa</li>
-               <li class="lipicturelist">Hejsa2</li>
-               <li class="lipicturelist">Hejsa3</li>
-               <li class="lipicturelist">Hejsa4</li>
-           </ol>
+           <%--<asp:DataList ID="displayrooms" runat="server" RepeatDirection="Horizontal" CellSpacing="3" RepeatColumns="3">
+               <ItemTemplate>
+
+               </ItemTemplate>
+           </asp:DataList>--%>
         </div>
     </section>
 

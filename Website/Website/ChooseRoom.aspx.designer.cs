@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Website {
-    
-    
-    public partial class ChooseRoom {
-        
+namespace Website
+{
+
+
+    public partial class ChooseRoom
+    {
+
         /// <summary>
         /// Filter_Button control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Filter_Button;
-        
+
         /// <summary>
         /// Filter_Checkboxlist control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList Filter_Checkboxlist;
-        
+
         /// <summary>
         /// StartDato control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText StartDato;
-        
+
         /// <summary>
         /// SlutDato control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText SlutDato;
-        
+
         /// <summary>
         /// VælgDato control.
         /// </summary>
