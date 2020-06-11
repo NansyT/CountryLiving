@@ -4,8 +4,8 @@
     <div class="positionBookingBox">
         <div class="bookingBox">
             <div style="text-align:center;">
-                <h1>Rum: <asp:Label ID="LabelRum" runat="server" Text="Label"></asp:Label></h1>
-                <p>pris:</p>
+                <h1>Rum: <asp:Label ID="LabelRoom" runat="server" Text="Label"></asp:Label></h1>
+                <p>pris: <asp:Label ID="LabelPrice" runat="server" Text="Label"></asp:Label></p>
                 <p>tillægsydeler:</p>
                 <p>Dobbeltseng:</p>
                 <h3>pr nat:</h3>
