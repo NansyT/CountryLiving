@@ -4,11 +4,11 @@
     <div class="positionBookingBox">
         <div class="bookingBox">
             <div style="text-align:center;">
-                <h1>Rum: 101</h1>
-                <p>pris: 695kr.</p>
+                <h1>Rum: <asp:Label ID="LabelRoom" runat="server" Text="Label"></asp:Label></h1>
+                <p>pris: <asp:Label ID="LabelPrice" runat="server" Text="Label"></asp:Label></p>
                 <p>tillægsydeler:</p>
-                <p>Dobbeltseng: 200kr.</p>
-                <h3>pr nat: 895kr.</h3>
+                <p>Dobbeltseng:</p>
+                <h3>pr nat:</h3>
                 <p>reserver i x antal nætter</p>
                 <h1>Pris I Alt: </h1>
                 <asp:Button class="btnBooking" ID="Button1" runat="server" Text="Book rummet" OnClick="Button1_Click" />
