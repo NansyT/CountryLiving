@@ -33,7 +33,8 @@
 
     <div style="margin-left: 80%; margin-top: 10px;">
         <asp:Button ID="searchButton" runat="server" Text="Søg" OnClick="searchButton_Click"/>
-    
+    </div>
+
     <section>
         <div class="picturelistdiv">
             <%--Måske et link der kunne hjælpe med grid--%>
@@ -59,7 +60,8 @@
 
                        <tr>
                            <td>
-                                <a href="RoomDetails.aspx?roomId=<%#Eval("pk_room_id") %>?dateIn=">Book her</a>
+                               <asp:Button ID="book" runat="server" Text="Book her" OnClick="CheckForBook"/>
+                               <%--<a href="RoomDetails.aspx?roomId=<%#Eval("pk_room_id") %>?dateIn=">Book her</a>--%>
                            </td>
                        </tr>
                    </table>
