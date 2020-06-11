@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Web.UI.WebControls;
 using CountryLiving;
+using Npgsql;
 
 namespace Website
 {
@@ -12,7 +15,23 @@ namespace Website
             //Skal ikke være her... flytter senere
             StartDato.Value = "Start Dato";
             SlutDato.Value = "Slut Dato";
+
+            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
+            NpgsqlConnection con = new NpgsqlConnection(conS);
+            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
+            con.Open();
+            displayrooms.DataSource = cmd.ExecuteReader();
+            displayrooms.DataBind();
+            con.Close();
+
+            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            {
+                Filter_Checkboxlist.Items[i].Selected = true;
+            }
+
+            displayrooms.Visible = false;
         }
+
 
         protected void Filter_Button_Click(object sender, EventArgs e)
         {
@@ -47,6 +66,18 @@ namespace Website
             {
                 //Der mangler datoer
                 Debug.WriteLine("Please enter date");
+            }
+        }
+
+        protected void searchButton_Click(object sender, EventArgs e)
+        {
+            List<string> items = new List<string>();
+            for(int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            {
+                if(Filter_Checkboxlist.Items[i].Selected == true)
+                {
+                    items.Add(Filter_Checkboxlist.Items[i].Text);
+                }
             }
         }
     }
