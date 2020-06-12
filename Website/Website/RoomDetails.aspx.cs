@@ -24,12 +24,11 @@ namespace Website
             NpgsqlConnection con = new NpgsqlConnection(conS);
             roomID = "101";
             NpgsqlCommand cmd = new NpgsqlCommand($"SELECT price FROM room WHERE pk_room_id {roomID}=", con);
-      
+
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
                 LabelRoom.Text = roomID;
-                LabelPrice.Text = cmd.();
             }
             else
             {
