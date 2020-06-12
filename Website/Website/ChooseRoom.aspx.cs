@@ -91,12 +91,22 @@ namespace Website
                 }
             }
             displayrooms.Visible = true;
-            //SearchRooms(items[0], items[1], items[2], items[3], items[4], items[5]);
+            //SearchRooms(StartDato., , items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
         }
 
         protected void SearchRooms(DateTime inDate, DateTime outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
         {
  
+        }
+
+        protected void bookhere_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            if(btn.CommandName == "CheckForBook")
+            {
+                string stid = btn.CommandArgument.ToString();
+                Debug.WriteLine(stid);
+            }
         }
     }
 }
