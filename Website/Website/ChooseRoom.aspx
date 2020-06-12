@@ -60,8 +60,8 @@
 
                        <tr>
                            <td>
-                               <asp:Button ID="book" runat="server" Text="Book her" OnClick="CheckForBook"/>
-                               <%--<a href="RoomDetails.aspx?roomId=<%#Eval("pk_room_id") %>?dateIn=">Book her</a>--%>
+                               <!--<a href="RoomDetails.aspx?roomId=<%#Eval("pk_room_id") %>?dateIn=">Book her</a>-->
+                               <asp:Button ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("pk_room_id") %>' Text="Philip er grim"/>                               
                            </td>
                        </tr>
                    </table>
