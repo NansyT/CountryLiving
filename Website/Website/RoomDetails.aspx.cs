@@ -10,6 +10,7 @@ using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql.TypeHandlers.NumericHandlers;
+using System.Data.SqlClient;
 
 namespace Website
 {
@@ -24,11 +25,13 @@ namespace Website
             NpgsqlConnection con = new NpgsqlConnection(conS);
             roomID = "101";
             NpgsqlCommand cmd = new NpgsqlCommand($"SELECT price FROM room WHERE pk_room_id {roomID}=", con);
-
+            con.Open();
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
                 LabelRoom.Text = roomID;
+                cmd.ExecuteNonQuery();
+                
             }
             else
             {
