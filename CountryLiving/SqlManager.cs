@@ -71,6 +71,27 @@ namespace CountryLiving
             SqlConnection(false);
             return output;
         }
+        public NpgsqlCommand SelectAvailableRooms(DateTime datein, DateTime dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
+        {
+            SqlConnection(true);
+            var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @@par2, @par3, @par4, @par5, @par6, @par7)";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("datein", datein);
+            cmd.Parameters.AddWithValue("dateout", dateout);
+            cmd.Parameters.AddWithValue("par1", par1);
+            cmd.Parameters.AddWithValue("par2", par2);
+            cmd.Parameters.AddWithValue("par3", par3);
+            cmd.Parameters.AddWithValue("par4", par4);
+            cmd.Parameters.AddWithValue("par5", par5);
+            cmd.Parameters.AddWithValue("par6", par6);
+            cmd.Parameters.AddWithValue("par7", par7);
+
+
+            cmd.Prepare();
+            SqlConnection(false);
+            return cmd;
+        }
 
     }
 }
