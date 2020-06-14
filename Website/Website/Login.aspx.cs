@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -21,14 +22,25 @@ namespace Website
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
-            string passwordstr = txtPassword.Text;
-            string emailstr = txtEmail.Text;
-            SqlManager con = new SqlManager();
-            int howmanyusers = con.GetCustomers(emailstr, passwordstr);
-            if (howmanyusers == 1)
+            try
             {
-                Session["mail"] = emailstr;
-                Response.Redirect("Default.aspx");
+                string passwordstr = txtPassword.Text;
+                string emailstr = txtEmail.Text;
+                SqlManager con = new SqlManager();
+                int howmanyusers = con.GetCustomers(emailstr, passwordstr);
+                if (howmanyusers == 1)
+                {
+                    Session["mail"] = emailstr;
+                    Response.Redirect("Default.aspx");
+                }
+                else
+                {
+                    Debug.WriteLine("Hejsa");
+                }
+            }
+            catch (Exception p)
+            {
+                Debug.WriteLine(p);
             }
         }
     }
