@@ -29,9 +29,10 @@ namespace Website
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
-  
+
                 LabelRoom.Text = roomID;
-                LabelPrice.Text = string.Join("", cmd.ExecuteReader());
+                LabelPrice.Text = cmd.ExecuteScalar().ToString();
+
                 
 
             }
