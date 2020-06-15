@@ -24,14 +24,17 @@ namespace Website
             string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
             NpgsqlConnection con = new NpgsqlConnection(conS);
             roomID = "101";
-            NpgsqlCommand cmd = new NpgsqlCommand($"SELECT price FROM room WHERE pk_room_id {roomID}=", con);
+            NpgsqlCommand cmd = new NpgsqlCommand("SELECT price FROM room WHERE pk_room_id = 101", con);
             con.Open();
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
+
                 LabelRoom.Text = roomID;
-                cmd.ExecuteNonQuery();
+                LabelPrice.Text = cmd.ExecuteScalar().ToString();
+
                 
+
             }
             else
             {
