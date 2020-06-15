@@ -2,8 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="grid-container">
+        <asp:DataList ID="DataList1" runat="server"></asp:DataList>
         <div>
-            <p>Rum Nr.</p>
+            <p>Rum Nr.
+            </p>
             <p>Tillægs ydelserne:</p>
             <p>Dobbeltseng</p>
         </div>
