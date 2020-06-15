@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.EnterpriseServices;
 using System.Web.UI.WebControls;
 using CountryLiving;
 using Npgsql;
@@ -12,19 +13,13 @@ namespace Website
         static SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Skal ikke være her... flytter senere
-            StartDato.Value = "Start Dato";
-            SlutDato.Value = "Slut Dato";
-
-            //string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            //NpgsqlConnection con = new NpgsqlConnection(conS);
-            //NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
-            //con.Open();
-            //displayrooms.DataSource = cmd.ExecuteReader();
-            //displayrooms.DataBind();
-            //con.Close();
-
-            DoOnStartUp();
+            if (!Page.IsPostBack)
+            {
+                //Skal ikke være her... flytter senere
+                StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
+                SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
+                DoOnStartUp();
+            }
         }
 
         protected void DoOnStartUp()
@@ -35,7 +30,6 @@ namespace Website
             }
 
             displayrooms.Visible = false;
-            canReservate = true;
         }
 
 
@@ -51,7 +45,6 @@ namespace Website
             }
         }
 
-        private bool canReservate = false;
         protected void VælgDato_Click(object sender, EventArgs e)
         {
             if (StartDato.Value != "Start Dato" && SlutDato.Value != "Slut Dato")
@@ -62,42 +55,43 @@ namespace Website
                 if (startDato < sluttDato)
                 {
                     //Vi vil gerne ende her
-                    canReservate = true;
                     Debug.WriteLine("Date is after today");
                 }
                 else
                 {
                     //Slut dato er før start...
-                    canReservate = false;
                     Debug.WriteLine("Din start dato skal være før din sidste dag");
                 }
             }
             else
             {
                 //Der mangler datoer
-                canReservate = false;
                 Debug.WriteLine("Please enter date");
             }
         }
-
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            //List<string> items = new List<string>();
-            //for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
-            //{
-            //    if (Filter_Checkboxlist.Items[i].Selected == true)
-            //    {
-            //        items.Add(Filter_Checkboxlist.Items[i].Text);
-            //    }
-            //}
+            List<string> items = new List<string>();
+            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            {
+                if (Filter_Checkboxlist.Items[i].Selected == true)
+                {
+                    items.Add(Filter_Checkboxlist.Items[i].Text);
+                }
+                else
+                {
+                    items.Add("");
+                }
+            }
             //displayrooms.Visible = true;
 
-            SearchRooms("2020-06-12", "2020-06-19", "Altan", "", "", "", "", "", "");
+            SearchRooms(StartDato.Value, SlutDato.Value, "Altan", "Dobbeltseng", "", "", "", "", "");
         }
 
         protected void SearchRooms(string inDate, string outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
         {
             displayrooms.DataSource = con.SelectAvailableRooms(inDate, outDate, i1, i2, i3, i4, i5, i6, i7).ExecuteReader();
+            Debug.WriteLine(i1 + " & " + i2 + " & " + i3 + " & " + i4 + " & " + i5 + " & " + i6 + " & " + i7);
             displayrooms.DataBind();
             displayrooms.Visible = true;
             con.SqlConnection(false);
@@ -109,8 +103,7 @@ namespace Website
             LinkButton btn = (LinkButton)sender;
             if(btn.CommandName == "CheckForBook")
             {
-                string stid = btn.CommandArgument.ToString();
-                Debug.WriteLine(stid);
+                Response.Redirect("RoomDetails.aspx?roomID=" + btn.CommandArgument.ToString() + "?start=" + StartDato.Value + "?slut=" + SlutDato.Value);
             }
         }
     }

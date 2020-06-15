@@ -54,14 +54,20 @@
 
                        <tr>
                            <td>
-                                <label>Pris: <%# Eval("totalprice") %></label>
+                                <label>Pris: <%# Eval("priceday") %></label>
+                           </td>
+                       </tr>
+
+                       <tr>
+                           <td>
+                               <label>Tilægsydelser: <%#Eval("services") %></label>
                            </td>
                        </tr>
 
                        <tr>
                            <td>
                                <!--<a href="RoomDetails.aspx?roomId=<%#Eval("roomid") %>?dateIn=">Book her</a>-->
-                               <asp:Button ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("roomid") %>' Text="Philip er grim"/>                               
+                               <asp:LinkButton ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("roomid") %>' Text="Book her" />                             
                            </td>
                        </tr>
                    </table>
