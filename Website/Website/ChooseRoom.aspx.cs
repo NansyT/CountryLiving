@@ -9,20 +9,20 @@ namespace Website
 {
     public partial class ChooseRoom : System.Web.UI.Page
     {
-        SqlManager con = new SqlManager();
+        static SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             //Skal ikke være her... flytter senere
             StartDato.Value = "Start Dato";
             SlutDato.Value = "Slut Dato";
 
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
-            con.Open();
-            displayrooms.DataSource = cmd.ExecuteReader();
-            displayrooms.DataBind();
-            con.Close();
+            //string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
+            //NpgsqlConnection con = new NpgsqlConnection(conS);
+            //NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
+            //con.Open();
+            //displayrooms.DataSource = cmd.ExecuteReader();
+            //displayrooms.DataBind();
+            //con.Close();
 
             DoOnStartUp();
         }
@@ -82,21 +82,26 @@ namespace Website
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            List<string> items = new List<string>();
-            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
-            {
-                if (Filter_Checkboxlist.Items[i].Selected == true)
-                {
-                    items.Add(Filter_Checkboxlist.Items[i].Text);
-                }
-            }
-            displayrooms.Visible = true;
-            //SearchRooms(StartDato., , items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
+            //List<string> items = new List<string>();
+            //for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            //{
+            //    if (Filter_Checkboxlist.Items[i].Selected == true)
+            //    {
+            //        items.Add(Filter_Checkboxlist.Items[i].Text);
+            //    }
+            //}
+            //displayrooms.Visible = true;
+
+            SearchRooms("2020-06-12", "2020-06-19", "Altan", "", "", "", "", "", "");
         }
 
-        protected void SearchRooms(DateTime inDate, DateTime outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
+        protected void SearchRooms(string inDate, string outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
         {
- 
+            displayrooms.DataSource = con.SelectAvailableRooms(inDate, outDate, i1, i2, i3, i4, i5, i6, i7).ExecuteReader();
+            displayrooms.DataBind();
+            displayrooms.Visible = true;
+            con.SqlConnection(false);
+
         }
 
         protected void bookhere_Click(object sender, EventArgs e)

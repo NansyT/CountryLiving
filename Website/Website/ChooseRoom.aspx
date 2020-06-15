@@ -44,7 +44,7 @@
                    <table class="table">
                        <tr>
                            <td>
-                               <label style="font-size:large; font-weight:bold;">Room: <%# Eval("pk_room_id") %> </label>
+                               <label style="font-size:large; font-weight:bold;">Room: <%# Eval("roomid") %> </label>
                            </td>
                        </tr>
 
@@ -54,14 +54,14 @@
 
                        <tr>
                            <td>
-                                <label>Pris: <%# Eval("price") %></label>
+                                <label>Pris: <%# Eval("totalprice") %></label>
                            </td>
                        </tr>
 
                        <tr>
                            <td>
-                               <!--<a href="RoomDetails.aspx?roomId=<%#Eval("pk_room_id") %>?dateIn=">Book her</a>-->
-                               <asp:Button ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("pk_room_id") %>' Text="Philip er grim"/>                               
+                               <!--<a href="RoomDetails.aspx?roomId=<%#Eval("roomid") %>?dateIn=">Book her</a>-->
+                               <asp:Button ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("roomid") %>' Text="Philip er grim"/>                               
                            </td>
                        </tr>
                    </table>

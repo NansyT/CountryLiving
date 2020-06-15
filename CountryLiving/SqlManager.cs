@@ -60,6 +60,7 @@ namespace CountryLiving
         }
         public string GetCustomerName(string email)
         {
+            SqlConnection(false);
             SqlConnection(true);
             var sql = "SELECT fullname FROM public.customer WHERE pk_email = @email";
             var cmd = new NpgsqlCommand(sql, con);
@@ -71,10 +72,11 @@ namespace CountryLiving
             SqlConnection(false);
             return output;
         }
-        public NpgsqlCommand SelectAvailableRooms(DateTime datein, DateTime dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
+        public NpgsqlCommand SelectAvailableRooms(string datein, string dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
         {
+            SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @@par2, @par3, @par4, @par5, @par6, @par7)";
+            var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("datein", datein);
@@ -88,8 +90,6 @@ namespace CountryLiving
             cmd.Parameters.AddWithValue("par7", par7);
 
 
-            cmd.Prepare();
-            SqlConnection(false);
             return cmd;
         }
 
