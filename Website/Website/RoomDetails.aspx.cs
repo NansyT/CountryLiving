@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using CountryLiving;
 using Npgsql;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -18,23 +19,16 @@ namespace Website
     public partial class RoomDetails : System.Web.UI.Page
     {
         public System.Collections.Specialized.NameValueCollection QueryString { get; }
+        static SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             String roomID = Request.QueryString.Get("roomID");
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
             roomID = "101";
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT price FROM room WHERE pk_room_id = 101", con);
-            con.Open();
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
 
                 LabelRoom.Text = roomID;
-                LabelPrice.Text = cmd.ExecuteScalar().ToString();
-
-                
-
             }
             else
             {
