@@ -105,26 +105,29 @@ namespace CountryLiving
             string output = cmd.ExecuteScalar().ToString();
             return output;
         }
-        public void CreateReservation(int roomid, string customermail, DateTime datein, DateTime dateout)
+        public NpgsqlCommand CreateReservation(Reservation res)
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "CALL public.pr_createreservation(@roomidinput, @customermail, @checkin, @checkout)";
+            var sql = "CALL public.pr_createreservation(@roomid, @customermail, @datein, @dateout)";
             var cmd = new NpgsqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("roomidinput", roomid);
-            cmd.Parameters.AddWithValue("customermail", customermail);
-            cmd.Parameters.AddWithValue("checkin", datein);
-            cmd.Parameters.AddWithValue("checkout", dateout);
+            cmd.Parameters.AddWithValue("roomid", res.RoomId);
+            cmd.Parameters.AddWithValue("customermail", res.CustomerMail );
+            cmd.Parameters.AddWithValue("datein", res.To);
+            cmd.Parameters.AddWithValue("dateout", res.From);
 
-            SqlConnection(false);
+            return cmd;
         }
         public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM fp_get_alluserdata_roomdata(@checkin, @checkout, @customermail, @roomidinput)";
+            var sql = "SELECT * FROM fp_get_alluserdata_roomdata(CAST(@checkin AS DATE), CAST(@checkout AS DATE), @customermail, @roomidinput)";
             var cmd = new NpgsqlCommand(sql, con);
+
+            //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
+            //parcheckin.Value = DateTime.Now;
 
             cmd.Parameters.AddWithValue("checkin", checkin);
             cmd.Parameters.AddWithValue("checkout", checkout);
@@ -132,7 +135,7 @@ namespace CountryLiving
             cmd.Parameters.AddWithValue("roomidinput", roomidinput);
 
             return cmd;
-            
+           
         }
     }
 }
