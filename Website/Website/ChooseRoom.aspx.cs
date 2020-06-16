@@ -70,6 +70,7 @@ namespace Website
         }
         protected void searchButton_Click(object sender, EventArgs e)
         {
+            //Det er en mulighed at man kan gøre så man kun kan have 1 af følgende ting: enkeltmands seng, dobbeltseng, 2 enkeltsenge
             List<string> items = new List<string>();
             for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
             {
@@ -99,6 +100,7 @@ namespace Website
         protected void bookhere_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
+
             if(btn.CommandName == "CheckForBook")
             {
                 Response.Redirect("RoomDetails.aspx?roomID=" + btn.CommandArgument.ToString() + "?start=" + StartDato.Value + "?slut=" + SlutDato.Value);
