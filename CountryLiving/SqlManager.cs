@@ -109,7 +109,7 @@ namespace CountryLiving
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "CALL public.pr_createreservation(@roomid, @customermail, @datein, @dateout)";
+            var sql = "CALL public.pr_createreservation(@roomid, @customermail, CAST(@datein AS DATE), CAST(@dateout AS DATE)";
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("roomid", res.RoomId);
@@ -136,6 +136,23 @@ namespace CountryLiving
 
             return cmd;
            
+        }
+        public NpgsqlCommand Roominformation(int roomidinput, DateTime checkin, DateTime checkout)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM fp_get_roomdata( @roomidinput CAST(@checkin AS DATE), CAST(@checkout AS DATE) )";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
+            //parcheckin.Value = DateTime.Now;
+
+            cmd.Parameters.AddWithValue("roomidinput", roomidinput);
+            cmd.Parameters.AddWithValue("checkin", checkin);
+            cmd.Parameters.AddWithValue("checkout", checkout);
+
+            return cmd;
+
         }
     }
 }

@@ -24,18 +24,18 @@ namespace LandLyst
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new VælgVærelse());
+            mainFrame.Navigate(new Reservationer());
         }
-        
+
         // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
         private void Værelsebtn_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new VælgVærelse());
         }
 
-        private void Ventendebtn_Click(object sender, RoutedEventArgs e)
+        private void Bookingbtn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new VentendeRes());
+            mainFrame.Navigate(new Booking());
         }
 
         private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
