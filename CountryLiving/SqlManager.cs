@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Npgsql;
 
 namespace CountryLiving
@@ -74,6 +75,7 @@ namespace CountryLiving
         }
         public NpgsqlCommand SelectAvailableRooms(string datein, string dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
         {
+            Debug.WriteLine(datein, dateout, par1, par2, par3, par4, par5, par6, par7);
             SqlConnection(false);
             SqlConnection(true);
             var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
@@ -92,6 +94,7 @@ namespace CountryLiving
 
             return cmd;
         }
+
 
     }
 }
