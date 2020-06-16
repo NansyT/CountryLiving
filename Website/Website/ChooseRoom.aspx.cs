@@ -15,15 +15,14 @@ namespace Website
         {
             if (!Page.IsPostBack)
             {
-                //Skal ikke være her... flytter senere
-                StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
-                SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
                 DoOnStartUp();
             }
         }
 
         protected void DoOnStartUp()
         {
+            StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
+            SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
             for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
             {
                 Filter_Checkboxlist.Items[i].Selected = true;
