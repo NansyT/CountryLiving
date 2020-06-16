@@ -11,9 +11,9 @@
         <DockPanel>
             <StackPanel Background="Brown" Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
                 <Rectangle Width="20"/>
-                <Button x:Name="Værelsebtn" Content="Find værelse" Padding="5" Height="30" Click="Værelsebtn_Click"/>
+                <Button x:Name="Værelsebtn" Content="Se værelser" Padding="5" Height="30" Click="Værelsebtn_Click"/>
                 <Rectangle Width="20"/>
-                <Button x:Name="Bookingbtn" Content="Book værelse" Padding="5" Height="30" Click="Bookingbtn_Click"/>
+                <Button x:Name="Ventendebtn" Content="Ventende reservationer" Padding="5" Height="30" Click="Ventendebtn_Click"/>
                 <Rectangle Width="20"/>
                 <Button x:Name="Tilbagebtn" Content="Tilbage" Padding="5" Height="30" Click="Tilbagebtn_Click"/>
                 <Rectangle Width="20"/>

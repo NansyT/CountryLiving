@@ -24,7 +24,7 @@ namespace LandLyst
         public MainWindow()
         {
             InitializeComponent();
-            mainFrame.Navigate(new Reservationer());
+            mainFrame.Navigate(new VælgVærelse());
         }
         
         // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
@@ -33,9 +33,9 @@ namespace LandLyst
             mainFrame.Navigate(new VælgVærelse());
         }
 
-        private void Bookingbtn_Click(object sender, RoutedEventArgs e)
+        private void Ventendebtn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new Booking());
+            mainFrame.Navigate(new VentendeRes());
         }
 
         private void Tilbagebtn_Click(object sender, RoutedEventArgs e)

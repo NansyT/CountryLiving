@@ -1,4 +1,4 @@
-﻿<Page x:Class="LandLyst.Reservationer"
+﻿<Page x:Class="LandLyst.VentendeRes"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LandLyst"
       mc:Ignorable="d" 
       d:DesignHeight="379" d:DesignWidth="800"
-      Title="Reservationer">
+      Title="VentendeRes">
 
     <Grid>
         

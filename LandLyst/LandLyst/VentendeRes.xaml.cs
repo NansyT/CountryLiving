@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LandLyst
 {
     /// <summary>
-    /// Interaction logic for Reservationer.xaml
+    /// Interaction logic for VentendeRes.xaml
     /// </summary>
-    public partial class Reservationer : Page
+    public partial class VentendeRes : Page
     {
-        public Reservationer()
+        public VentendeRes()
         {
             InitializeComponent();
         }
