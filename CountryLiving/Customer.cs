@@ -55,9 +55,5 @@ namespace CountryLiving
             phonenumberInput = phonenumber;
             passwordInput = password;
         }
-        public Customer()
-        {
-
-        }
     }
 }

@@ -14,7 +14,7 @@ namespace CountryLiving
             Customer customer = new Customer(email, name, address, zipcode, phonenumber, password);
             InsertPerson(customer.Email, customer.Name, customer.Address, customer.Zipcode, customer.Phonenumber, customer.Password);
         }
-        public void CheckCustomer(string email, string password)
+        public void CheckCustomer(string email, string password, Reservation ksa)
         {
             GetCustomers(email, password);
         }
