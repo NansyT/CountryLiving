@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-15 08:35:35
+-- Started on 2020-06-16 08:13:20
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -27,7 +27,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- TOC entry 2887 (class 0 OID 0)
+-- TOC entry 2892 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
 --
@@ -70,28 +70,6 @@ BEGIN
 ALTER FUNCTION public.fc_calculatetotalprice(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1255 OID 24609)
--- Name: fc_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-DECLARE 
-	result INTEGER;
-BEGIN
-	 SELECT INTO result CAST(COUNT(1) AS INT) 
-	 FROM booking
-	 WHERE fk_room_id = roomid
-	 	AND ( (datein > chek_in_date and datein < check_out_date)
-	 		OR ( dateout > chek_in_date and dateout <check_out_date));
-	RETURN result;
-END; $$;
-
-
-ALTER FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) OWNER TO postgres;
-
---
 -- TOC entry 234 (class 1255 OID 24678)
 -- Name: fc_checkifroomisavailable(character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
@@ -114,35 +92,7 @@ END; $$;
 ALTER FUNCTION public.fc_checkifroomisavailable(datein character varying, dateout character varying, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1255 OID 24662)
--- Name: fc_getavailableroom(date, date, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION public.fc_getavailableroom(datein date, dateout date, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) RETURNS TABLE(roomid integer, services character varying, priceday numeric, totalprice numeric)
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-	RETURN QUERY
-	SELECT RoomFunc.RoomID AS roomid, 
-		CAST(string_agg(description::VARCHAR, ', ') AS VARCHAR) AS Service,
-		CAST(room.price + SUM(additional_services.price) as NUMERIC(18,2)) AS pricepday,
-		CAST(totalpricetable AS NUMERIC(18,2))  AS totalprice
-	FROM FC_getroomid(datein, dateout, par1, par2, par3, par4, par5, par6, par7) AS RoomFunc
-	LEFT JOIN room
-	ON room.pk_room_id = RoomFunc.RoomID
-	LEFT JOIN public.roomservices
-	ON roomservices.pk_fk_room_id = room.pk_room_id
-	LEFT JOIN public.additional_services
-	ON additional_services.pk_supplement_id = roomservices.pk_fk_supplement_id
-	CROSS JOIN FC_CalculateTotalPrice(datein, dateout, RoomFunc.RoomID) AS totalpricetable
-	GROUP BY RoomFunc.RoomID, room.price, totalpricetable.totalpricetable ;
-END; $$;
-
-
-ALTER FUNCTION public.fc_getavailableroom(datein date, dateout date, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
-
---
--- TOC entry 238 (class 1255 OID 24677)
+-- TOC entry 236 (class 1255 OID 24677)
 -- Name: fc_getavailableroom(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -170,7 +120,7 @@ END; $$;
 ALTER FUNCTION public.fc_getavailableroom(datein character varying, dateout character varying, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1255 OID 24676)
+-- TOC entry 238 (class 1255 OID 24676)
 -- Name: fc_getroomid(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -178,31 +128,54 @@ CREATE FUNCTION public.fc_getroomid(datein character varying, dateout character 
     LANGUAGE plpgsql
     AS $$
 BEGIN
-RETURN QUERY SELECT CAST(pk_room_id as INTEGER)
-	FROM room 
-		LEFT JOIN public.booking
+RETURN QUERY SELECT CAST(room.pk_room_id as INTEGER)
+	FROM room
+	LEFT JOIN public.booking
 		ON fk_room_id = pk_room_id
-		LEFT JOIN public.roomservices
+	LEFT JOIN public.roomservices
 		ON roomservices.pk_fk_room_id = room.pk_room_id
-		LEFT JOIN public.additional_services
+	LEFT JOIN public.additional_services
 		ON additional_services.pk_supplement_id = roomservices.pk_fk_supplement_id
+	Cross JOIN fp_getServiceasString() AS serviceFunc
 	WHERE COALESCE(booking.check_out_date, '9999-12-31') >= CAST(dateout as date)
 		AND COALESCE(booking.chek_in_date, '1900-01-01') <= CAST(datein as date)
-		AND additional_services.description IN 
-		(
-			par1,
-			par2,
-			par3,
-			par4,
-			par5,
-			par6,
-			par7
-		);
+		AND serviceFunc.servicestr LIKE ('%' || par1 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par2 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par3 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par4 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par5 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par6 || '%')
+		AND serviceFunc.servicestr LIKE ('%' || par7 || '%')
+		GROUP BY room.pk_room_id
+;
 	
 END; $$;
 
 
 ALTER FUNCTION public.fc_getroomid(datein character varying, dateout character varying, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
+
+--
+-- TOC entry 237 (class 1255 OID 24693)
+-- Name: fp_getserviceasstring(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.fp_getserviceasstring() RETURNS TABLE(servicestr character varying, pk_room_id integer)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+	RETURN QUERY SELECT
+		CAST(string_agg(description::VARCHAR, ', ') AS VARCHAR) AS Serviceroom,
+		room.pk_room_id AS roomid
+	FROM room
+	LEFT JOIN public.roomservices
+	ON roomservices.pk_fk_room_id = room.pk_room_id
+	LEFT JOIN public.additional_services
+	ON additional_services.pk_supplement_id = roomservices.pk_fk_supplement_id
+	GROUP BY room.pk_room_id, room.price ;
+END; $$;
+
+
+ALTER FUNCTION public.fp_getserviceasstring() OWNER TO postgres;
 
 --
 -- TOC entry 233 (class 1255 OID 24612)
@@ -334,7 +307,19 @@ CREATE TABLE public.test (
 ALTER TABLE public.test OWNER TO postgres;
 
 --
--- TOC entry 2879 (class 0 OID 16802)
+-- TOC entry 210 (class 1259 OID 24685)
+-- Name: test123; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.test123 (
+    serviceroom character varying
+);
+
+
+ALTER TABLE public.test123 OWNER TO postgres;
+
+--
+-- TOC entry 2883 (class 0 OID 16802)
 -- Dependencies: 207
 -- Data for Name: additional_services; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -349,7 +334,7 @@ INSERT INTO public.additional_services (pk_supplement_id, description, price) VA
 
 
 --
--- TOC entry 2878 (class 0 OID 16773)
+-- TOC entry 2882 (class 0 OID 16773)
 -- Dependencies: 206
 -- Data for Name: booking; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -359,7 +344,7 @@ INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, ch
 
 
 --
--- TOC entry 2875 (class 0 OID 16752)
+-- TOC entry 2879 (class 0 OID 16752)
 -- Dependencies: 203
 -- Data for Name: citycode; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1563,7 +1548,7 @@ INSERT INTO public.citycode (pk_zip_code, city) VALUES (9998, 'Borgerservice');
 
 
 --
--- TOC entry 2876 (class 0 OID 16760)
+-- TOC entry 2880 (class 0 OID 16760)
 -- Dependencies: 204
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1574,7 +1559,7 @@ INSERT INTO public.customer (pk_email, fullname, address, zip_code, phone_nr, pa
 
 
 --
--- TOC entry 2877 (class 0 OID 16768)
+-- TOC entry 2881 (class 0 OID 16768)
 -- Dependencies: 205
 -- Data for Name: room; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1633,7 +1618,7 @@ INSERT INTO public.room (pk_room_id, price, "Status") VALUES (510, 695.00, 1);
 
 
 --
--- TOC entry 2880 (class 0 OID 16810)
+-- TOC entry 2884 (class 0 OID 16810)
 -- Dependencies: 208
 -- Data for Name: roomservices; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1641,6 +1626,12 @@ INSERT INTO public.room (pk_room_id, price, "Status") VALUES (510, 695.00, 1);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (301, 3);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (304, 3);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (501, 3);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (504, 7);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (408, 7);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (401, 7);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (407, 7);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (406, 7);
+INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (404, 7);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (100, 2);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (100, 4);
 INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (101, 2);
@@ -1749,7 +1740,7 @@ INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (510
 
 
 --
--- TOC entry 2881 (class 0 OID 24669)
+-- TOC entry 2885 (class 0 OID 24669)
 -- Dependencies: 209
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1758,7 +1749,66 @@ INSERT INTO public.test (test) VALUES ('');
 
 
 --
--- TOC entry 2742 (class 2606 OID 16809)
+-- TOC entry 2886 (class 0 OID 24685)
+-- Dependencies: 210
+-- Data for Name: test123; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi, Eget køkken');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi, Eget køkken');
+INSERT INTO public.test123 (serviceroom) VALUES ('2 Enkeltsenge, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('2 Enkeltsenge, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi, Eget køkken');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('2 Enkeltsenge, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES (NULL);
+INSERT INTO public.test123 (serviceroom) VALUES ('Altan, Dobbeltseng, Jacuzzi');
+INSERT INTO public.test123 (serviceroom) VALUES ('Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
+
+
+--
+-- TOC entry 2746 (class 2606 OID 16809)
 -- Name: additional_services additional_services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1767,7 +1817,7 @@ ALTER TABLE ONLY public.additional_services
 
 
 --
--- TOC entry 2740 (class 2606 OID 16781)
+-- TOC entry 2744 (class 2606 OID 16781)
 -- Name: booking booking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1776,7 +1826,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2734 (class 2606 OID 16759)
+-- TOC entry 2738 (class 2606 OID 16759)
 -- Name: citycode citycode_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1785,7 +1835,7 @@ ALTER TABLE ONLY public.citycode
 
 
 --
--- TOC entry 2736 (class 2606 OID 16767)
+-- TOC entry 2740 (class 2606 OID 16767)
 -- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1794,7 +1844,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- TOC entry 2738 (class 2606 OID 16772)
+-- TOC entry 2742 (class 2606 OID 16772)
 -- Name: room room_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1803,7 +1853,7 @@ ALTER TABLE ONLY public.room
 
 
 --
--- TOC entry 2744 (class 2606 OID 16814)
+-- TOC entry 2748 (class 2606 OID 16814)
 -- Name: roomservices roomservices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1812,7 +1862,7 @@ ALTER TABLE ONLY public.roomservices
 
 
 --
--- TOC entry 2746 (class 2606 OID 16787)
+-- TOC entry 2750 (class 2606 OID 16787)
 -- Name: booking booking_fk_customer_email_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1821,7 +1871,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2745 (class 2606 OID 16782)
+-- TOC entry 2749 (class 2606 OID 16782)
 -- Name: booking booking_fk_room_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1830,7 +1880,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2747 (class 2606 OID 16815)
+-- TOC entry 2751 (class 2606 OID 16815)
 -- Name: roomservices roomservices_pk_fk_room_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1839,7 +1889,7 @@ ALTER TABLE ONLY public.roomservices
 
 
 --
--- TOC entry 2748 (class 2606 OID 16820)
+-- TOC entry 2752 (class 2606 OID 16820)
 -- Name: roomservices roomservices_pk_fk_supplement_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1847,7 +1897,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-15 08:35:36
+-- Completed on 2020-06-16 08:13:21
 
 --
 -- PostgreSQL database dump complete
