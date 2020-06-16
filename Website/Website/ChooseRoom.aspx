@@ -20,13 +20,13 @@
     <div class="row">
         <div style="margin-left: 80%; margin-top: 10px; z-index: 3;">
             <asp:CheckBoxList CssClass="checkbox1" ID="Filter_Checkboxlist" runat="server" Visible="false">
-                <asp:ListItem>Enkelteseng</asp:ListItem>
-                <asp:ListItem>Dobbeltseng</asp:ListItem>
-                <asp:ListItem>2 enkeltesenge</asp:ListItem>
                 <asp:ListItem>Altan</asp:ListItem>
+                <asp:ListItem>Dobbeltseng</asp:ListItem>
+                <asp:ListItem>2 enkeltsenge</asp:ListItem>
                 <asp:ListItem>Badekar</asp:ListItem>
                 <asp:ListItem>Jacuzzi</asp:ListItem>
                 <asp:ListItem>Eget køkken</asp:ListItem>
+                <asp:ListItem>Enkeltmands seng</asp:ListItem>
             </asp:CheckBoxList>
         </div>
     </div>
@@ -66,7 +66,6 @@
 
                        <tr>
                            <td>
-                               <!--<a href="RoomDetails.aspx?roomId=<%#Eval("roomid") %>?dateIn=">Book her</a>-->
                                <asp:LinkButton ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("roomid") %>' Text="Book her" />                             
                            </td>
                        </tr>

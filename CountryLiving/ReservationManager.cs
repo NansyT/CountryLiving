@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    public class ReservationManager
+    class ReservationManager : SqlManager
     {
-        public void CreateReservation(DateTime from, DateTime to, int roomID)
+        Customer af = new Customer("f","t","gf", 3, 4, "ø");
+        public void CreateReservation(DateTime from, DateTime to, int roomID, Customer tobiasergrim)
         {
+            Reservation newreservation = new Reservation();
             Debug.WriteLine("Reservation created");
         }
         
@@ -24,9 +26,9 @@ namespace CountryLiving
             Debug.WriteLine("Editing reservation");
         }
 
-        public void DeleteReservation(int reservationID)
+        public void DeleteReservation(int reservationID, Reservation sas)
         {
-            Debug.WriteLine("Reservation deleted");
+            //Debug.WriteLine("Reservation deleted");
         }
 
     }

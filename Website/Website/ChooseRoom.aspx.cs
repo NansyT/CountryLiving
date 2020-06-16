@@ -15,15 +15,14 @@ namespace Website
         {
             if (!Page.IsPostBack)
             {
-                //Skal ikke være her... flytter senere
-                StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
-                SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
                 DoOnStartUp();
             }
         }
 
         protected void DoOnStartUp()
         {
+            StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
+            SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
             for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
             {
                 Filter_Checkboxlist.Items[i].Selected = true;
@@ -85,13 +84,12 @@ namespace Website
             }
             //displayrooms.Visible = true;
 
-            SearchRooms(StartDato.Value, SlutDato.Value, "Altan", "Dobbeltseng", "", "", "", "", "");
+            SearchRooms(StartDato.Value, SlutDato.Value, items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
         }
 
         protected void SearchRooms(string inDate, string outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
         {
             displayrooms.DataSource = con.SelectAvailableRooms(inDate, outDate, i1, i2, i3, i4, i5, i6, i7).ExecuteReader();
-            Debug.WriteLine(i1 + " & " + i2 + " & " + i3 + " & " + i4 + " & " + i5 + " & " + i6 + " & " + i7);
             displayrooms.DataBind();
             displayrooms.Visible = true;
             con.SqlConnection(false);
