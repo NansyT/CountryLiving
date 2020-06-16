@@ -30,8 +30,6 @@ namespace Website
                 Debug.WriteLine("du har en id");
 
                 LabelRoom.Text = roomID[0];
-                LabelPrice.Text = con.GetBasePrice(roomID[0]);
-                ReturnAdittion(roomID[0]);
             }
             else
             {
@@ -44,9 +42,5 @@ namespace Website
             Response.Redirect("BookingCompletion.aspx");
         }
 
-        public void ReturnAdittion(string RoomID)
-        {
-            var sql = "";
-        }
     }
 }
