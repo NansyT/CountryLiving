@@ -7,7 +7,11 @@
                 <h1>Rum: <asp:Label ID="LabelRoom" runat="server" Text="Label"></asp:Label></h1>
                 <p>pris: <asp:Label ID="LabelPrice" runat="server" Text="Label"></asp:Label></p>
                 <p>tillægsydeler:</p>
-                <p>Dobbeltseng:</p>
+                <asp:DataList ID="DataList1" runat="server">
+                    <ItemTemplate>
+                        <%Eval("services"); %>
+                    </ItemTemplate>
+                </asp:DataList>
                 <h3>pr nat:</h3>
                 <p>reserver i x antal nætter</p>
                 <h1>Pris I Alt: </h1>
