@@ -11,7 +11,6 @@ namespace CountryLiving
         private Guid reservationID;
         private int roomId;
         private string customermail;
-        private DateTime created;
         private DateTime from;
         private DateTime to;
         
@@ -33,12 +32,6 @@ namespace CountryLiving
             private set { customermail = value; }
         }
 
-        public DateTime Created
-        {
-            get { return created; }
-            private set { created = value; }
-        }
-
         public DateTime To
         {
             get { return to; }
@@ -51,11 +44,10 @@ namespace CountryLiving
             private set { from = value; }
         }
 
-        public Reservation(int roomid, string customermail, DateTime createddate, DateTime todate, DateTime fromdate)
+        public Reservation(int roomid, string customermail, DateTime todate, DateTime fromdate)
         { 
             RoomId = roomid;
             CustomerMail = customermail;
-            Created = createddate;
             To = todate; 
             From = fromdate;
         }

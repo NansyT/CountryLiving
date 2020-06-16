@@ -9,10 +9,10 @@ namespace CountryLiving
 {
     public class ReservationManager : SqlManager
     {
-        Customer af = new Customer("f","t","gf", 3, 4, "ø");
         public void CreateReservation(DateTime from, DateTime to, int roomID, Customer customer)
         {
-            Reservation newreservation = new Reservation(roomID, customer.Email, DateTime.Now, to, from);
+            Reservation newreservation = new Reservation(roomID, customer.Email, to, from);
+            CreateReservation(newreservation);
             Debug.WriteLine("Reservation created");
         }
         
