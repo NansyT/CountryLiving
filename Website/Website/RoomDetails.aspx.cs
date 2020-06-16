@@ -22,13 +22,15 @@ namespace Website
         static SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            String roomID = Request.QueryString.Get("roomID");
-            roomID = "101";
+            //Henter Room ID fra URL'en 
+            String getRoomID = Request.QueryString.Get("roomID");
+            string [] roomID = getRoomID.Split('?');
             if (roomID != null)
             {
                 Debug.WriteLine("du har en id");
 
-                LabelRoom.Text = roomID;
+                LabelRoom.Text = roomID[0];
+                LabelPrice.Text = con.GetBasePrice(roomID[0]);
             }
             else
             {

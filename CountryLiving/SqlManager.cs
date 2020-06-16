@@ -96,5 +96,14 @@ namespace CountryLiving
         }
 
 
+        public string GetBasePrice(string RoomID)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = $"SELECT price FROM room WHERE pk_room_id = {RoomID}";
+            var cmd = new NpgsqlCommand(sql, con);
+            string output = cmd.ExecuteScalar().ToString();
+            return output;
+        }
     }
 }
