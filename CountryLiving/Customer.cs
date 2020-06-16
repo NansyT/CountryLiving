@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    class Customer
+    public class Customer
     {
         private string name;
         private string address;
@@ -48,12 +48,12 @@ namespace CountryLiving
 
         public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordInput)
         {
-            emailInput = email;
-            nameInput = name;
-            addressInput = address;
-            zipcodeInput = zipcode;
-            phonenumberInput = phonenumber;
-            passwordInput = password;
+            Email = emailInput;
+            Name = nameInput;
+            Address = addressInput;
+            Zipcode = zipcodeInput;
+            Phonenumber = phonenumberInput;
+            Password = passwordInput;
         }
     }
 }
