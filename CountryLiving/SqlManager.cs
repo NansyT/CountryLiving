@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Npgsql;
 
 namespace CountryLiving
@@ -74,6 +75,7 @@ namespace CountryLiving
         }
         public NpgsqlCommand SelectAvailableRooms(string datein, string dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
         {
+            Debug.WriteLine(datein, dateout, par1, par2, par3, par4, par5, par6, par7);
             SqlConnection(false);
             SqlConnection(true);
             var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
@@ -93,5 +95,44 @@ namespace CountryLiving
             return cmd;
         }
 
+
+        public string GetBasePrice(string RoomID)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = $"SELECT price FROM room WHERE pk_room_id = {RoomID}";
+            var cmd = new NpgsqlCommand(sql, con);
+            string output = cmd.ExecuteScalar().ToString();
+            return output;
+        }
+        public void CreateReservation(int roomid, string customermail, DateTime datein, DateTime dateout)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "CALL public.pr_createreservation(@roomidinput, @customermail, @checkin, @checkout)";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("roomidinput", roomid);
+            cmd.Parameters.AddWithValue("customermail", customermail);
+            cmd.Parameters.AddWithValue("checkin", datein);
+            cmd.Parameters.AddWithValue("checkout", dateout);
+
+            SqlConnection(false);
+        }
+        public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM fp_get_alluserdata_roomdata(@checkin, @checkout, @customermail, @roomidinput)";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("checkin", checkin);
+            cmd.Parameters.AddWithValue("checkout", checkout);
+            cmd.Parameters.AddWithValue("customermail", customermail);
+            cmd.Parameters.AddWithValue("roomidinput", roomidinput);
+
+            return cmd;
+            
+        }
     }
 }

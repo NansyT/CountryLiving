@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    class Reservation
+    public class Reservation
     {
-        private int reservationID;
-        private Room room;
-        private Customer customer;
+        private Guid reservationID;
+        private int roomId;
+        private string customermail;
         private DateTime created;
         private DateTime from;
         private DateTime to;
         
-        public int ReservationID
+        public Guid ReservationID
         {
             get { return reservationID; }
             private set { reservationID = value; }
         }
 
-        public Room Room
+        public int RoomId
         {
-            get { return room; }
-            private set { room = value; }
+            get { return roomId; }
+            private set { roomId = value; }
         }
 
-        public Customer Customer
+        public string CustomerMail
         {
-            get { return customer; }
-            private set { customer = value; }
+            get { return customermail; }
+            private set { customermail = value; }
         }
 
         public DateTime Created
@@ -49,6 +49,15 @@ namespace CountryLiving
         {
             get { return from; }
             private set { from = value; }
+        }
+
+        public Reservation(int roomid, string customermail, DateTime createddate, DateTime todate, DateTime fromdate)
+        { 
+            RoomId = roomid;
+            CustomerMail = customermail;
+            Created = createddate;
+            To = todate; 
+            From = fromdate;
         }
     }
 }

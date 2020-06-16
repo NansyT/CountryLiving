@@ -712,7 +712,6 @@ C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\S
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\kjedt\source\Country-Living\Country-Living\Website\Website\bin\roslyn\System.Threading.Tasks.Extensions.dll
 =======
-C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
 C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.dll
 C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.pdb
 C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\bin\Website.dll.config
@@ -949,3 +948,4 @@ C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\System.Text.Json.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
+C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
