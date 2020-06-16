@@ -105,5 +105,34 @@ namespace CountryLiving
             string output = cmd.ExecuteScalar().ToString();
             return output;
         }
+        public void CreateReservation(int roomid, string customermail, DateTime datein, DateTime dateout)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "CALL public.pr_createreservation(@roomidinput, @customermail, @checkin, @checkout)";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("roomidinput", roomid);
+            cmd.Parameters.AddWithValue("customermail", customermail);
+            cmd.Parameters.AddWithValue("checkin", datein);
+            cmd.Parameters.AddWithValue("checkout", dateout);
+
+            SqlConnection(false);
+        }
+        public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM fp_get_alluserdata_roomdata(@checkin, @checkout, @customermail, @roomidinput)";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("checkin", checkin);
+            cmd.Parameters.AddWithValue("checkout", checkout);
+            cmd.Parameters.AddWithValue("customermail", customermail);
+            cmd.Parameters.AddWithValue("roomidinput", roomidinput);
+
+            return cmd;
+            
+        }
     }
 }
