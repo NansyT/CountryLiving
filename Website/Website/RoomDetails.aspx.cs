@@ -30,6 +30,8 @@ namespace Website
                 Debug.WriteLine("du har en id");
 
                 LabelRoom.Text = roomID[0];
+
+                //roomDetailsinfo.DataSource = con.Roominformation(roomID[0], roomID[1], roomID[2]);
             }
             else
             {
