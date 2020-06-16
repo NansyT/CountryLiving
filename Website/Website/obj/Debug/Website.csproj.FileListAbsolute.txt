@@ -948,3 +948,4 @@ C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\System.Text.Json.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\TGPGamez\Desktop\Eux - ProjektOpgave\Country-Living\Website\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
+C:\Users\tobi8268\Desktop\Projektopgave\Country-Living\Website\Website\obj\Debug\Website.csprojAssemblyReference.cache
