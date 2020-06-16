@@ -51,9 +51,8 @@ namespace CountryLiving
             private set { from = value; }
         }
 
-        public Reservation(Guid reservationid, int roomid, string customermail, DateTime createddate, DateTime todate, DateTime fromdate)
-        {
-            ReservationID = reservationid;
+        public Reservation(int roomid, string customermail, DateTime createddate, DateTime todate, DateTime fromdate)
+        { 
             RoomId = roomid;
             CustomerMail = customermail;
             Created = createddate;
