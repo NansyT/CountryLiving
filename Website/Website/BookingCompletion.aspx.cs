@@ -17,9 +17,14 @@ namespace Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            bookcompletion.DataSource = con.Bookinformation(Convert.ToDateTime("16-06-2020"), Convert.ToDateTime("23-06-2020"), Session["mail"].ToString(), 200).ExecuteReader();
-            bookcompletion.DataBind();
-            con.SqlConnection(false);
+            if (!string.IsNullOrEmpty(Request.QueryString["roomID"]) &&
+                !string.IsNullOrEmpty(Request.QueryString["start"]) &&
+                !string.IsNullOrEmpty(Request.QueryString["slut"]))
+            {
+                bookcompletion.DataSource = con.Bookinformation(Convert.ToDateTime(Request.QueryString.Get("start")), Convert.ToDateTime(Request.QueryString.Get("slut")), Session["mail"].ToString(), Convert.ToInt32(Request.QueryString.Get("roomID"))).ExecuteReader();
+                bookcompletion.DataBind();
+                con.SqlConnection(false);
+            }
            
             //string services = Convert.ToString(Eval("services"));
             // = "<br /> \u2022 " + test.Replace(", ", "<br /> \u2022 ");
