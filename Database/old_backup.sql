@@ -5,7 +5,31 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-16 13:10:48
+-- Started on 2020-06-16 21:51:04
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE landlyst;
+--
+-- TOC entry 2899 (class 1262 OID 16393)
+-- Name: landlyst; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE landlyst WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Danish_Denmark.1252' LC_CTYPE = 'Danish_Denmark.1252';
+
+
+ALTER DATABASE landlyst OWNER TO postgres;
+
+\connect landlyst
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -27,7 +51,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- TOC entry 2899 (class 0 OID 0)
+-- TOC entry 2900 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
 --
@@ -156,7 +180,7 @@ END; $$;
 ALTER FUNCTION public.fc_getroomid(datein character varying, dateout character varying, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1255 OID 24704)
+-- TOC entry 240 (class 1255 OID 24704)
 -- Name: fp_get_alluserdata_roomdata(date, date, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -190,7 +214,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_alluserdata_roomdata(checkin date, checkout date, customermail character varying, roomidinput integer) OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1255 OID 24706)
+-- TOC entry 241 (class 1255 OID 24706)
 -- Name: fp_get_roomdata(integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -204,13 +228,14 @@ BEGIN
 		CAST(DATE_PART('day', dateout::date) - DATE_PART('day', datein::date) AS int) AS totalnights,
 		CAST(totalpricetable AS NUMERIC(18,2))  AS totalprice
 	FROM room
-	LEFT JOIN public.fp_getserviceasstring() AS servicestr
+	JOIN public.fp_getserviceasstring() AS servicestr
 		ON servicestr.pk_room_id = roomidinput
-	LEFT JOIN public.roomservices
+	JOIN public.roomservices
 		ON roomservices.pk_fk_room_id = room.pk_room_id
-	LEFT JOIN public.additional_services
+	JOIN public.additional_services
 		ON additional_services.pk_supplement_id = roomservices.pk_fk_supplement_id
 	CROSS JOIN FC_CalculateTotalPrice(CAST(datein as date), CAST(dateout as date), roomidinput) AS totalpricetable
+	WHERE room.pk_room_id = roomidinput
 	GROUP BY room.price, servicestr.pk_room_id, servicestr.servicestr, totalnights, totalprice;
 END; $$;
 
@@ -1831,6 +1856,8 @@ INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (510
 --
 
 INSERT INTO public.test (test) VALUES ('');
+INSERT INTO public.test (test) VALUES ('test1');
+INSERT INTO public.test (test) VALUES ('test1');
 
 
 --
@@ -1982,7 +2009,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-16 13:10:49
+-- Completed on 2020-06-16 21:51:06
 
 --
 -- PostgreSQL database dump complete

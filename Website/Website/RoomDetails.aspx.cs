@@ -58,7 +58,18 @@ namespace Website
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BookingCompletion.aspx?roomID=" + Convert.ToInt32(Request.QueryString.Get("roomID")) + "&start=" + Convert.ToDateTime(Request.QueryString.Get("start")) + "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut")));
+            if (Session["mail"] == null)
+            {
+                Response.Redirect("Login.aspx?ReturnUrl=" + 
+                    Server.UrlEncode("BookingCompletion.aspx?roomID=" + 
+                    Convert.ToInt32(Request.QueryString.Get("roomID")) + 
+                    "&start=" + Convert.ToDateTime(Request.QueryString.Get("start")) + 
+                    "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut"))));
+            }
+            else
+            {
+                Response.Redirect("BookingCompletion.aspx?roomID=" + Convert.ToInt32(Request.QueryString.Get("roomID")) + "&start=" + Convert.ToDateTime(Request.QueryString.Get("start")) + "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut")));
+            }
         }
 
     }
