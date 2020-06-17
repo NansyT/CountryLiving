@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,18 +17,24 @@ namespace Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            bookcompletion.DataSource = con.Bookinformation(Convert.ToDateTime("16-06-2020"), Convert.ToDateTime("23-06-2020"), "test", 200).ExecuteReader();
+            bookcompletion.DataSource = con.Bookinformation(Convert.ToDateTime("16-06-2020"), Convert.ToDateTime("23-06-2020"), Session["mail"].ToString(), 200).ExecuteReader();
             bookcompletion.DataBind();
             con.SqlConnection(false);
            
-            
             //string services = Convert.ToString(Eval("services"));
             // = "<br /> \u2022 " + test.Replace(", ", "<br /> \u2022 ");
         }
 
-        protected void TestButton_Click(object sender, EventArgs e)
+        protected void BookCompleteButton(object sender, EventArgs e)
         {
-            reservation.CreateReservation(Convert.ToDateTime("23-06-2020"), Convert.ToDateTime("16-06-2020"), 104, customer.CreateCustomerObjFromSQL(Session["mail"].ToString()));
+            LinkButton btn = (LinkButton)sender;
+            if (btn.CommandName == "Complete")
+            {
+                string[] arg = new string[3];
+                arg = btn.CommandArgument.ToString().Split(';');
+                reservation.CreateReservation(Convert.ToDateTime(arg[0]), Convert.ToDateTime(arg[1]), Convert.ToInt32(arg[2]), customer.CreateCustomerObjFromSQL(Session["mail"].ToString()));
+                Debug.WriteLine("Success");
+            }
         }
     }
 }

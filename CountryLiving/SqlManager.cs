@@ -158,7 +158,7 @@ namespace CountryLiving
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM customer WHERE pk_emai = @email";
+            var sql = "SELECT * FROM customer WHERE pk_email = @email";
             var cmd = new NpgsqlCommand(sql, con);
 
             //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
