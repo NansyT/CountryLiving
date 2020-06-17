@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <%--https://xdsoft.net/jqplugins/datetimepicker/ Calendar comes from here--%>
+
     <div style="margin-top: 10px;">
         <div>
             <input ID="StartDato" runat="server" type="text">
@@ -10,14 +11,17 @@
         <div>
             <input id="SlutDato" runat="server" type="text" >
         </div>
+        <div style="padding-top: 5px;">
+            <!-- Filter button, som åbner checkliste -->
+            <asp:Button ID="Filter_Button" runat="server" OnClick="Filter_Button_Click" Text="Filter" />
+            <!-- Søg knap til når du har valgt dine præferencer -->
+            <asp:Button ID="Button1" runat="server" Text="Søg" OnClick="searchButton_Click"/>
+        </div>
     </div>
 
-    <div style="margin-left: 80%; margin-top: 10px;">
-        <asp:Button ID="Filter_Button" runat="server" OnClick="Filter_Button_Click" Text="Filter" />
-    </div>
-
+    <!-- Filter liste med tilægsydelser, som er en checkboxlist -->
     <div class="row">
-        <div style="margin-left: 80%; margin-top: 10px; z-index: 3;">
+        <div style="margin-top: 10px; margin-left: 1.3%; z-index: 3;">
             <asp:CheckBoxList CssClass="checkbox1" ID="Filter_Checkboxlist" runat="server" Visible="false">
                 <asp:ListItem>Altan</asp:ListItem>
                 <asp:ListItem>Dobbeltseng</asp:ListItem>
@@ -30,14 +34,10 @@
         </div>
     </div>
 
-    <div style="margin-left: 80%; margin-top: 10px;">
-        <asp:Button ID="searchButton" runat="server" Text="Søg" OnClick="searchButton_Click"/>
-    </div>
-
     <section>
         <div class="picturelistdiv">
-            <%--Måske et link der kunne hjælpe med grid--%>
-            <%--https://www.aspsnippets.com/Articles/Display-images-from-SQL-Server-Database-in-ASP.Net-GridView-control.aspx--%> 
+            
+            <!-- Datalist som viser alle vores rum, som for værelses informationer igennem metoder, som er forbundet med database, der bliver brugt Eval til at vise de forskellige værdier for hver kolonne. -->
             <asp:DataList ID="displayrooms" runat="server" RepeatDirection="Horizontal" CellSpacing="3" RepeatColumns="3">
                <ItemTemplate>
                    <table class="table">
@@ -65,6 +65,7 @@
 
                        <tr>
                            <td>
+                               <!-- LinkButton som sender brugeren videre til detaljer om rummet. -->
                                <asp:LinkButton ID="bookhere" runat="server" OnClick="bookhere_Click" CommandName="CheckForBook" CommandArgument='<%#Eval("roomid") %>' Text="Book her" />                             
                            </td>
                        </tr>
