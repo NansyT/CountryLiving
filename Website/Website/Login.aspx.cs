@@ -22,8 +22,8 @@ namespace Website
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
-            try
-            {
+            Debug.WriteLine("Du har trykket på login knappen");
+
                 string passwordstr = txtPassword.Text;
                 string emailstr = txtEmail.Text;
                 SqlManager con = new SqlManager();
@@ -31,17 +31,17 @@ namespace Website
                 if (howmanyusers == 1)
                 {
                     Session["mail"] = emailstr;
-                    Response.Redirect("Default.aspx");
+                if (!string.IsNullOrEmpty(Request.QueryString["ReturnURL"]))
+                {
+                    Response.Redirect(Request.QueryString["ReturnURL"].ToString());
+                }
                 }
                 else
                 {
-                    Debug.WriteLine("Hejsa");
+                    lblIncorrectMessage.Visible = true;
                 }
-            }
-            catch (Exception p)
-            {
-                Debug.WriteLine(p);
-            }
+            
+
         }
     }
 }
