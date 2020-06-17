@@ -10,7 +10,6 @@
         <div>
             <input id="SlutDato" runat="server" type="text" >
         </div>
-        <asp:button runat="server" id="VælgDato" Text="Vælg dato" OnClick="VælgDato_Click"></asp:button>
     </div>
 
     <div style="margin-left: 80%; margin-top: 10px;">

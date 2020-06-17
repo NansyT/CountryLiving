@@ -39,7 +39,7 @@ namespace Website
             }
         }
 
-        protected void VælgDato_Click(object sender, EventArgs e)
+        protected void searchButton_Click(object sender, EventArgs e)
         {
             if (StartDato.Value != "Start Dato" && SlutDato.Value != "Slut Dato")
             {
@@ -62,9 +62,7 @@ namespace Website
                 //Der mangler datoer
                 Debug.WriteLine("Please enter date");
             }
-        }
-        protected void searchButton_Click(object sender, EventArgs e)
-        {
+
             //Det er en mulighed at man kan gøre så man kun kan have 1 af følgende ting: enkeltmands seng, dobbeltseng, 2 enkeltsenge
             List<string> items = new List<string>();
             for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
