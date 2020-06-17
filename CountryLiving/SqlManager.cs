@@ -137,5 +137,14 @@ namespace CountryLiving
             return cmd;
            
         }
+        public NpgsqlDataReader SeeAllBookings()
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM booking";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            return cmd.ExecuteReader();
+        }
     }
 }

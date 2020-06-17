@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace LandLyst
     public partial class VælgVærelse : Page
     {
         SqlManager cnn = new SqlManager();
+        List<string> items;
         public VælgVærelse()
         {
             InitializeComponent();
@@ -44,5 +46,28 @@ namespace LandLyst
             }
         }
 
+        private void Searchbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (startDato.SelectedDate < sluttDato.SelectedDate)
+            {
+                CheckFilter();
+                //searchedRooms.ItemsSource = cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0],items[1],items[2],items[3],items[4],items[5],items[6]);
+            }
+        }
+        private void CheckFilter()
+        {
+            items = new List<string>();
+            foreach (CheckBox checkBox in additions.Children)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    items.Add(checkBox.Content.ToString());
+                }
+                else
+                {
+                    items.Add("");
+                }
+            }
+        }
     }
 }

@@ -11,9 +11,11 @@
     <DockPanel x:Name="DPVV" >
         <StackPanel x:Name="searchParam" DockPanel.Dock="Top" Orientation="Horizontal">
             <Button x:Name="filterbtn" Content="Filter" Padding="5" Click="Filterbtn_Click"></Button>
-            <TextBox Background="BlueViolet" Text="Start dato" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <Rectangle Width=" 20"/>
+            <TextBox Background="BlueViolet" Text="Start dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
             <DatePicker x:Name="startDato" VerticalContentAlignment="Center" DockPanel.Dock="Top" FirstDayOfWeek="Monday" />
-            <TextBox Background="BlueViolet" Text="Slut dato" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <Rectangle Width="10"/>
+            <TextBox Background="BlueViolet" Text="Slut dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
             <DatePicker x:Name="sluttDato" DockPanel.Dock="Top" FirstDayOfWeek="Monday" VerticalContentAlignment="Center"/>
             <Popup x:Name="popup">
                 <StackPanel Visibility="Collapsed" Background="Coral" Orientation="Vertical" x:Name="additions">
@@ -21,11 +23,13 @@
                     <CheckBox x:Name="badekarCB" Content="Badekar" ></CheckBox>
                     <CheckBox x:Name="køkkenCB" Content="Dobbeltseng" ></CheckBox>
                     <CheckBox x:Name="dSengCB" Content="Eget køkken" ></CheckBox>
-                    <CheckBox x:Name="eSengCB" Content="Enkeltseng" ></CheckBox>
+                    <CheckBox x:Name="eSengCB" Content="Enkeltmands seng" ></CheckBox>
                     <CheckBox x:Name="enSengeCB" Content="2 Enkeltsenge" ></CheckBox>
-                    <CheckBox x:Name="jacuziCB" Content="Jacuzi" ></CheckBox>
+                    <CheckBox x:Name="jacuzziCB" Content="Jacuzzi" ></CheckBox>
                 </StackPanel>
             </Popup>
+            <Rectangle Width="20"/>
+            <Button x:Name="searchbtn" Content="Søg" Padding="5" Click="Searchbtn_Click"/>
         </StackPanel>
         <DataGrid x:Name="searchedRooms" >
         </DataGrid>
