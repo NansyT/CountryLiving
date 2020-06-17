@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-16 21:51:04
+-- Started on 2020-06-17 09:46:09
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -73,7 +73,7 @@ DECLARE
 BEGIN
 
 	SELECT 
-	INTO price CAST((room.price + SUM(additional_services.price)) * (DATE_PART('day', dateout::date) - DATE_PART('day', datein::date)) AS NUMERIC(18,2))
+	INTO price CAST((room.price + SUM(additional_services.price)) * (dateout::date) - (datein::date) AS NUMERIC(18,2))
 	FROM room
 	LEFT JOIN public.roomservices
 	ON roomservices.pk_fk_room_id = room.pk_room_id
@@ -82,7 +82,7 @@ BEGIN
 	WHERE room.pk_room_id = roomid
 	GROUP BY room.price;
 	CASE
-		WHEN (DATE_PART('day', dateout::date) - DATE_PART('day', datein::date)) >= 7 THEN 
+		WHEN (dateout::date) - (datein::date) >= 7 THEN 
 			result = CAST(price -( ( (price)/100)*10) AS NUMERIC(18,2));
 		ELSE 
 			result = price;
@@ -225,7 +225,7 @@ BEGIN
 	RETURN QUERY SELECT servicestr.pk_room_id,
 		servicestr.servicestr,
 		CAST(room.price + SUM(additional_services.price) as NUMERIC(18,2)) AS pricepday,
-		CAST(DATE_PART('day', dateout::date) - DATE_PART('day', datein::date) AS int) AS totalnights,
+		CAST((dateout::date) - (datein::date) AS int) AS totalnights,
 		CAST(totalpricetable AS NUMERIC(18,2))  AS totalprice
 	FROM room
 	JOIN public.fp_getserviceasstring() AS servicestr
@@ -2009,7 +2009,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-16 21:51:06
+-- Completed on 2020-06-17 09:46:10
 
 --
 -- PostgreSQL database dump complete
