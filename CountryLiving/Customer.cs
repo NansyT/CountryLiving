@@ -46,14 +46,22 @@ namespace CountryLiving
             private set { password = value; }
         }
 
-        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordInput)
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput)
         {
             Email = emailInput;
             Name = nameInput;
             Address = addressInput;
             Zipcode = zipcodeInput;
             Phonenumber = phonenumberInput;
-            Password = passwordInput;
+        }
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string password)
+        {
+            Email = emailInput;
+            Name = nameInput;
+            Address = addressInput;
+            Zipcode = zipcodeInput;
+            Phonenumber = phonenumberInput;
+            Password = password;
         }
     }
 }
