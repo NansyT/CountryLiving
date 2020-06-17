@@ -29,7 +29,7 @@ namespace LandLyst
             InitializeComponent();
 
             startDato.DisplayDateStart = DateTime.Today;
-            sluttDato.DisplayDateStart = DateTime.Today.AddDays(1);
+            slutDato.DisplayDateStart = DateTime.Today.AddDays(1);
         }
 
         private void Filterbtn_Click(object sender, RoutedEventArgs e)
@@ -48,10 +48,12 @@ namespace LandLyst
 
         private void Searchbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (startDato.SelectedDate < sluttDato.SelectedDate)
+            if (startDato.SelectedDate < slutDato.SelectedDate)
             {
                 CheckFilter();
-                //searchedRooms.ItemsSource = cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0],items[1],items[2],items[3],items[4],items[5],items[6]);
+                searchedRooms.ItemsSource = null;
+                
+                searchedRooms.ItemsSource = cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader();
             }
         }
         private void CheckFilter()

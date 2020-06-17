@@ -16,7 +16,7 @@
             <DatePicker x:Name="startDato" VerticalContentAlignment="Center" DockPanel.Dock="Top" FirstDayOfWeek="Monday" />
             <Rectangle Width="10"/>
             <TextBox Background="BlueViolet" Text="Slut dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
-            <DatePicker x:Name="sluttDato" DockPanel.Dock="Top" FirstDayOfWeek="Monday" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="slutDato" DockPanel.Dock="Top" FirstDayOfWeek="Monday" VerticalContentAlignment="Center"/>
             <Popup x:Name="popup">
                 <StackPanel Visibility="Collapsed" Background="Coral" Orientation="Vertical" x:Name="additions">
                     <CheckBox x:Name="altanCB" Content="Altan" ></CheckBox>
@@ -32,7 +32,9 @@
             <Button x:Name="searchbtn" Content="Søg" Padding="5" Click="Searchbtn_Click"/>
         </StackPanel>
         <DataGrid x:Name="searchedRooms" >
+            
         </DataGrid>
+        
     </DockPanel>
 </Page>
 
