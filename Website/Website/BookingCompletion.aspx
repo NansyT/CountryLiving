@@ -75,7 +75,7 @@
                                             <label>
                                             <b>Totalpris:</b> <%#Eval("totalprice") %>DKK</label>
                                             <br />
-                                            <input class="btnCompleteBooking" id="Button1" type="button" value="Book Nu" />
+                                            <asp:LinkButton ID="bookcompletebutton" Text="Book Nu" CommandName="Complete" OnClick="BookCompleteButton" CommandArgument='<%#Eval("indate") + ";" + Eval("outdate") + ";" + Eval("roomid")%>' runat="server" ></asp:LinkButton>
                                         </caption>
                                     </tbody>
                                 </table>
@@ -86,5 +86,4 @@
             </ItemTemplate>
         </asp:DataList>
     </div>
-                                            <asp:Button ID="TestButton" runat="server" Text="Button" OnClick="TestButton_Click" />
 </asp:Content>
