@@ -61,10 +61,10 @@ namespace Website
             if (Session["mail"] == null)
             {
                 Response.Redirect("Login.aspx?ReturnUrl=" + 
-                    "BookingCompletion.aspx?roomID=" + 
+                    Server.UrlEncode("BookingCompletion.aspx?roomID=" + 
                     Convert.ToInt32(Request.QueryString.Get("roomID")) + 
                     "&start=" + Convert.ToDateTime(Request.QueryString.Get("start")) + 
-                    "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut")));
+                    "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut"))));
             }
             else
             {
