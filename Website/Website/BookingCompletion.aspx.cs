@@ -35,10 +35,7 @@ namespace Website
             LinkButton btn = (LinkButton)sender;
             if (btn.CommandName == "Complete")
             {
-                string[] arg = new string[3];
-                arg = btn.CommandArgument.ToString().Split(';');
-                reservation.CreateReservation(Convert.ToDateTime(arg[0]).Date, Convert.ToDateTime(arg[1]).Date, int.Parse(arg[2]), customer.CreateCustomerObjFromSQL(Session["mail"].ToString()));
-                Debug.WriteLine("Success:" + arg[0] + " & " + arg[1] + " & " + arg[2]);
+                reservation.CreateReservation(Convert.ToDateTime(Request.QueryString.Get("start")), Convert.ToDateTime(Request.QueryString.Get("slut")), Convert.ToInt32(Request.QueryString.Get("roomID")), customer.CreateCustomerObjFromSQL(Session["mail"].ToString()));
             }
         }
     }
