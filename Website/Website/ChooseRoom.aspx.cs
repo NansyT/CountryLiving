@@ -103,7 +103,7 @@ namespace Website
 
             if(btn.CommandName == "CheckForBook")
             {
-                Response.Redirect("RoomDetails.aspx?roomID=" + btn.CommandArgument.ToString() + "?start=" + StartDato.Value + "?slut=" + SlutDato.Value);
+                Response.Redirect("RoomDetails.aspx?roomID=" + btn.CommandArgument.ToString() + "&start=" + StartDato.Value + "&slut=" + SlutDato.Value);
             }
         }
     }

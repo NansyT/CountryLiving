@@ -11,43 +11,72 @@
                             <td>
                                 <table>
                                     <tbody>
-                                        <label><b>Rum Nr:</b> <%#Eval("roomID") %></label>
-                                        <br />
-                                        <label><b>Tilægs-ydelser:</b></label>
+                                        <caption>
+                                            <label>
+                                            <b>Rum Nr:</b> <%#Eval("roomID") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Tilægs-ydelser:</b></label>
+                                        </caption>
                                     </tbody>
                                 </table>
                             </td>
                             <td>
                                 <table>
                                     <tbody>
-                                        <label><b>Navn:</b> <%#Eval("fullname") %></label>
-                                        <br />
-                                        <label><b>Adresse:</b> <%#Eval("address") %></label>
-                                        <br />
-                                        <label><b>Post Nr:</b> <%#Eval("zipcode") %></label>
-                                        <br />
-                                        <label><b>By:</b> <%#Eval("city") %></label>
-                                        <br />
-                                        <label><b>E-mail:</b> <%#Eval("email") %></label>
-                                        <br />
-                                        <label><b>Telefon Nr:</b> <%#Eval("phone") %></label>
+                                        <caption>
+                                            <label>
+                                            <b>Navn:</b> <%#Eval("fullname") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Adresse:</b> <%#Eval("address") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Post Nr:</b> <%#Eval("zipcode") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>By:</b> <%#Eval("city") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>E-mail:</b> <%#Eval("email") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Telefon Nr:</b> <%#Eval("phone") %>
+                                            </label>
+                                        </caption>
                                     </tbody>
                                 </table>
                             </td>
                             <td>
                                 <table>
                                     <tbody>
-                                        <label><b>Pris pr. nat:</b> <%#Eval("pricePday") %> DKK</label>
-                                        <br />
-                                        <label><b>Fra Dato:</b> <%#Eval("indate", "{0:dd/MM/yyyy}") %></label>
-                                        <br />
-                                        <label><b>Til Dato:</b> <%#Eval("outdate", "{0:dd/MM/yyyy}") %></label>
-                                        <br />
-                                        <label><b>Antal nætter:</b> <%#Eval("totalnights") %></label>
-                                        <br />
-                                        <label><b>Totalpris:</b> <%#Eval("totalprice") %> DKK</label>
-                                        <br />
-                                        <input class="btnCompleteBooking" id="Button1" type="button" value="Book Nu" />
+                                        <caption>
+                                            <label>
+                                            <b>Pris pr. nat:</b> <%#Eval("pricePday") %>DKK</label>
+                                            <br />
+                                            <label>
+                                            <b>Fra Dato:</b> <%#Eval("indate", "{0:dd/MM/yyyy}") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Til Dato:</b> <%#Eval("outdate", "{0:dd/MM/yyyy}") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Antal nætter:</b> <%#Eval("totalnights") %>
+                                            </label>
+                                            <br />
+                                            <label>
+                                            <b>Totalpris:</b> <%#Eval("totalprice") %>DKK</label>
+                                            <br />
+                                            <input class="btnCompleteBooking" id="Button1" type="button" value="Book Nu" />
+                                        </caption>
                                     </tbody>
                                 </table>
                             </td>
@@ -57,4 +86,5 @@
             </ItemTemplate>
         </asp:DataList>
     </div>
+                                            <asp:Button ID="TestButton" runat="server" Text="Button" OnClick="TestButton_Click" />
 </asp:Content>
