@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,45 @@ namespace CountryLiving
         }
         public Customer CreateCustomerObjFromSQL(string email)
         {
+            string name = null;
+            string address = null;
+            int zipcode = 0;
+            int phone = 0;
             NpgsqlDataReader rdr = GetCustomerinfo(email).ExecuteReader();
-            Customer customer = new Customer(email, rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4));
-            return customer;
+            while(rdr.Read()) //for hver række der er i query 
+            {
+                name = rdr.GetString(1);
+                address = rdr.GetString(2);
+                zipcode = rdr.GetInt32(3);
+                phone = rdr.GetInt32(4);
+            }
+            Debug.WriteLine(email, name, address, zipcode, phone);
+              Customer customer = new Customer(email, name, address, zipcode, phone);
+                return customer;
+
             
+            
+        }
+        public void TEST(string email)
+        {
+            GetCustomerinfo(email).ExecuteReader();
+            string name = null;
+            string address = null;
+            int zipcode = 0;
+            int phone = 0;
+
+            NpgsqlDataReader rdr = GetCustomerinfo(email).ExecuteReader();
+            while (rdr.Read()) //for hver række der er i query 
+            {
+                name = rdr["fullname"].ToString();
+                address = rdr["address"].ToString();
+                zipcode = Convert.ToInt32(rdr["zipcode"]);
+                phone = Convert.ToInt32(rdr["phone"]);
+                Debug.WriteLine("{0}\n", rdr[0]);
+            }
+            Debug.WriteLine(email, name, address, zipcode, phone);
+
+
         }
     }
 }
