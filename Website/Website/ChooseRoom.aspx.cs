@@ -23,7 +23,6 @@ namespace Website
         {
             StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
             SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
-            Session["mail"] = "tobi@gmail.com";
         }
 
 
