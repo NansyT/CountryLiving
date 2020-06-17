@@ -7,7 +7,7 @@
             <ItemTemplate>
                 <table>
                     <tbody>
-                        <tr style="border: solid;">
+                        <tr style="border: 1px solid;">
                             <td>
                                 <table>
                                     <tbody>
