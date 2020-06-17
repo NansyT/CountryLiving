@@ -22,7 +22,7 @@
             <asp:CheckBoxList CssClass="checkbox1" ID="Filter_Checkboxlist" runat="server" Visible="false">
                 <asp:ListItem>Altan</asp:ListItem>
                 <asp:ListItem>Dobbeltseng</asp:ListItem>
-                <asp:ListItem>2 enkeltsenge</asp:ListItem>
+                <asp:ListItem>2 Enkeltsenge</asp:ListItem>
                 <asp:ListItem>Badekar</asp:ListItem>
                 <asp:ListItem>Jacuzzi</asp:ListItem>
                 <asp:ListItem>Eget køkken</asp:ListItem>
