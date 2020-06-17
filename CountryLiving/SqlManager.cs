@@ -105,7 +105,7 @@ namespace CountryLiving
             string output = cmd.ExecuteScalar().ToString();
             return output;
         }
-        public NpgsqlCommand CreateReservation(Reservation res)
+        public NpgsqlCommand CreateReservationSQL(Reservation res)
         {
             SqlConnection(false);
             SqlConnection(true);
@@ -141,7 +141,7 @@ namespace CountryLiving
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM fp_get_roomdata( @roomidinput CAST(@checkin AS DATE), CAST(@checkout AS DATE) )";
+            var sql = "SELECT * FROM fp_get_roomdata( @roomidinput, CAST(@checkin AS DATE), CAST(@checkout AS DATE) )";
             var cmd = new NpgsqlCommand(sql, con);
 
             //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
@@ -154,5 +154,20 @@ namespace CountryLiving
             return cmd;
 
         }
+        public NpgsqlCommand GetCustomerinfo(string email)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM customer WHERE pk_emai = @email";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
+            //parcheckin.Value = DateTime.Now;
+
+            cmd.Parameters.AddWithValue("email", email);
+
+            return cmd;
+        }
+
     }
 }
