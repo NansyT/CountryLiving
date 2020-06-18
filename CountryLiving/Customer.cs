@@ -15,6 +15,7 @@ namespace CountryLiving
         private string email;
         private string password;
 
+        //laver en public get variable så man kan se værdien men ikke sæt den
         public string Name
         {
             get { return name; }
@@ -45,7 +46,8 @@ namespace CountryLiving
             get { return password; }
             private set { password = value; }
         }
-
+        
+        //laver en konstruktør når man kalder en Customer
         public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput)
         {
             Email = emailInput;
@@ -54,14 +56,16 @@ namespace CountryLiving
             Zipcode = zipcodeInput;
             Phonenumber = phonenumberInput;
         }
-        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string password)
+        //En konstruktør til når bruger opretter sig igennem hjemmesiden, hvor der er behøv for password
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordinput)
         {
             Email = emailInput;
             Name = nameInput;
             Address = addressInput;
             Zipcode = zipcodeInput;
             Phonenumber = phonenumberInput;
-            Password = password;
+            Password = passwordinput;
         }
+
     }
 }
