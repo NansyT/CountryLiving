@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Npgsql;
+using System.Data;
 
 namespace CountryLiving
 {
@@ -105,19 +106,24 @@ namespace CountryLiving
             string output = cmd.ExecuteScalar().ToString();
             return output;
         }
-        public NpgsqlCommand CreateReservationSQL(Reservation res)
+        public void CreateReservationSQL(Reservation res)
         {
+            
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "CALL public.pr_createreservation(@roomid, @customermail, CAST(@datein AS DATE), CAST(@dateout AS DATE)";
+            var sql = "CALL public.pr_createreservation(@roomid, @customermail, @datein, @dateout)";
             var cmd = new NpgsqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("roomid", res.RoomId);
-            cmd.Parameters.AddWithValue("customermail", res.CustomerMail );
-            cmd.Parameters.AddWithValue("datein", res.To);
-            cmd.Parameters.AddWithValue("dateout", res.From);
+            cmd.Parameters.AddWithValue("@roomid", res.RoomId);
+            cmd.Parameters.AddWithValue("@customermail", res.CustomerMail);
+            cmd.Parameters.Add("@datein", NpgsqlTypes.NpgsqlDbType.Date);
+            cmd.Parameters.Add("@dateout", NpgsqlTypes.NpgsqlDbType.Date);
+            cmd.Parameters["@datein"].Value = res.From;
+            cmd.Parameters["@dateout"].Value = res.To;
 
-            return cmd;
+            cmd.ExecuteReader();
+
+            SqlConnection(false);
         }
         public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
         {
@@ -154,17 +160,17 @@ namespace CountryLiving
             return cmd;
 
         }
-        public NpgsqlCommand GetCustomerinfo(string email)
+        public NpgsqlCommand GetCustomerinfo(string emailinput)
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM customer WHERE pk_email = @email";
+            var sql = "SELECT * FROM testpis(@email)";
             var cmd = new NpgsqlCommand(sql, con);
 
             //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
             //parcheckin.Value = DateTime.Now;
 
-            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("email", emailinput);
 
             return cmd;
         }

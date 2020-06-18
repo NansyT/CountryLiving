@@ -23,12 +23,7 @@ namespace Website
         {
             StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
             SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
-            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
-            {
-                Filter_Checkboxlist.Items[i].Selected = true;
-            }
-
-            displayrooms.Visible = false;
+            SearchRooms(StartDato.Value, SlutDato.Value, "", "", "", "", "", "", "");
         }
 
 
@@ -44,7 +39,7 @@ namespace Website
             }
         }
 
-        protected void VælgDato_Click(object sender, EventArgs e)
+        protected void searchButton_Click(object sender, EventArgs e)
         {
             if (StartDato.Value != "Start Dato" && SlutDato.Value != "Slut Dato")
             {
@@ -67,11 +62,10 @@ namespace Website
                 //Der mangler datoer
                 Debug.WriteLine("Please enter date");
             }
-        }
-        protected void searchButton_Click(object sender, EventArgs e)
-        {
+
             //Det er en mulighed at man kan gøre så man kun kan have 1 af følgende ting: enkeltmands seng, dobbeltseng, 2 enkeltsenge
             List<string> items = new List<string>();
+            //For-loop som checker hvilke præferencer er slået til og søger efter rum med disse præferencer.
             for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
             {
                 if (Filter_Checkboxlist.Items[i].Selected == true)
@@ -83,11 +77,12 @@ namespace Website
                     items.Add("");
                 }
             }
-            //displayrooms.Visible = true;
-
             SearchRooms(StartDato.Value, SlutDato.Value, items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
         }
 
+        /// <summary>
+        ///  Binder alle data til Datalist, som er modtaget fra databasen.
+        /// </summary>
         protected void SearchRooms(string inDate, string outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
         {
             displayrooms.DataSource = con.SelectAvailableRooms(inDate, outDate, i1, i2, i3, i4, i5, i6, i7).ExecuteReader();
@@ -97,6 +92,9 @@ namespace Website
 
         }
 
+        /// <summary>
+        ///  Når knap for et rum bliver trykket, så bliver brugeren vidersendt til detaljer om rummet.
+        /// </summary>
         protected void bookhere_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;

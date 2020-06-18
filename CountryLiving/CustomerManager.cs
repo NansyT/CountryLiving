@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,23 @@ namespace CountryLiving
         }
         public Customer CreateCustomerObjFromSQL(string email)
         {
+            string name = null;
+            string address = null;
+            int zipcode = 0;
+            int phone = 0;
             NpgsqlDataReader rdr = GetCustomerinfo(email).ExecuteReader();
-            Customer customer = new Customer(email, rdr.GetString(1), rdr.GetString(2), rdr.GetInt32(3), rdr.GetInt32(4));
-            return customer;
+            while(rdr.Read()) //for hver række der er i query 
+            {
+                name = rdr[0].ToString();
+                address = rdr[1].ToString();
+                zipcode = Convert.ToInt32(rdr[2]);
+                phone = Convert.ToInt32(rdr[3]);
+            }
+            Debug.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}", email, name, address, zipcode, phone);
+              Customer customer = new Customer(email, name, address, zipcode, phone);
+                return customer;
+
+            
             
         }
     }

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="positionBookingBox">
-        <div class="bookingBox">
+        <div class="bookingBox" style="margin-top:10px; margin-left:70%;">
             <div style="text-align:center;">
                 <asp:Label ID="errormessage" runat="server" Text="Label" Visible="False"></asp:Label>
                 <asp:DataList ID="roomDetailsinfo" runat="server" RepeatColumns="1">
