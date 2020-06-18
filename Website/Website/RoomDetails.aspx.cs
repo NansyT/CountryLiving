@@ -38,22 +38,6 @@ namespace Website
                 errormessage.Text = "Der er ikke valgt et værelse eller periode for en booking"; // fejl besked hvis if ikke er sand
                 errormessage.Visible = true;
             }
-            
-            //Henter Room ID fra URL'en 
-            //String getRoomID = Request.QueryString.Get("roomID");
-            //string [] roomID = getRoomID.Split('?');
-            //if (roomID != null)
-            //{
-            //    Debug.WriteLine("du har en id");
-
-            //    LabelRoom.Text = roomID[0];
-
-            //    //roomDetailsinfo.DataSource = con.Roominformation(roomID[0], roomID[1], roomID[2]);
-            //}
-            //else
-            //{
-            //    Debug.WriteLine("ikke funktionel");
-            //}
         }
 
         protected void Button1_Click(object sender, EventArgs e)
