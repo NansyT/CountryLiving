@@ -27,6 +27,7 @@ namespace Website
                 !string.IsNullOrEmpty(Request.QueryString["start"]) && 
                 !string.IsNullOrEmpty(Request.QueryString["slut"]))
             {
+                //De forskellige infoer så som prisen for rummet og prisen for hele perioden, bliver hentet fra databasen, ved hjælp af viden fra URL
                 roomDetailsinfo.DataSource = con.Roominformation(Convert.ToInt32(Request.QueryString.Get("roomID")), Convert.ToDateTime(Request.QueryString.Get("start")), Convert.ToDateTime(Request.QueryString.Get("slut"))).ExecuteReader();
                 roomDetailsinfo.DataBind();
                 roomDetailsinfo.Visible = true;
@@ -44,6 +45,7 @@ namespace Website
         {
             if (Session["mail"] == null)
             {
+                //sender dig til en login/lav bruger side, vis du ikke allerede er logget ind
                 Response.Redirect("Login.aspx?ReturnUrl=" + 
                     Server.UrlEncode("BookingCompletion.aspx?roomID=" + 
                     Convert.ToInt32(Request.QueryString.Get("roomID")) + 
@@ -52,6 +54,7 @@ namespace Website
             }
             else
             {
+                //videre sender dig til BookingCompletion, med de nødvendige dataer i URL
                 Response.Redirect("BookingCompletion.aspx?roomID=" + Convert.ToInt32(Request.QueryString.Get("roomID")) + "&start=" + Convert.ToDateTime(Request.QueryString.Get("start")) + "&slut=" + Convert.ToDateTime(Request.QueryString.Get("slut")));
             }
         }
