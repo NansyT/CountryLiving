@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Npgsql;
+using System.Data;
 
 namespace CountryLiving
 {
@@ -107,17 +108,22 @@ namespace CountryLiving
         }
         public void CreateReservationSQL(Reservation res)
         {
+            
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "CALL public.pr_createreservation(@roomid, @customermail, CAST(@datein AS DATE), CAST(@dateout AS DATE)";
+            var sql = "CALL public.pr_createreservation(@roomid, @customermail, @datein, @dateout)";
             var cmd = new NpgsqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("roomid", res.RoomId);
-            cmd.Parameters.AddWithValue("customermail", res.CustomerMail );
-            cmd.Parameters.AddWithValue("datein", res.To);
-            cmd.Parameters.AddWithValue("dateout", res.From);
+            cmd.Parameters.AddWithValue("@roomid", res.RoomId);
+            cmd.Parameters.AddWithValue("@customermail", res.CustomerMail);
+            cmd.Parameters.Add("@datein", NpgsqlTypes.NpgsqlDbType.Date);
+            cmd.Parameters.Add("@dateout", NpgsqlTypes.NpgsqlDbType.Date);
+            cmd.Parameters["@datein"].Value = res.From;
+            cmd.Parameters["@dateout"].Value = res.To;
 
-            cmd.ExecuteNonQuery();
+            cmd.ExecuteReader();
+
+            SqlConnection(false);
         }
         public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
         {
@@ -168,6 +174,14 @@ namespace CountryLiving
 
             return cmd;
         }
+        public NpgsqlDataReader SeeAllReservations()
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = "SELECT * FROM booking";
+            var cmd = new NpgsqlCommand(sql, con);
 
+            return cmd.ExecuteReader();
+        }
     }
 }
