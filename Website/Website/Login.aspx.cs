@@ -24,10 +24,13 @@ namespace Website
         {
             Debug.WriteLine("Du har trykket på login knappen");
 
+                //sets passwordstr to label txtPassword
                 string passwordstr = txtPassword.Text;
+                //sets emailstr to label txtEmail
                 string emailstr = txtEmail.Text;
-                SqlManager con = new SqlManager();
-                int howmanyusers = con.GetCustomers(emailstr, passwordstr);
+                CustomerManager customerman = new CustomerManager();
+                //Philip kommenter nedstående
+                int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr);
                 if (howmanyusers == 1)
                 {
                     Session["mail"] = emailstr;
