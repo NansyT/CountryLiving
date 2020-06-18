@@ -89,3 +89,4 @@ C:\Users\nann8059\Documents\GitHub\Country-Living\CountryLiving\obj\Debug\Countr
 C:\Users\nann8059\Documents\GitHub\Country-Living\CountryLiving\obj\Debug\CountryLiving.csproj.CopyComplete
 C:\Users\nann8059\Documents\GitHub\Country-Living\CountryLiving\obj\Debug\CountryLiving.dll
 C:\Users\nann8059\Documents\GitHub\Country-Living\CountryLiving\obj\Debug\CountryLiving.pdb
+C:\Users\kjedt\source\Country-Living\Country-Living\CountryLiving\obj\Debug\CountryLiving.csprojAssemblyReference.cache
