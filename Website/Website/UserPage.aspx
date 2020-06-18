@@ -4,6 +4,7 @@
 
     <div class="user_page">
         <img src="Pictures/User.png" />
+        <!-- Datalist that recieves information from database about the user -->
         <asp:DataList ID="displayInfo" runat="server" RepeatLayout="Table">
             <ItemTemplate>
                 <table class="table">
