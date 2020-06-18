@@ -18,7 +18,7 @@ namespace CountryLiving
         
         public void SeeReservation(int reservationID)
         {
-            SeeAllReservations();
+            
             Debug.WriteLine("Looking at reservation");
         }
 
