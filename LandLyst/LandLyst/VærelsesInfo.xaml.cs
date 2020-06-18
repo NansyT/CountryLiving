@@ -20,9 +20,9 @@ namespace LandLyst
     /// </summary>
     public partial class VærelsesInfo : Page
     {
-        Decimal roomid;
+        int roomid;
         Decimal pricetotal;
-        public VærelsesInfo(DateTime? startDato, DateTime? slutDato, Decimal roomId, Decimal priceTotal)
+        public VærelsesInfo(DateTime? startDato, DateTime? slutDato, int roomId, Decimal priceTotal)
         {
             InitializeComponent();
             datoStart.Text = startDato.ToString();

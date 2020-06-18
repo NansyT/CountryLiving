@@ -22,12 +22,15 @@ namespace LandLyst
     public partial class Booking : Page
     {
         ReservationManager manager = new ReservationManager();
-        public Booking(DateTime? startDato, DateTime? slutDato, Decimal roomid, Decimal priceTotal)
+        Customer customer;
+        int roomId;
+        public Booking(DateTime? startDato, DateTime? slutDato, int roomid, Decimal priceTotal)
         {
             InitializeComponent();
             datoStart.Text = startDato.ToString();
             datoSlut.Text = slutDato.ToString();
             totalPris.Text = priceTotal.ToString();
+            roomId = roomid;
         }
 
         //Booker værelse
@@ -36,8 +39,8 @@ namespace LandLyst
             NavigationService ns = NavigationService.GetNavigationService(this);
             MessageBox.Show("Du har booket et værelse");
             ns.Navigate(new Reservationer());
-
-            manager.CreateReservationSQL();
+            
+            manager.CreateReservation(DateTime.Parse(datoStart.Text), DateTime.Parse(datoSlut.Text), roomId, new Customer(email.Text, navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text)));
         }
     }
 }
