@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CountryLiving;
+using Npgsql;
 
 namespace LandLyst
 {
@@ -22,10 +24,24 @@ namespace LandLyst
     /// </summary>
     public partial class Reservationer : Page
     {
+        ReservationManager manager = new ReservationManager();
         public Reservationer()
         {
             InitializeComponent();
-            
+
+            using (NpgsqlDataReader reader = MainWindow.cnn.SeeAllReservations())
+            {
+                if (reader != null)
+                {
+                    foreach (var item in reader)
+                    {
+                        IDataRecord record = (IDataRecord)item;
+                        roomIdC.Binding = "pkreservation_id";
+                        reservationer.Items.Add(record);
+
+                    }
+                }
+            }
         }
     }
 }

@@ -21,8 +21,10 @@ namespace LandLyst
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static SqlManager cnn = new SqlManager();
         public MainWindow()
         {
+            //TODO ændre værelses status
             InitializeComponent();
             mainFrame.Navigate(new Reservationer());
         }
@@ -34,10 +36,6 @@ namespace LandLyst
         }
         private void Værelsebtn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new VærelsesInfo());
-        }
-        private void Bookingbtn_Click(object sender, RoutedEventArgs e)
-        {
             mainFrame.Navigate(new VælgVærelse());
         }
         private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
@@ -47,6 +45,5 @@ namespace LandLyst
                 mainFrame.GoBack();
             }
         }
-        
     }
 }

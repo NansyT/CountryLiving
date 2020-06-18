@@ -24,10 +24,10 @@ namespace LandLyst
     /// </summary>
     public partial class VælgVærelse : Page
     {
-        SqlManager cnn = new SqlManager();
+        
         List<string> items;
-        int roomid;
-        double pricetotal;
+        Decimal roomid;
+        Decimal pricetotal;
 
         public VælgVærelse()
         {
@@ -35,7 +35,7 @@ namespace LandLyst
 
             startDato.DisplayDateStart = DateTime.Today;
             slutDato.DisplayDateStart = DateTime.Today.AddDays(1);
-
+            
         }
         //Åbner og lukker filter
         private void Filterbtn_Click(object sender, RoutedEventArgs e)
@@ -58,10 +58,13 @@ namespace LandLyst
                 {
                     popup.IsOpen = false;
                 }
+                
                 CheckFilter();
                 searchedRooms.ItemsSource = null;
+
                 //Hvis man søger igen kommer der ikke nye resultater, den viser det gamle
-                searchedRooms.ItemsSource = cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader();
+                searchedRooms.ItemsSource = MainWindow.cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader();
+                
             }
             else
             {
@@ -96,9 +99,15 @@ namespace LandLyst
         private void GetInfoFromCells(RoutedEventArgs e)
         {
             IDataRecord dataRowView = (IDataRecord)((Button)e.Source).DataContext;
-            roomid = (int)dataRowView[0];
-            pricetotal = (double)dataRowView[3];
+            roomid = (Decimal)dataRowView[0];
+            pricetotal = (Decimal)dataRowView[3];
         }
-
+        //Går til værelses siden og sender nødvendig info med
+        private void Seebtn_Click(object sender, RoutedEventArgs e)
+        {
+            GetInfoFromCells(e);
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            ns.Navigate(new Booking(startDato.SelectedDate, slutDato.SelectedDate, roomid, pricetotal));
+        }
     }
 }
