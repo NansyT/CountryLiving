@@ -26,8 +26,8 @@ namespace Website
 
                 string passwordstr = txtPassword.Text;
                 string emailstr = txtEmail.Text;
-                SqlManager con = new SqlManager();
-                int howmanyusers = con.GetCustomers(emailstr, passwordstr);
+                CustomerManager customerman = new CustomerManager();
+                int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr);
                 if (howmanyusers == 1)
                 {
                     Session["mail"] = emailstr;
