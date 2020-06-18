@@ -13,6 +13,8 @@ namespace Website
         {
         }
 
+
+        //Ved Klik Overfør Over til ChooseRoom, så man kan vælge sit værelse
         protected void ChooseRoombtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChooseRoom.aspx");
