@@ -23,6 +23,7 @@ namespace LandLyst
         public VærelsesInfo()
         {
             InitializeComponent();
+            //Tjek om man kan booke værelset ved hjælp af booking table roomid og datoer
         }
         // NEED TO FIGURE THIS SHIT OUT!
         private void Button_Click(object sender, RoutedEventArgs e)

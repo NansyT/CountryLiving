@@ -9,7 +9,7 @@
       Title="Booking">
     <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel>
-        <Rectangle Fill="Coral" DockPanel.Dock="Left" Width="300"/>
+        <Rectangle Fill="Coral" DockPanel.Dock="Left" Width="400"/>
         <StackPanel DockPanel.Dock="Left" Background="HotPink" Orientation="Vertical">
             <Rectangle Height="70"/>
             <TextBox x:Name="Navn" Text="Navn" FontSize="16" Margin="0,0,0,5"/>
@@ -20,11 +20,12 @@
                 <TextBox x:Name="By" Text="By" Width="100" FontSize="16" Margin="0,0,5,0"/>
                 <TextBox x:Name="Postnr" Text="Post nr." Width="100" FontSize="16"/>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Background="GreenYellow" DockPanel.Dock="Right">
-            <TextBlock Text="Pris i alt" FontSize="20" HorizontalAlignment="Center" Margin="0,50,0,0" />
-            <Rectangle Height="220"/>
-            <Button x:Name="BookVær" Content="Book Værelse" Height="30" Padding="5" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,5,0"/>
+                <TextBox x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
+            </StackPanel>
+            <TextBlock x:Name="totalPris" FontSize="20" HorizontalAlignment="Center" Margin="0,50,0,0" />
+            <Button x:Name="bookVær" Content="Book Værelse" Height="30" Padding="5" HorizontalAlignment="Center" Click="BookVær_Click"/>
         </StackPanel>
     </DockPanel>
 </Page>

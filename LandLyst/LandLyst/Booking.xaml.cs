@@ -20,9 +20,21 @@ namespace LandLyst
     /// </summary>
     public partial class Booking : Page
     {
-        public Booking()
+        //Der burde ikke være '?'
+        public Booking(DateTime? startDato, DateTime? slutDato, int roomid, double priceTotal)
         {
             InitializeComponent();
+            datoStart.Text = startDato.ToString();
+            datoSlut.Text = slutDato.ToString();
+            totalPris.Text = priceTotal.ToString();
+        }
+
+        //Booker værelse
+        private void BookVær_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService ns = NavigationService.GetNavigationService(this);
+            MessageBox.Show("Du har booket et værelse");
+            ns.Navigate(new Reservationer());
         }
     }
 }
