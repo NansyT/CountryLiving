@@ -12,10 +12,10 @@
         <StackPanel x:Name="searchParam" DockPanel.Dock="Top" Orientation="Horizontal">
             <Button x:Name="filterbtn" Content="Filter" Padding="5" Click="Filterbtn_Click"></Button>
             <Rectangle Width=" 20"/>
-            <TextBox Background="BlueViolet" Text="Start dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <TextBox Text="Start dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
             <DatePicker x:Name="startDato" VerticalContentAlignment="Center" DockPanel.Dock="Top" FirstDayOfWeek="Monday" />
             <Rectangle Width="10"/>
-            <TextBox Background="BlueViolet" Text="Slut dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <TextBox Text="Slut dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
             <DatePicker x:Name="slutDato" DockPanel.Dock="Top" FirstDayOfWeek="Monday" VerticalContentAlignment="Center"/>
             <Popup x:Name="popup">
                 <StackPanel Background="Coral" Orientation="Vertical" x:Name="additions" >
@@ -41,6 +41,13 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Name="bookbtn" Content="Book" Click="Bookbtn_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Se værelse">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="seebtn" Content="Se værelse" Click="Seebtn_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

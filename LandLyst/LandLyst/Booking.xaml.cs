@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CountryLiving;
 
 namespace LandLyst
 {
@@ -20,8 +21,8 @@ namespace LandLyst
     /// </summary>
     public partial class Booking : Page
     {
-        //Der burde ikke være '?'
-        public Booking(DateTime? startDato, DateTime? slutDato, int roomid, double priceTotal)
+        ReservationManager manager = new ReservationManager();
+        public Booking(DateTime? startDato, DateTime? slutDato, Decimal roomid, Decimal priceTotal)
         {
             InitializeComponent();
             datoStart.Text = startDato.ToString();
@@ -35,6 +36,8 @@ namespace LandLyst
             NavigationService ns = NavigationService.GetNavigationService(this);
             MessageBox.Show("Du har booket et værelse");
             ns.Navigate(new Reservationer());
+
+            manager.CreateReservationSQL();
         }
     }
 }

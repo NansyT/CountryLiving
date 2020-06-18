@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BookingCompletion.aspx.cs" Inherits="Website.BookingCompletion" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- URL: roomID, bruger mail, start dato, slut dato -->
     <div style="margin-top: 20px;">
+        <!-- Datalist that uses Eval to display user information and booking information that comes from the database by using bind -->
         <asp:DataList ID="bookcompletion" runat="server" CellSpacing="10" RepeatColumns="3" RepeatDirection="Horizontal" RepeatLayout="Table">
             <ItemTemplate>
                 <table>

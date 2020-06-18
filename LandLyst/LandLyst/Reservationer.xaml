@@ -8,13 +8,15 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Reservationer">
 
-    <DataGrid x:Name="reservationer" AutoGenerateColumns="False">
+    <DataGrid x:Name="reservationer" AutoGenerateColumns="False" >
         <DataGrid.Columns>
-            <!--TODO-->
-            <!--<DataGridTextColumn Binding="{Binding roomid}" Header="Rum id" x:Name="roomidC" />
-            <DataGridTextColumn Binding="{Binding services}" Width="400" Header="Tillægsydelser" x:Name="serviceC"/>
-            <DataGridTextColumn Binding="{Binding priceday}" Header="Pris pr. nat" x:Name="pricedayC"/>
-            <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="tpriceC"/>-->
+            
+            <DataGridTextColumn Width="auto" Header="reservations Id" x:Name="rIdC"/>
+            <DataGridTextColumn Width="auto" Header="Rum id" x:Name="roomIdC" />
+            <DataGridTextColumn Width="auto" Header="Kunde email" x:Name="emailC"/>
+            <DataGridTextColumn Width="auto" Header="Check ind dato" x:Name="ciDateC"/>
+            <DataGridTextColumn Width="auto" Header="Check ud dato" x:Name="cuDateC"/>
         </DataGrid.Columns>
+        
     </DataGrid>
 </Page>

@@ -102,3 +102,252 @@ h2 {
     font-size: 30px;
     border-radius: 40%;
 }
+
+
+.bookingBox {
+    background-color: lightgray;
+    width: 25%;
+    border-radius: 5%;
+}
+
+.btnBooking {
+    border-radius: 3px;
+    margin: 10px;
+    height: 42px;
+}
+
+.btnCompleteBooking {
+    width: 100%;
+}
+
+.grid-container {
+    border-radius: 5px;
+    background-color: lightgray;
+    margin: 20px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto 25%;
+}
+
+.checkbox1 {
+    width: 300px;
+    position: static;
+}
+
+    .checkbox1 input[type=checkbox] {
+        display: none;
+    }
+
+        .checkbox1 input[type=checkbox] + label:before {
+            font-family: FontAwesome;
+            display: inline-block;
+        }
+        /* checkbox1 */
+        /* unchecked icon */
+
+        .checkbox1 input[type=checkbox] + label:before {
+            content: "\f096";
+            letter-spacing: 10px;
+        }
+        /* checked icon */
+        .checkbox1 input[type=checkbox]:checked + label:before {
+            letter-spacing: 7px;
+            content: "\f046";
+        }
+
+.dato_design {
+    width: 235px;
+    margin-top: 30px;
+    padding-left: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 2px solid;
+}
+
+.datoinput {
+    width: 115px;
+    border-style: none;
+}
+
+ol {
+    display: block;
+    list-style-type: decimal;
+    list-style: none;
+}
+
+.lipicturelist {
+    margin-top: 10px;
+    display: list-item;
+    width: 500px;
+    height: 100px;
+    border: 1px solid;
+}
+
+.picturelistdiv {
+    display: block;
+}
+
+.table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 300px;
+}
+
+    .table th {
+        border: none;
+        width: 60px;
+        padding: 5px;
+    }
+
+    .table td {
+        border: none;
+        text-decoration: underline;
+        padding: 5px;
+    }
+
+.user_page {
+    width: 300px;
+}
+
+    .user_page img {
+        width: 100px;
+        height: 100px;
+    }
+
+.test {
+    margin-left: 80%;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+.headline {
+    text-align: center;
+}
+
+.navbar-header {
+    float: none !important;
+    text-align: center !important;
+}
+
+.body_login {
+    height: 100vh;
+    min-height: 550px;
+    background-image: url('../Pictures/CL.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden;
+}
+
+.nav navbar-nav {
+    text-align: right;
+}
+
+#MainContent_Login1 {
+    height: 100%;
+}
+
+.divincenter {
+    margin: auto;
+    width: 35%;
+    border: 3px solid #E0BA61;
+    padding: 3rem;
+    margin-top: 20%;
+    height: 40%;
+    background-color: white;
+}
+/* For Tobias checkbox in choose room */
+.checkbox1 {
+    position: static;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*CSS to login */
+.loginbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 420px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+}
+
+.log_Reg_lbl, .lblPassword {
+    font-weight: bold;
+    color: #fff;
+}
+
+.log_Reg_txt {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 3px solid #fff;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+::placeholder {
+    color: rgba(255,255,255,.5);
+}
+
+.btnSubmit {
+    height: 40px;
+    width: 200px;
+    margin: 0px 55px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgb(255, 9, 9);
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+    .btnSubmit:hover {
+        background-color: rgb(255, 217, 9);
+    }
+
+.lblIncorrectMessage {
+    color: lightcoral;
+    font-style: italic;
+    padding: 16px 0;
+    margin: 0 0 0 40px;
+}
+
+.registerbox {
+    width: 30%;
+    padding: 3rem;
+    margin: auto;
+    background: rgba(0,0,0,0.5);
+    margin-top: 1rem;
+}
+
+
+/*CSS to navbar(header)*/
+#navheadline {
+    background-color: #343a40 !important;
+    text-align: center;
+}
+
+#navtabs {
+    position: absolute;
+}
+
+.navbar-collapse collapse {
+    position: relative !important;
+}
+
+.nav-item {
+    font-size: x-large !important;
+}
