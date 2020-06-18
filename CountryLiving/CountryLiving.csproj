@@ -72,13 +72,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionalServices.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerManager.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="ReservationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room.cs" />
     <Compile Include="SqlManager.cs" />
   </ItemGroup>
   <ItemGroup>
