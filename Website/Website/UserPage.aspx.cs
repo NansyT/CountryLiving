@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,14 +13,10 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM customer WHERE pk_email = \'tobi@gmail.com\'", con);
-            con.Open();
-            displayInfo.DataSource = cmd.ExecuteReader();
-            displayInfo.DataBind();
-            con.Close();
-
+            //Ikke alt er implementeret
+            //displayInfo.DataSource = userinfo.ExecuteReader();
+            //displayInfo.DataBind();
+            //con.Close();
         }
     }
 }

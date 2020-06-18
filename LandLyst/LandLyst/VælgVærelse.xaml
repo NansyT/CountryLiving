@@ -9,8 +9,52 @@
       Title="VælgVærelse">
     <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel x:Name="DPVV" >
-        <TextBox Background="BlueViolet" Text="Search" DockPanel.Dock="Top" Height="30"/>
-        <Rectangle Fill="Beige"/>
+        <StackPanel x:Name="searchParam" DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button x:Name="filterbtn" Content="Filter" Padding="5" Click="Filterbtn_Click"></Button>
+            <Rectangle Width=" 20"/>
+            <TextBox Text="Start dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="startDato" VerticalContentAlignment="Center" DockPanel.Dock="Top" FirstDayOfWeek="Monday" />
+            <Rectangle Width="10"/>
+            <TextBox Text="Slut dato:" DockPanel.Dock="Top" Height="30" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="slutDato" DockPanel.Dock="Top" FirstDayOfWeek="Monday" VerticalContentAlignment="Center"/>
+            <Popup x:Name="popup">
+                <StackPanel Background="Coral" Orientation="Vertical" x:Name="additions" >
+                    <CheckBox x:Name="altanCB" Content="Altan" ></CheckBox>
+                    <CheckBox x:Name="badekarCB" Content="Badekar" ></CheckBox>
+                    <CheckBox x:Name="køkkenCB" Content="Dobbeltseng" ></CheckBox>
+                    <CheckBox x:Name="dSengCB" Content="Eget køkken" ></CheckBox>
+                    <CheckBox x:Name="eSengCB" Content="Enkeltmands seng" ></CheckBox>
+                    <CheckBox x:Name="enSengeCB" Content="2 Enkeltsenge" ></CheckBox>
+                    <CheckBox x:Name="jacuzziCB" Content="Jacuzzi" ></CheckBox>
+                </StackPanel>
+            </Popup>
+            <Rectangle Width="20"/>
+            <Button x:Name="searchbtn" Content="Søg" Padding="5" Click="Searchbtn_Click"/>
+        </StackPanel>
+        <DataGrid x:Name="searchedRooms" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding roomid}" Header="Rum id" x:Name="roomidC" />
+                <DataGridTextColumn Binding="{Binding services}" Width="400" Header="Tillægsydelser" x:Name="serviceC"/>
+                <DataGridTextColumn Binding="{Binding priceday}" Header="Pris pr. nat" x:Name="pricedayC"/>
+                <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="tpriceC"/>
+                <DataGridTemplateColumn Header="Book">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="bookbtn" Content="Book" Click="Bookbtn_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Se værelse">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="seebtn" Content="Se værelse" Click="Seebtn_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
+    
 </Page>
+    
 

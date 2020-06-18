@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -21,15 +22,29 @@ namespace Website
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
-            string passwordstr = txtPassword.Text;
-            string emailstr = txtEmail.Text;
-            SqlManager con = new SqlManager();
-            int howmanyusers = con.GetCustomers(emailstr, passwordstr);
-            if (howmanyusers == 1)
-            {
-                Session["mail"] = emailstr;
-                Response.Redirect("Default.aspx");
-            }
+            Debug.WriteLine("Du har trykket på login knappen");
+
+                //sets passwordstr to label txtPassword
+                string passwordstr = txtPassword.Text;
+                //sets emailstr to label txtEmail
+                string emailstr = txtEmail.Text;
+                CustomerManager customerman = new CustomerManager();
+                //Philip kommenter nedstående
+                int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr);
+                if (howmanyusers == 1)
+                {
+                    Session["mail"] = emailstr;
+                if (!string.IsNullOrEmpty(Request.QueryString["ReturnURL"]))
+                {
+                    Response.Redirect(Request.QueryString["ReturnURL"].ToString());
+                }
+                }
+                else
+                {
+                    lblIncorrectMessage.Visible = true;
+                }
+            
+
         }
     }
 }

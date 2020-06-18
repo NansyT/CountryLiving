@@ -12,11 +12,12 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Implentering mangler
         }
 
         protected void SubmitLogin(object sender, EventArgs e)
         {
+            //Implentering mangler
             Debug.WriteLine(txtname.Text);
             Debug.WriteLine(txtaddress.Text);
             Debug.WriteLine(txtzipcode.Text);

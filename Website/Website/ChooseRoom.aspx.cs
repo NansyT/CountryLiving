@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.EnterpriseServices;
 using System.Web.UI.WebControls;
 using CountryLiving;
 using Npgsql;
@@ -9,27 +10,20 @@ namespace Website
 {
     public partial class ChooseRoom : System.Web.UI.Page
     {
-        SqlManager con = new SqlManager();
+        static SqlManager con = new SqlManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Skal ikke være her... flytter senere
-            StartDato.Value = "Start Dato";
-            SlutDato.Value = "Slut Dato";
-
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM room", con);
-            con.Open();
-            displayrooms.DataSource = cmd.ExecuteReader();
-            displayrooms.DataBind();
-            con.Close();
-
-            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            if (!Page.IsPostBack)
             {
-                Filter_Checkboxlist.Items[i].Selected = true;
+                DoOnStartUp();
             }
+        }
 
-            displayrooms.Visible = false;
+        protected void DoOnStartUp()
+        {
+            StartDato.Value = DateTime.Now.ToString("dd/MM/yyyy");
+            SlutDato.Value = DateTime.Now.AddDays(7).ToString("dd/MM/yyyy");
+            SearchRooms(StartDato.Value, SlutDato.Value, "", "", "", "", "", "", "");
         }
 
 
@@ -44,7 +38,8 @@ namespace Website
                 Filter_Checkboxlist.Visible = true;
             }
         }
-        protected void VælgDato_Click(object sender, EventArgs e)
+
+        protected void searchButton_Click(object sender, EventArgs e)
         {
             if (StartDato.Value != "Start Dato" && SlutDato.Value != "Slut Dato")
             {
@@ -67,17 +62,46 @@ namespace Website
                 //Der mangler datoer
                 Debug.WriteLine("Please enter date");
             }
-        }
 
-        protected void searchButton_Click(object sender, EventArgs e)
-        {
+            //Det er en mulighed at man kan gøre så man kun kan have 1 af følgende ting: enkeltmands seng, dobbeltseng, 2 enkeltsenge
             List<string> items = new List<string>();
-            for(int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
+            //For-loop som checker hvilke præferencer er slået til og søger efter rum med disse præferencer.
+            for (int i = 0; i < Filter_Checkboxlist.Items.Count; i++)
             {
-                if(Filter_Checkboxlist.Items[i].Selected == true)
+                if (Filter_Checkboxlist.Items[i].Selected == true)
                 {
                     items.Add(Filter_Checkboxlist.Items[i].Text);
                 }
+                else
+                {
+                    items.Add("");
+                }
+            }
+            SearchRooms(StartDato.Value, SlutDato.Value, items[0], items[1], items[2], items[3], items[4], items[5], items[6]);
+        }
+
+        /// <summary>
+        ///  Binder alle data til Datalist, som er modtaget fra databasen.
+        /// </summary>
+        protected void SearchRooms(string inDate, string outDate, string i1, string i2, string i3, string i4, string i5, string i6, string i7)
+        {
+            displayrooms.DataSource = con.SelectAvailableRooms(inDate, outDate, i1, i2, i3, i4, i5, i6, i7).ExecuteReader();
+            displayrooms.DataBind();
+            displayrooms.Visible = true;
+            con.SqlConnection(false);
+
+        }
+
+        /// <summary>
+        ///  Når knap for et rum bliver trykket, så bliver brugeren vidersendt til detaljer om rummet.
+        /// </summary>
+        protected void bookhere_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+
+            if(btn.CommandName == "CheckForBook")
+            {
+                Response.Redirect("RoomDetails.aspx?roomID=" + btn.CommandArgument.ToString() + "&start=" + StartDato.Value + "&slut=" + SlutDato.Value);
             }
         }
     }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CountryLiving;
+using Npgsql;
 
 namespace LandLyst
 {
@@ -23,6 +28,12 @@ namespace LandLyst
         public Reservationer()
         {
             InitializeComponent();
+
+            ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SeeAllReservations());
+            data.Refresh();
+            reservationer.ItemsSource = data;
+            
+
         }
     }
 }

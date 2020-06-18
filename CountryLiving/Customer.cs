@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    class Customer
+    public class Customer
     {
         private string name;
         private string address;
@@ -15,6 +15,7 @@ namespace CountryLiving
         private string email;
         private string password;
 
+        //laver en public get variable så man kan se værdien men ikke sæt den
         public string Name
         {
             get { return name; }
@@ -45,19 +46,26 @@ namespace CountryLiving
             get { return password; }
             private set { password = value; }
         }
-
-        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordInput)
+        
+        //laver en konstruktør når man kalder en Customer
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput)
         {
-            emailInput = email;
-            nameInput = name;
-            addressInput = address;
-            zipcodeInput = zipcode;
-            phonenumberInput = phonenumber;
-            passwordInput = password;
+            Email = emailInput;
+            Name = nameInput;
+            Address = addressInput;
+            Zipcode = zipcodeInput;
+            Phonenumber = phonenumberInput;
         }
-        public Customer()
+        //En konstruktør til når bruger opretter sig igennem hjemmesiden, hvor der er behøv for password
+        public Customer(string emailInput, string nameInput, string addressInput, int zipcodeInput, int phonenumberInput, string passwordinput)
         {
-
+            Email = emailInput;
+            Name = nameInput;
+            Address = addressInput;
+            Zipcode = zipcodeInput;
+            Phonenumber = phonenumberInput;
+            Password = passwordinput;
         }
+
     }
 }

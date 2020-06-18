@@ -8,7 +8,28 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Reservationer">
 
-    <Grid>
-        
-    </Grid>
+    <ListView x:Name="reservationer" ItemsSource="{Binding reader}">
+
+        <ListView.View>
+
+            <GridView >
+
+                <GridViewColumn DisplayMemberBinding=
+                          "{Binding reservation_id}" 
+                      Header="Reservations id" Width="100"/>
+
+                <GridViewColumn DisplayMemberBinding=
+                          "{Binding fkroom_id}" 
+                      Header="Rum id" Width="100">
+
+                </GridViewColumn>
+
+                <GridViewColumn DisplayMemberBinding=
+                          "{Binding fkcustomer_email}" 
+                      Header="Kunde email" Width="100"/>
+            </GridView>
+
+        </ListView.View>
+    </ListView>
+
 </Page>

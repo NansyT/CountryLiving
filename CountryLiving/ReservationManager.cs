@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    public class ReservationManager
+    public class ReservationManager : SqlManager
     {
-        public void CreateReservation(DateTime from, DateTime to, int roomID)
+        public void CreateReservation(DateTime from, DateTime to, int roomID, Customer customer)
         {
+            Reservation newreservation = new Reservation(roomID, customer.Email, to, from);
+            CreateReservationSQL(newreservation);
             Debug.WriteLine("Reservation created");
         }
         
         public void SeeReservation(int reservationID)
         {
+            
             Debug.WriteLine("Looking at reservation");
         }
 
@@ -24,9 +27,9 @@ namespace CountryLiving
             Debug.WriteLine("Editing reservation");
         }
 
-        public void DeleteReservation(int reservationID)
+        public void DeleteReservation(int reservationID, Reservation sas)
         {
-            Debug.WriteLine("Reservation deleted");
+            //Debug.WriteLine("Reservation deleted");
         }
 
     }

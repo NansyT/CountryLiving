@@ -15,13 +15,22 @@ namespace Website
     {
 
         /// <summary>
-        /// LabelRum control.
+        /// errormessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelRum;
+        protected global::System.Web.UI.WebControls.Label errormessage;
+
+        /// <summary>
+        /// roomDetailsinfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList roomDetailsinfo;
 
         /// <summary>
         /// Button1 control.

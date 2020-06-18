@@ -12,9 +12,14 @@
     <DockPanel>
         <Rectangle  DockPanel.Dock="Left" Width="500" Fill="Aqua"/>
         <StackPanel Background="DarkBlue">
-            <Calendar HorizontalAlignment="Center" FirstDayOfWeek="Monday" Margin="0,30,0,0"/>
+            <Rectangle Height="50"/>
+            <DatePicker x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,0,0"/>
+            <DatePicker x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
             <Rectangle Height="100"/>
-            <Button Content="Book værelse" Height="30" HorizontalAlignment="Center" Padding="5" Click="Button_Click"/>
+            <TextBox Text="Total pris" HorizontalAlignment="Center"></TextBox>
+            <TextBox x:Name="totalPris" Width="100"/>
+            <Rectangle Height="50"/>
+            <Button Content="Book værelse" Height="30" HorizontalAlignment="Center" Padding="5" Click="Bookroombtn_Click"/>
         </StackPanel>
     </DockPanel>
 </Page>
