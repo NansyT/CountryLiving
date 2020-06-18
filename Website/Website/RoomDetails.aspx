@@ -5,6 +5,9 @@
         <div class="bookingBox" style="margin-top:10px; margin-left:70%;">
             <div style="text-align:center;">
                 <asp:Label ID="errormessage" runat="server" Text="Label" Visible="False"></asp:Label>
+
+                <!-- displayer alt viden om værelset så som Værelse nummer, tillægsydelser og pris -->
+                <!-- Vi får displayet alt vores hentede vide fra Databasen igennem Eval -->
                 <asp:DataList ID="roomDetailsinfo" runat="server" RepeatColumns="1">
                     <ItemTemplate>
                         <h1><asp:Label ID="RoomID" Font-Bold="true" runat="server" Text="Værelse: "></asp:Label>
@@ -23,6 +26,7 @@
                         &nbsp;<asp:Label ID="TotalPriceValue" runat="server" Text='<%# Eval("totalprice") %>'></asp:Label></h3>
                     </ItemTemplate>
                 </asp:datalist>
+                <!-- Knappen til at Blive sendt til BookingCompletion-->
                 <asp:Button class="btnBooking" ID="Button1" runat="server" Text="Book rummet" OnClick="Button1_Click" />
             </div>
        </div>
