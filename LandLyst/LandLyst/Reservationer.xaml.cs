@@ -25,15 +25,19 @@ namespace LandLyst
     /// </summary>
     public partial class Reservationer : Page
     {
+        ReservationManager manager = new ReservationManager();
         public Reservationer()
         {
             InitializeComponent();
 
-            ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SeeAllReservations());
+            reservationer.ItemsSource = null;
+            ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SeeAllReservations().ExecuteReader());
             data.Refresh();
             reservationer.ItemsSource = data;
-            
-
+        }
+        private void Sletbtn_Click(object sender, RoutedEventArgs e)
+        {
+            //manager.DeleteReservation();
         }
     }
 }

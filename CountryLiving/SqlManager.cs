@@ -174,14 +174,24 @@ namespace CountryLiving
 
             return cmd;
         }
-        public NpgsqlDataReader SeeAllReservations()
+        public NpgsqlCommand SeeAllReservations()
         {
             SqlConnection(false);
             SqlConnection(true);
             var sql = "SELECT * FROM booking";
             var cmd = new NpgsqlCommand(sql, con);
 
-            return cmd.ExecuteReader();
+            return cmd;
         }
+        public NpgsqlCommand GetRoom(string roomid)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = $"SELECT * FROM room WHERE pk_room_id = {roomid}";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            return cmd;
+        }
+       
     }
 }

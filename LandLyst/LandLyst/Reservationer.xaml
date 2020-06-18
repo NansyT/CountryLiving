@@ -8,21 +8,21 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Reservationer">
 
-    <DataGrid x:Name="reservationer">
-        <!--<DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding reservation_id}" Header="Rum id" x:Name="resid" />
-            <DataGridTextColumn Binding="{Binding services}" Width="400" Header="Tillægsydelser" x:Name="roomid"/>
-            <DataGridTextColumn Binding="{Binding priceday}" Header="Pris pr. nat" x:Name="email"/>
-            <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="cInDate"/>
-            <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="cOutDate"/>
+    <DataGrid x:Name="reservationer" AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding pk_reservation_id}" Header="Reservations id" x:Name="resid" />
+            <DataGridTextColumn Binding="{Binding fk_room_id}" Header="Rum id" x:Name="roomid"/>
+            <DataGridTextColumn Binding="{Binding fk_customer_email}" Header="Kunde email" x:Name="email"/>
+            <DataGridTextColumn Binding="{Binding chek_in_date}" Header="Check ind dato" x:Name="cInDate"/>
+            <DataGridTextColumn Binding="{Binding check_out_date}" Header="Check ud dato" x:Name="cOutDate"/>
             <DataGridTemplateColumn >
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <Button x:Name="seebtn" Content="Se værelse" Click="Seebtn_Click"/>
+                        <Button x:Name="sletbtn" Content="Slet booking" Click="Sletbtn_Click"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-        </DataGrid.Columns>-->
+        </DataGrid.Columns>
     </DataGrid>
 
 </Page>

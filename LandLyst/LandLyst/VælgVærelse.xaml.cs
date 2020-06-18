@@ -92,7 +92,7 @@ namespace LandLyst
         {
             GetInfoFromCells(e);
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Booking(startDato.SelectedDate, slutDato.SelectedDate, roomid, pricetotal));
+            ns.Navigate(new Booking(startDato.SelectedDate.Value, slutDato.SelectedDate.Value, roomid, pricetotal));
 
         }
         //Får informationen fra de nødvendige celler i kolonnen
@@ -107,7 +107,7 @@ namespace LandLyst
         {
             GetInfoFromCells(e);
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Booking(startDato.SelectedDate, slutDato.SelectedDate, roomid, pricetotal));
+            ns.Navigate(new VærelsesInfo(startDato.SelectedDate.Value, slutDato.SelectedDate.Value, roomid, pricetotal));
         }
     }
 }

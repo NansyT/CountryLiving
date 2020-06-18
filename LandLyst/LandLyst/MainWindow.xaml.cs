@@ -24,7 +24,7 @@ namespace LandLyst
         public static SqlManager cnn = new SqlManager();
         public MainWindow()
         {
-            //TODO ændre værelses status
+            
             InitializeComponent();
             mainFrame.Navigate(new Reservationer());
         }
