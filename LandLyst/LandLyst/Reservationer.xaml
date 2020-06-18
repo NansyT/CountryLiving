@@ -8,7 +8,13 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Reservationer">
 
-    <Grid>
-        
-    </Grid>
+    <DataGrid x:Name="reservationer" AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <!--TODO-->
+            <!--<DataGridTextColumn Binding="{Binding roomid}" Header="Rum id" x:Name="roomidC" />
+            <DataGridTextColumn Binding="{Binding services}" Width="400" Header="Tillægsydelser" x:Name="serviceC"/>
+            <DataGridTextColumn Binding="{Binding priceday}" Header="Pris pr. nat" x:Name="pricedayC"/>
+            <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="tpriceC"/>-->
+        </DataGrid.Columns>
+    </DataGrid>
 </Page>

@@ -25,6 +25,7 @@ namespace LandLyst
         public Reservationer()
         {
             InitializeComponent();
+            
         }
     }
 }

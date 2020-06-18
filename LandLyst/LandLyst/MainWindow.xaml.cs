@@ -27,17 +27,19 @@ namespace LandLyst
             mainFrame.Navigate(new Reservationer());
         }
 
-        // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
+        //Navigere til siderne
+        private void SeReservationer_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Reservationer());
+        }
         private void Værelsebtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new VærelsesInfo());
+        }
+        private void Bookingbtn_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new VælgVærelse());
         }
-
-        private void Bookingbtn_Click(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Navigate(new Booking());
-        }
-
         private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
         {
             if (mainFrame.CanGoBack)
@@ -45,16 +47,6 @@ namespace LandLyst
                 mainFrame.GoBack();
             }
         }
-
-        private void SeReservationer_Click(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Navigate(new Reservationer());
-        }
-
-        private void VærelsesInfo_Click(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Navigate(new VærelsesInfo());
-        }
-        // FOR TESTING PURPOSES!! NOT FINAL. NEED TO FIGURE THIS SHIT OUT FIRST!
+        
     }
 }
