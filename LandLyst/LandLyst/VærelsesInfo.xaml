@@ -10,8 +10,10 @@
       Title="VærelsesInfo">
     <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel>
-        <Rectangle  DockPanel.Dock="Left" Width="500" Fill="Aqua"/>
-        <StackPanel Background="DarkBlue">
+        <DataGrid Width="500"> 
+            
+        </DataGrid>
+        <StackPanel Background="DarkBlue" DockPanel.Dock="Right" Width="300">
             <Rectangle Height="50"/>
             <DatePicker x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,0,0"/>
             <DatePicker x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
