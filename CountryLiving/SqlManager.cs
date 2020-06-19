@@ -31,11 +31,14 @@ namespace CountryLiving
         }
         public void InsertPerson(string emailpar, string fullname, string addresspar, int zippar, int phonenrpar, string passwordpar)
         {
-            SqlConnection(true);//open sql connection
+            //Opens the connection to the database
+            SqlConnection(true);
+            //String that defines the query to a function with parameters
             var sql = "INSERT INTO public.customer(pk_email, fullname, \"address\", zip_code, phone_nr, password) VALUES(@email, @name, @address, @zip, @mobil, @password)";
-            //
+            //Sets it to a Npqsql command
             var cmd = new NpgsqlCommand(sql, con);
 
+            //Sets all the parameter values
             cmd.Parameters.AddWithValue("email", emailpar);
             cmd.Parameters.AddWithValue("name", fullname);
             cmd.Parameters.AddWithValue("address", addresspar);
@@ -45,10 +48,15 @@ namespace CountryLiving
             cmd.Parameters.AddWithValue("password", passwordpar);
 
             cmd.Prepare();
+            //Runs the query and returns nothing
             cmd.ExecuteNonQuery();
             SqlConnection(false);
 
         }
+
+        /// <summary>
+        ///  Checks if customer exists
+        /// </summary>
         public int GetCustomers(string emailpar, string passwordpar)
         {
             SqlConnection(true);
@@ -63,6 +71,10 @@ namespace CountryLiving
 
 
         }
+
+        /// <summary>
+        ///  Sends a query to sql and returns the fullname of requested email
+        /// </summary>
         public string GetCustomerName(string email)
         {
             SqlConnection(false);
@@ -77,14 +89,20 @@ namespace CountryLiving
             SqlConnection(false);
             return output;
         }
+
+        /// <summary>
+        ///   Sends query to sql that returns available rooms depending on the date and services
+        /// </summary>
+        /// <returns> all available rooms from request </returns>
         public NpgsqlCommand SelectAvailableRooms(string datein, string dateout, string par1, string par2, string par3, string par4, string par5, string par6, string par7)
         {
-            Debug.WriteLine(datein, dateout, par1, par2, par3, par4, par5, par6, par7);
             SqlConnection(false);
             SqlConnection(true);
+            //String that defines the query to a function with parameters
             var sql = "SELECT * FROM public.fp_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
             var cmd = new NpgsqlCommand(sql, con);
 
+            //Sets all the parameter values in the command
             cmd.Parameters.AddWithValue("datein", datein);
             cmd.Parameters.AddWithValue("dateout", dateout);
             cmd.Parameters.AddWithValue("par1", par1);
@@ -98,23 +116,20 @@ namespace CountryLiving
 
             return cmd;
         }
-        public string GetBasePrice(string RoomID)
-        {
-            SqlConnection(false);
-            SqlConnection(true);
-            var sql = $"SELECT price FROM room WHERE pk_room_id = {RoomID}";
-            var cmd = new NpgsqlCommand(sql, con);
-            string output = cmd.ExecuteScalar().ToString();
-            return output;
-        }
+
+        /// <summary>
+        ///  Creates the reservation and inserts it into sql 
+        /// </summary>
         public void CreateReservationSQL(Reservation res)
         {
             
             SqlConnection(false);
             SqlConnection(true);
+            //string that defines the query to a function with parameters
             var sql = "CALL public.sp_createreservation(@roomid, @customermail, @datein, @dateout)";
             var cmd = new NpgsqlCommand(sql, con);
 
+            //Sets all the parameters to the reservation's values
             cmd.Parameters.AddWithValue("@roomid", res.RoomId);
             cmd.Parameters.AddWithValue("@customermail", res.CustomerMail);
             cmd.Parameters.Add("@datein", NpgsqlTypes.NpgsqlDbType.Date);
@@ -126,6 +141,11 @@ namespace CountryLiving
 
             SqlConnection(false);
         }
+
+
+        /// <summary>
+        ///  Gets all the information about the user and the booking the user is currently making
+        /// </summary>
         public NpgsqlCommand Bookinformation(DateTime checkin, DateTime checkout, string customermail, int roomidinput)
         {
             SqlConnection(false);
@@ -144,6 +164,10 @@ namespace CountryLiving
             return cmd;
            
         }
+
+        /// <summary>
+        ///  Gets the information about the room
+        /// </summary>
         public NpgsqlCommand Roominformation(int roomidinput, DateTime checkin, DateTime checkout)
         {
             SqlConnection(false);
@@ -161,6 +185,10 @@ namespace CountryLiving
             return cmd;
 
         }
+
+        /// <summary>
+        ///  Gets the information about the customer
+        /// </summary>
         public NpgsqlCommand GetCustomerinfo(string emailinput)
         {
             SqlConnection(false);
@@ -171,6 +199,11 @@ namespace CountryLiving
 
             return cmd;
         }
+
+        /// <summary>
+        ///  (Used in the WPF)
+        ///  Gets all the reservations
+        /// </summary>
         public NpgsqlCommand SeeAllReservations()
         {
             SqlConnection(false);
@@ -180,6 +213,11 @@ namespace CountryLiving
 
             return cmd;
         }
+
+        /// <summary>
+        ///  (Used in the WPF)
+        ///  Gets the information about the room
+        /// </summary>
         public NpgsqlCommand GetRoom(string roomid)
         {
             SqlConnection(false);
