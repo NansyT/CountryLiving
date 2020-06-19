@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-19 11:20:18
+-- Started on 2020-06-19 11:31:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -60,7 +60,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- TOC entry 235 (class 1255 OID 24608)
+-- TOC entry 234 (class 1255 OID 24608)
 -- Name: fc_calculatetotalprice(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -101,29 +101,7 @@ BEGIN
 ALTER FUNCTION public.fc_calculatetotalprice(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1255 OID 24709)
--- Name: fc_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) RETURNS integer
-    LANGUAGE plpgsql
-    AS $$
-DECLARE 
-	result INTEGER;
-BEGIN
-	 SELECT INTO result CAST(COUNT(1) AS INT) 
-	 FROM booking
-	 WHERE fk_room_id = roomid
-	 	AND (( datein > chek_in_date and datein < check_out_date)
-	 		OR ( dateout > chek_in_date and dateout <check_out_date));
-	RETURN result;
-END; $$;
-
-
-ALTER FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) OWNER TO postgres;
-
---
--- TOC entry 238 (class 1255 OID 24676)
+-- TOC entry 236 (class 1255 OID 24676)
 -- Name: fc_getroomid(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -159,7 +137,29 @@ END; $$;
 ALTER FUNCTION public.fc_getroomid(datein character varying, dateout character varying, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1255 OID 24704)
+-- TOC entry 243 (class 1255 OID 24748)
+-- Name: fp_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.fp_checkifroomisavailable(datein date, dateout date, roomid integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+DECLARE 
+	result INTEGER;
+BEGIN
+	 SELECT INTO result CAST(COUNT(1) AS INT) 
+	 FROM booking
+	 WHERE fk_room_id = roomid
+	 	AND (( datein > check_in_date and datein < check_out_date)
+	 		OR ( dateout > check_in_date and dateout <check_out_date));
+	RETURN result;
+END; $$;
+
+
+ALTER FUNCTION public.fp_checkifroomisavailable(datein date, dateout date, roomid integer) OWNER TO postgres;
+
+--
+-- TOC entry 238 (class 1255 OID 24704)
 -- Name: fp_get_alluserdata_roomdata(date, date, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -193,7 +193,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_alluserdata_roomdata(checkin date, checkout date, customermail character varying, roomidinput integer) OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1255 OID 24746)
+-- TOC entry 237 (class 1255 OID 24746)
 -- Name: fp_get_customerinfo(character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -214,7 +214,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_customerinfo(emailpar character varying) OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1255 OID 24706)
+-- TOC entry 242 (class 1255 OID 24706)
 -- Name: fp_get_roomdata(integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -243,7 +243,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_roomdata(roomidinput integer, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1255 OID 24744)
+-- TOC entry 240 (class 1255 OID 24744)
 -- Name: fp_getavailableroom(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -312,7 +312,7 @@ END; $$;
 ALTER FUNCTION public.fp_getroomid(datein character varying, dateout character varying, par1 character varying, par2 character varying, par3 character varying, par4 character varying, par5 character varying, par6 character varying, par7 character varying) OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1255 OID 24693)
+-- TOC entry 235 (class 1255 OID 24693)
 -- Name: fp_getserviceasstring(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -335,11 +335,11 @@ END; $$;
 ALTER FUNCTION public.fp_getserviceasstring() OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1255 OID 24612)
--- Name: pr_createreservation(integer, character varying, date, date); Type: PROCEDURE; Schema: public; Owner: postgres
+-- TOC entry 239 (class 1255 OID 24747)
+-- Name: sp_createreservation(integer, character varying, date, date); Type: PROCEDURE; Schema: public; Owner: postgres
 --
 
-CREATE PROCEDURE public.pr_createreservation(roomid integer, customermail character varying, datein date, dateout date)
+CREATE PROCEDURE public.sp_createreservation(roomid integer, customermail character varying, datein date, dateout date)
     LANGUAGE plpgsql
     AS $$
 DECLARE 
@@ -358,10 +358,10 @@ END;
 $$;
 
 
-ALTER PROCEDURE public.pr_createreservation(roomid integer, customermail character varying, datein date, dateout date) OWNER TO postgres;
+ALTER PROCEDURE public.sp_createreservation(roomid integer, customermail character varying, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1255 OID 24742)
+-- TOC entry 241 (class 1255 OID 24742)
 -- Name: tg_fp_log_booking_changes(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2136,7 +2136,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-19 11:20:20
+-- Completed on 2020-06-19 11:31:33
 
 --
 -- PostgreSQL database dump complete

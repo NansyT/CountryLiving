@@ -29,19 +29,18 @@ namespace Website
                 //sets emailstr to label txtEmail
                 string emailstr = txtEmail.Text;
                 CustomerManager customerman = new CustomerManager();
-                //Philip kommenter nedstående
-                int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr);
-                if (howmanyusers == 1)
+                int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr); //get how many users with emailstr and password
+                if (howmanyusers == 1) //if only one user we add users pk (mail) to the session
                 {
                     Session["mail"] = emailstr;
-                if (!string.IsNullOrEmpty(Request.QueryString["ReturnURL"]))
+                if (!string.IsNullOrEmpty(Request.QueryString["ReturnURL"])) //if url query(after page site, parameters) have an returnURL true
                 {
-                    Response.Redirect(Request.QueryString["ReturnURL"].ToString());
+                    Response.Redirect(Request.QueryString["ReturnURL"].ToString()); //then its redirect to the return url.
                 }
                 }
                 else
                 {
-                    lblIncorrectMessage.Visible = true;
+                    lblIncorrectMessage.Visible = true; // else then errormessage is visible
                 }
             
 
