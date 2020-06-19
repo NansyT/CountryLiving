@@ -43,10 +43,10 @@ namespace LandLyst
             if (datoStart.Text != null && datoSlut.Text != null && navn.Text != "Navn" && email.Text != "Email" && telefon.Text != "Telefon nr." && postnr.Text != "Post nr." && addr.Text != "Adresse")
             {
                 NavigationService ns = NavigationService.GetNavigationService(this);
+                manager.CreateReservation(DateTime.Parse(datoStart.Text), DateTime.Parse(datoSlut.Text), roomId, new Customer(email.Text, navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text)));
                 MessageBox.Show("Du har booket et værelse");
                 ns.Navigate(new Reservationer());
 
-                manager.CreateReservation(DateTime.Parse(datoStart.Text), DateTime.Parse(datoSlut.Text), roomId, new Customer(email.Text, navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text)));
             }
             else
             {
