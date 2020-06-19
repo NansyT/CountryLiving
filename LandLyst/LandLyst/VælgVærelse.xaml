@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="379" d:DesignWidth="792"
       Title="VælgVærelse">
-    <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel x:Name="DPVV" >
         <StackPanel x:Name="searchParam" DockPanel.Dock="Top" Orientation="Horizontal">
             <Button x:Name="filterbtn" Content="Filter" Padding="5" Click="Filterbtn_Click"></Button>
@@ -31,7 +30,7 @@
             <Rectangle Width="20"/>
             <Button x:Name="searchbtn" Content="Søg" Padding="5" Click="Searchbtn_Click"/>
         </StackPanel>
-        <DataGrid x:Name="searchedRooms" AutoGenerateColumns="False">
+        <DataGrid x:Name="searchedRooms" CanUserReorderColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding roomid}" Header="Rum id" x:Name="roomidC" />
                 <DataGridTextColumn Binding="{Binding services}" Width="400" Header="Tillægsydelser" x:Name="serviceC"/>

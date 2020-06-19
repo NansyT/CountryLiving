@@ -41,7 +41,7 @@ namespace LandLyst
 
             
         }
-        
+        //Går til booking side og sender informationer med
         private void Bookroombtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Booking(datoStart, datoSlut, roomid, totalPrice));

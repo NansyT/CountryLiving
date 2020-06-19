@@ -35,6 +35,7 @@ namespace LandLyst
             data.Refresh();
             reservationer.ItemsSource = data;
         }
+        //Mangler at implementeres i biblioteket
         private void Sletbtn_Click(object sender, RoutedEventArgs e)
         {
             //manager.DeleteReservation();

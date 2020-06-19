@@ -8,9 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="379" d:DesignWidth="800"
       Title="VærelsesInfo">
-    <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel>
-        <DataGrid x:Name="roominfo" AutoGenerateColumns="False" Margin="100,0,0,0">
+        <DataGrid IsReadOnly="True" CanUserReorderColumns="False" x:Name="roominfo" AutoGenerateColumns="False" Margin="100,0,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding pk_room_id}" Header="Rum id" x:Name="room_id" />
                 <DataGridTextColumn Binding="{Binding price}" Header="Pris pr. nat" x:Name="pricedayC"/>
