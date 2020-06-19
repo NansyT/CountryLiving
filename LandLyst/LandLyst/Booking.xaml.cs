@@ -54,7 +54,7 @@ namespace LandLyst
                 MessageBox.Show("Udfyld alle felterne");
             }
         }
-        //Fjerner ´placeholder teksten fra teksboxene
+        //Fjerner placeholder teksten fra teksboxene
         private void Textbox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
