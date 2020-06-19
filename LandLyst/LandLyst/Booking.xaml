@@ -21,11 +21,11 @@
             <Rectangle Height="70"/>
             <TextBox x:Name="navn" Text="Navn" FontSize="16" Margin="0,0,0,5" GotFocus="Textbox_GotFocus"/>
             <TextBox x:Name="email" Text="Email" FontSize="16" Margin="0,0,0,5" GotFocus="Textbox_GotFocus"/>
-            <TextBox x:Name="telefon" MaxLength="8" Text="Telefon nr." FontSize="16" Margin="0,0,0,5" GotFocus="Textbox_GotFocus"/>
+            <TextBox x:Name="telefon" PreviewTextInput="TextboxNumericOnly" MaxLength="8" Text="Telefon nr." FontSize="16" Margin="0,0,0,5" GotFocus="Textbox_GotFocus"/>
             <TextBox x:Name="addr" Text="Addresse" FontSize="16" Margin="0,0,0,5" GotFocus="Textbox_GotFocus"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="by" Text="By" Width="100" FontSize="16" Margin="0,0,5,0" GotFocus="Textbox_GotFocus"/>
-                <TextBox x:Name="postnr" MaxLength="4" Text="Post nr." Width="100" FontSize="16" GotFocus="Textbox_GotFocus"/>
+                <TextBox x:Name="postnr" PreviewTextInput="TextboxNumericOnly" MaxLength="4" Text="Post nr." Width="100" FontSize="16" GotFocus="Textbox_GotFocus"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 

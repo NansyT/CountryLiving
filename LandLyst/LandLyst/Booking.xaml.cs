@@ -79,6 +79,14 @@ namespace LandLyst
             {
                 return false;
             }
-        }   
+        }
+
+    //Gør så vores TLF nummer og Post nummer kun kan indtaste tal
+    private void TextboxNumericOnly(object sender, TextCompositionEventArgs e)
+    {
+        Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
     }
+    }
+
 }
