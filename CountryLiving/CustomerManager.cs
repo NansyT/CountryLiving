@@ -12,7 +12,7 @@ namespace CountryLiving
     {
         SqlManager con = new SqlManager();
         //Method til at lave en bruger fra hjemmesiden
-        private void CreateCustomer(string name, string address, int zipcode, int phonenumber, string email, string password)
+        public void CreateCustomer(string name, string address, int zipcode, int phonenumber, string email, string password)
         {
             //Her bliver der lavet en kunde
             Customer customer = new Customer(email, name, address, zipcode, phonenumber, password);

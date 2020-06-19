@@ -24,6 +24,7 @@ namespace LandLyst
     public partial class Booking : Page
     {
         ReservationManager manager = new ReservationManager();
+        CustomerManager customerManager = new CustomerManager();
         int roomId;
         public Booking(DateTime startDato, DateTime slutDato, int roomid, Decimal priceTotal)
         {
@@ -44,7 +45,7 @@ namespace LandLyst
             if (datoStart.Text != null && datoSlut.Text != null && navn.Text != "Navn" && email.Text != "Email" && telefon.Text != "Telefon nr." && postnr.Text != "Post nr." && addr.Text != "Adresse")
             {
                 NavigationService ns = NavigationService.GetNavigationService(this);
-                manager.CreateReservation(DateTime.Parse(datoStart.Text), DateTime.Parse(datoSlut.Text), roomId, new Customer(email.Text, navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text)));
+                manager.CreateReservation(DateTime.Parse(datoStart.Text), DateTime.Parse(datoSlut.Text), roomId, CreateCustomer());
                 MessageBox.Show("Du har booket et værelse");
                 ns.Navigate(new Reservationer());
 
@@ -81,12 +82,20 @@ namespace LandLyst
             }
         }
 
-    //Gør så vores TLF nummer og Post nummer kun kan indtaste tal
-    private void TextboxNumericOnly(object sender, TextCompositionEventArgs e)
-    {
-        Regex regex = new Regex("[^0-9]+");
+        //Gør så vores TLF nummer og Post nummer kun kan indtaste tal
+        private void TextboxNumericOnly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-    }
+        }
+        //Opretter en kunde og giver default password
+        private Customer CreateCustomer()
+        {
+
+            MainWindow.cnn.SqlConnection(false);
+            customerManager.CreateCustomer(navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text), email.Text, "Kode1234");
+            return new Customer(email.Text, navn.Text, addr.Text, int.Parse(postnr.Text), int.Parse(telefon.Text));
+        }
     }
 
 }
