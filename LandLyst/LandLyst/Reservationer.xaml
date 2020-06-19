@@ -13,7 +13,7 @@
             <DataGridTextColumn Binding="{Binding pk_reservation_id}" Header="Reservations id" x:Name="resid" />
             <DataGridTextColumn Binding="{Binding fk_room_id}" Header="Rum id" x:Name="roomid"/>
             <DataGridTextColumn Binding="{Binding fk_customer_email}" Header="Kunde email" x:Name="email"/>
-            <DataGridTextColumn Binding="{Binding chek_in_date}" Header="Check ind dato" x:Name="cInDate"/>
+            <DataGridTextColumn Binding="{Binding check_in_date}" Header="Check ind dato" x:Name="cInDate"/>
             <DataGridTextColumn Binding="{Binding check_out_date}" Header="Check ud dato" x:Name="cOutDate"/>
             <DataGridTemplateColumn >
                 <DataGridTemplateColumn.CellTemplate>
