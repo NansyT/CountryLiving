@@ -15,7 +15,7 @@ namespace CountryLiving
         private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
         private static NpgsqlConnection con = new NpgsqlConnection(constring); //the sql connection 
         
-        public void SqlConnection(bool openorclose)
+        public void SqlConnection(bool openorclose)//this method is to open and close the connection 
         {
             if (openorclose)
             {
@@ -31,8 +31,9 @@ namespace CountryLiving
         }
         public void InsertPerson(string emailpar, string fullname, string addresspar, int zippar, int phonenrpar, string passwordpar)
         {
-            SqlConnection(true);
+            SqlConnection(true);//open sql connection
             var sql = "INSERT INTO public.customer(pk_email, fullname, \"address\", zip_code, phone_nr, password) VALUES(@email, @name, @address, @zip, @mobil, @password)";
+            //
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("email", emailpar);
@@ -111,7 +112,7 @@ namespace CountryLiving
             
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "CALL public.pr_createreservation(@roomid, @customermail, @datein, @dateout)";
+            var sql = "CALL public.sp_createreservation(@roomid, @customermail, @datein, @dateout)";
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("@roomid", res.RoomId);

@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-19 09:54:16
+-- Started on 2020-06-19 11:20:18
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -101,7 +101,7 @@ BEGIN
 ALTER FUNCTION public.fc_calculatetotalprice(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1255 OID 24709)
+-- TOC entry 237 (class 1255 OID 24709)
 -- Name: fc_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -123,7 +123,7 @@ END; $$;
 ALTER FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1255 OID 24676)
+-- TOC entry 238 (class 1255 OID 24676)
 -- Name: fc_getroomid(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -193,6 +193,27 @@ END; $$;
 ALTER FUNCTION public.fp_get_alluserdata_roomdata(checkin date, checkout date, customermail character varying, roomidinput integer) OWNER TO postgres;
 
 --
+-- TOC entry 239 (class 1255 OID 24746)
+-- Name: fp_get_customerinfo(character varying); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.fp_get_customerinfo(emailpar character varying) RETURNS TABLE(fullname character varying, address character varying, zipcode integer, phone integer)
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+	RETURN QUERY SELECT 
+		customer.fullname, 
+		customer.address, 
+		customer.zip_code, 
+		customer.phone_nr 
+	FROM customer 
+	WHERE pk_email = emailpar ;
+END; $$;
+
+
+ALTER FUNCTION public.fp_get_customerinfo(emailpar character varying) OWNER TO postgres;
+
+--
 -- TOC entry 243 (class 1255 OID 24706)
 -- Name: fp_get_roomdata(integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
@@ -260,7 +281,7 @@ CREATE FUNCTION public.fp_getroomid(datein character varying, dateout character 
 BEGIN
 RETURN QUERY SELECT CAST(room.pk_room_id as INTEGER)
 	FROM room
-	JOIN public.booking
+	LEFT JOIN public.booking
 		ON fk_room_id = pk_room_id
 	JOIN public.roomservices
 		ON roomservices.pk_fk_room_id = room.pk_room_id
@@ -269,8 +290,12 @@ RETURN QUERY SELECT CAST(room.pk_room_id as INTEGER)
 	JOIN fp_getServiceasString() AS serviceFunc --make an string of all services
 		ON serviceFunc.pk_room_id = room.pk_room_id
 		--COALESCE is IFNULL in SSMS WHEN booking.check_in_date IS NULL then use '1900-01-01'
-	WHERE COALESCE(booking.check_out_date, '9999-12-31') >= CAST(dateout as date) --when check out us more or = else false
-		AND COALESCE(booking.check_in_date, '1900-01-01') <= CAST(datein as date) 
+	WHERE ( (booking.check_out_date IS NULL AND COALESCE(booking.check_in_date IS NULL ))
+		OR (CAST(dateout as date) > COALESCE(booking.check_out_date, '9999-12-31')
+		   	AND CAST(datein as date) >= COALESCE(booking.check_out_date, '9999-12-31'))
+			OR (CAST(dateout as date) <= COALESCE(booking.check_in_date, '1900-01-01')
+		   	AND CAST(datein as date) < COALESCE(booking.check_in_date, '1900-01-01'))
+			)--when check out us more or = else false
 		AND (serviceFunc.servicestr LIKE ('%' || par1 || '%') -- '%' || par1 || '%' this is the way to insert an parameter in a like 
 		AND serviceFunc.servicestr LIKE ('%' || par2 || '%')
 		AND serviceFunc.servicestr LIKE ('%' || par3 || '%')
@@ -334,21 +359,6 @@ $$;
 
 
 ALTER PROCEDURE public.pr_createreservation(roomid integer, customermail character varying, datein date, dateout date) OWNER TO postgres;
-
---
--- TOC entry 237 (class 1255 OID 24707)
--- Name: testpis(character varying); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION public.testpis(par character varying) RETURNS TABLE(fullname character varying, address character varying, zipcode integer, phone integer)
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-	RETURN QUERY SELECT customer.fullname, customer.address, customer.zip_code, customer.phone_nr FROM customer WHERE pk_email = par ;
-END; $$;
-
-
-ALTER FUNCTION public.testpis(par character varying) OWNER TO postgres;
 
 --
 -- TOC entry 242 (class 1255 OID 24742)
@@ -2126,7 +2136,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-19 09:54:18
+-- Completed on 2020-06-19 11:20:20
 
 --
 -- PostgreSQL database dump complete
