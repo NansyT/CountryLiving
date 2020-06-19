@@ -38,12 +38,5 @@ namespace LandLyst
         {
             mainFrame.Navigate(new VælgVærelse());
         }
-        private void Tilbagebtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (mainFrame.CanGoBack)
-            {
-                mainFrame.GoBack();
-            }
-        }
     }
 }
