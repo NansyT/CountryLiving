@@ -10,15 +10,15 @@
       Title="VærelsesInfo">
     <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
     <DockPanel>
-        <Rectangle  DockPanel.Dock="Left" Width="500" Fill="Aqua"/>
-        <StackPanel Background="DarkBlue">
-            <Rectangle Height="50"/>
-            <DatePicker x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,0,0"/>
-            <DatePicker x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
-            <Rectangle Height="100"/>
-            <TextBox Text="Total pris" HorizontalAlignment="Center"></TextBox>
-            <TextBox x:Name="totalPris" Width="100"/>
-            <Rectangle Height="50"/>
+        <DataGrid x:Name="roominfo" AutoGenerateColumns="False" Margin="100,0,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding pk_room_id}" Header="Rum id" x:Name="room_id" />
+                <DataGridTextColumn Binding="{Binding price}" Header="Pris pr. nat" x:Name="pricedayC"/>
+                <DataGridTextColumn Binding="{Binding Status}" Header="Status" x:Name="status"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel DockPanel.Dock="Right">
+            <Rectangle Height="150"/>
             <Button Content="Book værelse" Height="30" HorizontalAlignment="Center" Padding="5" Click="Bookroombtn_Click"/>
         </StackPanel>
     </DockPanel>

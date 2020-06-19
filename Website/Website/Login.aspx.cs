@@ -24,9 +24,12 @@ namespace Website
         {
             Debug.WriteLine("Du har trykket på login knappen");
 
+                //sets passwordstr to label txtPassword
                 string passwordstr = txtPassword.Text;
+                //sets emailstr to label txtEmail
                 string emailstr = txtEmail.Text;
                 CustomerManager customerman = new CustomerManager();
+                //Philip kommenter nedstående
                 int howmanyusers = customerman.CheckCustomer(emailstr, passwordstr);
                 if (howmanyusers == 1)
                 {

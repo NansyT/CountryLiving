@@ -8,23 +8,31 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Booking">
     <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
-    <DockPanel>
-        <Rectangle Fill="Coral" DockPanel.Dock="Left" Width="400"/>
-        <StackPanel DockPanel.Dock="Left" Background="HotPink" Orientation="Vertical">
+    <DockPanel >
+        <DataGrid x:Name="roominfo" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding roomid}" Header="Rum id" x:Name="room_id" />
+                <DataGridTextColumn Binding="{Binding servicestr}" Width="200" Header="Tillægsydelser" x:Name="service"/>
+                <DataGridTextColumn Binding="{Binding pricepday}" Header="Pris pr. nat" x:Name="pricedayC"/>
+                <DataGridTextColumn Binding="{Binding totalnights}" Header="Antal nætter" x:Name="tnights"/>
+                <DataGridTextColumn Binding="{Binding totalprice}" Header="Total pris" x:Name="tpriceC"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Right" Width="300" DockPanel.Dock="Right"  Orientation="Vertical" Margin="0,0,25,0">
             <Rectangle Height="70"/>
-            <TextBox x:Name="Navn" Text="Navn" FontSize="16" Margin="0,0,0,5"/>
-            <TextBox x:Name="Email" Text="Email" FontSize="16" Margin="0,0,0,5"/>
-            <TextBox x:Name="Telefon" Text="Telefon nr." FontSize="16" Margin="0,0,0,5"/>
-            <TextBox x:Name="Addr" Text="Addresse" FontSize="16" Margin="0,0,0,5"/>
+            <TextBox x:Name="navn" Text="Navn" FontSize="16" Margin="0,0,0,5"/>
+            <TextBox x:Name="email" Text="Email" FontSize="16" Margin="0,0,0,5"/>
+            <TextBox x:Name="telefon" Text="Telefon nr." FontSize="16" Margin="0,0,0,5"/>
+            <TextBox x:Name="addr" Text="Addresse" FontSize="16" Margin="0,0,0,5"/>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="By" Text="By" Width="100" FontSize="16" Margin="0,0,5,0"/>
-                <TextBox x:Name="Postnr" Text="Post nr." Width="100" FontSize="16"/>
+                <TextBox x:Name="by" Text="By" Width="100" FontSize="16" Margin="0,0,5,0"/>
+                <TextBox x:Name="postnr" Text="Post nr." Width="100" FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,5,0"/>
-                <TextBox x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
+                <TextBox IsReadOnly="True" x:Name="datoStart" Width="100" FontSize="16" Margin="0,5,5,0"/>
+                <TextBox IsReadOnly="True" x:Name="datoSlut" Width="100" FontSize="16" Margin="0,5,0,0"/>
             </StackPanel>
-            <TextBlock x:Name="totalPris" FontSize="20" HorizontalAlignment="Center" Margin="0,50,0,0" />
+            <TextBox IsReadOnly="True" x:Name="totalPris" FontSize="20" HorizontalAlignment="Center" Margin="0,50,0,0" />
             <Button x:Name="bookVær" Content="Book Værelse" Height="30" Padding="5" HorizontalAlignment="Center" Click="BookVær_Click"/>
         </StackPanel>
     </DockPanel>

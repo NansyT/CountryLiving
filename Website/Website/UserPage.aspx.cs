@@ -13,14 +13,10 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string conS = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-            NpgsqlConnection con = new NpgsqlConnection(conS);
-            NpgsqlCommand userinfo = new NpgsqlCommand("SELECT * FROM customer LEFT JOIN booking ON booking.fk_customer_email = customer.pk_email WHERE booking.fk_customer_email IS NOT NULL AND customer.pk_email = @mail", con);
-            userinfo.Parameters.AddWithValue("mail", Session["mail"]);
-            con.Open();
-            displayInfo.DataSource = userinfo.ExecuteReader();
-            displayInfo.DataBind();
-            con.Close();
+            //Ikke alt er implementeret
+            //displayInfo.DataSource = userinfo.ExecuteReader();
+            //displayInfo.DataBind();
+            //con.Close();
         }
     }
 }

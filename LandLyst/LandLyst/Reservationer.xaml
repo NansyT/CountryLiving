@@ -8,15 +8,21 @@
       d:DesignHeight="379" d:DesignWidth="800"
       Title="Reservationer">
 
-    <DataGrid x:Name="reservationer" AutoGenerateColumns="False" >
+    <DataGrid x:Name="reservationer" AutoGenerateColumns="False">
         <DataGrid.Columns>
-            
-            <DataGridTextColumn Width="auto" Header="reservations Id" x:Name="rIdC"/>
-            <DataGridTextColumn Width="auto" Header="Rum id" x:Name="roomIdC" />
-            <DataGridTextColumn Width="auto" Header="Kunde email" x:Name="emailC"/>
-            <DataGridTextColumn Width="auto" Header="Check ind dato" x:Name="ciDateC"/>
-            <DataGridTextColumn Width="auto" Header="Check ud dato" x:Name="cuDateC"/>
+            <DataGridTextColumn Binding="{Binding pk_reservation_id}" Header="Reservations id" x:Name="resid" />
+            <DataGridTextColumn Binding="{Binding fk_room_id}" Header="Rum id" x:Name="roomid"/>
+            <DataGridTextColumn Binding="{Binding fk_customer_email}" Header="Kunde email" x:Name="email"/>
+            <DataGridTextColumn Binding="{Binding chek_in_date}" Header="Check ind dato" x:Name="cInDate"/>
+            <DataGridTextColumn Binding="{Binding check_out_date}" Header="Check ud dato" x:Name="cOutDate"/>
+            <DataGridTemplateColumn >
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button x:Name="sletbtn" Content="Slet booking" Click="Sletbtn_Click"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
         </DataGrid.Columns>
-        
     </DataGrid>
+
 </Page>
