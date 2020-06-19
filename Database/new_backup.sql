@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-19 11:50:35
+-- Started on 2020-06-19 12:12:31
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -60,7 +60,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- TOC entry 241 (class 1255 OID 24749)
+-- TOC entry 240 (class 1255 OID 24749)
 -- Name: fp_calculatetotalprice(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -101,7 +101,7 @@ BEGIN
 ALTER FUNCTION public.fp_calculatetotalprice(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1255 OID 24748)
+-- TOC entry 239 (class 1255 OID 24748)
 -- Name: fp_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -207,7 +207,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_roomdata(roomidinput integer, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1255 OID 24744)
+-- TOC entry 241 (class 1255 OID 24744)
 -- Name: fp_getavailableroom(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -227,7 +227,7 @@ BEGIN
 	ON roomservices.pk_fk_room_id = room.pk_room_id
 	JOIN public.additional_services
 	ON additional_services.pk_supplement_id = roomservices.pk_fk_supplement_id
-	CROSS JOIN FC_CalculateTotalPrice(CAST(datein as date), CAST(dateout as date), RoomFunc.RoomID) AS totalpricetable -- cross join because there is nothing to join on 
+	CROSS JOIN fp_CalculateTotalPrice(CAST(datein as date), CAST(dateout as date), RoomFunc.RoomID) AS totalpricetable -- cross join because there is nothing to join on 
 	GROUP BY RoomFunc.RoomID, room.price, totalpricetable.totalpricetable ; --group is need because the SUM column
 END; $$;
 
@@ -311,7 +311,7 @@ DECLARE
 BEGIN
 	SELECT * 
 		INTO room
-	FROM FC_CheckIfRoomIsAvailable(datein, dateout, roomID);
+	FROM Fp_CheckIfRoomIsAvailable(datein, dateout, roomID);
     IF (room > 0 )
 		THEN RAISE NOTICE 'No rooms';
 	ELSE 
@@ -325,7 +325,7 @@ $$;
 ALTER PROCEDURE public.sp_createreservation(roomid integer, customermail character varying, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1255 OID 24742)
+-- TOC entry 238 (class 1255 OID 24742)
 -- Name: tg_fp_log_booking_changes(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2100,7 +2100,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-19 11:50:37
+-- Completed on 2020-06-19 12:12:33
 
 --
 -- PostgreSQL database dump complete
