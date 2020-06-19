@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <%--https://xdsoft.net/jqplugins/datetimepicker/ Calendar comes from here--%>
+    <%--https://xdsoft.net/jqplugins/datetimepicker/ Kalender kommer herfa--%>
 
     <div style="margin-top: 10px;">
         <div>
