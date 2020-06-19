@@ -13,7 +13,7 @@ namespace CountryLiving
     {
         //make the connection string to database
         private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
-        private static NpgsqlConnection con = new NpgsqlConnection(constring);
+        private static NpgsqlConnection con = new NpgsqlConnection(constring); //the sql connection 
         
         public void SqlConnection(bool openorclose)
         {
@@ -22,6 +22,7 @@ namespace CountryLiving
 
                 con.Open();
             }
+
             else
             {
                 con.Close();
@@ -80,7 +81,7 @@ namespace CountryLiving
             Debug.WriteLine(datein, dateout, par1, par2, par3, par4, par5, par6, par7);
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM public.fc_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
+            var sql = "SELECT * FROM public.fp_getavailableroom(@datein, @dateout, @par1, @par2, @par3, @par4, @par5, @par6, @par7)";
             var cmd = new NpgsqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("datein", datein);
@@ -96,8 +97,6 @@ namespace CountryLiving
 
             return cmd;
         }
-
-
         public string GetBasePrice(string RoomID)
         {
             SqlConnection(false);
@@ -165,12 +164,8 @@ namespace CountryLiving
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM testpis(@email)";
+            var sql = "SELECT * FROM fp_get_customerinfo(@email)";
             var cmd = new NpgsqlCommand(sql, con);
-
-            //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
-            //parcheckin.Value = DateTime.Now;
-
             cmd.Parameters.AddWithValue("email", emailinput);
 
             return cmd;
