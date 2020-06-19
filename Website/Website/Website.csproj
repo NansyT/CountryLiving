@@ -182,7 +182,7 @@
     <Content Include="CalendarPlugin\datetimepicker\tests\tests\methods.js" />
     <Content Include="CalendarPlugin\datetimepicker\tests\tests\options.js" />
     <Content Include="Default.aspx" />
-    <Content Include="favicon.ico" />
+    <Content Include="Pictures\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Pictures\Badeværelse.PNG" />

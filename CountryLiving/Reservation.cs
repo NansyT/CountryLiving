@@ -8,12 +8,14 @@ namespace CountryLiving
 {
     public class Reservation
     {
+        //create values in Reservation
         private Guid reservationID;
         private int roomId;
         private string customermail;
         private DateTime from;
         private DateTime to;
         
+        //make them public get 
         public Guid ReservationID
         {
             get { return reservationID; }
@@ -43,7 +45,7 @@ namespace CountryLiving
             get { return from; }
             private set { from = value; }
         }
-
+        //Method for constructor 
         public Reservation(int roomid, string customermail, DateTime todate, DateTime fromdate)
         { 
             RoomId = roomid;
