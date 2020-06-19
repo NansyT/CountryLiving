@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-19 12:12:31
+-- Started on 2020-06-19 13:01:39
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2100,7 +2100,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-19 12:12:33
+-- Completed on 2020-06-19 13:01:40
 
 --
 -- PostgreSQL database dump complete
