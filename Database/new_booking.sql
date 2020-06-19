@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-17 12:06:48
+-- Started on 2020-06-19 08:53:30
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,7 +20,7 @@ SET row_security = off;
 
 DROP DATABASE landlyst;
 --
--- TOC entry 2900 (class 1262 OID 16393)
+-- TOC entry 2907 (class 1262 OID 16393)
 -- Name: landlyst; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -51,7 +51,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- TOC entry 2901 (class 0 OID 0)
+-- TOC entry 2908 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
 --
@@ -60,7 +60,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- TOC entry 236 (class 1255 OID 24608)
+-- TOC entry 235 (class 1255 OID 24608)
 -- Name: fc_calculatetotalprice(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -101,11 +101,11 @@ BEGIN
 ALTER FUNCTION public.fc_calculatetotalprice(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1255 OID 24678)
--- Name: fc_checkifroomisavailable(character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
+-- TOC entry 239 (class 1255 OID 24709)
+-- Name: fc_checkifroomisavailable(date, date, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE FUNCTION public.fc_checkifroomisavailable(datein character varying, dateout character varying, roomid integer) RETURNS integer
+CREATE FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 DECLARE 
@@ -114,16 +114,16 @@ BEGIN
 	 SELECT INTO result CAST(COUNT(1) AS INT) 
 	 FROM booking
 	 WHERE fk_room_id = roomid
-	 	AND ( (CAST(datein as date) > chek_in_date and CAST(datein as date) < check_out_date)
-	 		OR ( CAST(dateout as date) > chek_in_date and CAST(dateout as date) <check_out_date));
+	 	AND (( datein > chek_in_date and datein < check_out_date)
+	 		OR ( dateout > chek_in_date and dateout <check_out_date));
 	RETURN result;
 END; $$;
 
 
-ALTER FUNCTION public.fc_checkifroomisavailable(datein character varying, dateout character varying, roomid integer) OWNER TO postgres;
+ALTER FUNCTION public.fc_checkifroomisavailable(datein date, dateout date, roomid integer) OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1255 OID 24677)
+-- TOC entry 236 (class 1255 OID 24677)
 -- Name: fc_getavailableroom(character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -221,7 +221,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_alluserdata_roomdata(checkin date, checkout date, customermail character varying, roomidinput integer) OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1255 OID 24706)
+-- TOC entry 243 (class 1255 OID 24706)
 -- Name: fp_get_roomdata(integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -250,7 +250,7 @@ END; $$;
 ALTER FUNCTION public.fp_get_roomdata(roomidinput integer, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1255 OID 24693)
+-- TOC entry 237 (class 1255 OID 24693)
 -- Name: fp_getserviceasstring(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -289,7 +289,7 @@ BEGIN
     IF (room > 0 )
 		THEN RAISE NOTICE 'No rooms';
 	ELSE 
-		INSERT INTO booking(fk_room_id, fk_customer_email, chek_in_date, check_out_date) VALUES(roomID, customermail, datein, dateout);
+		INSERT INTO booking(fk_room_id, fk_customer_email, check_in_date, check_out_date) VALUES(roomID, customermail, datein, dateout);
 		END IF;
     COMMIT;
 END;
@@ -299,7 +299,7 @@ $$;
 ALTER PROCEDURE public.pr_createreservation(roomid integer, customermail character varying, datein date, dateout date) OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1255 OID 24707)
+-- TOC entry 238 (class 1255 OID 24707)
 -- Name: testpis(character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -312,6 +312,39 @@ END; $$;
 
 
 ALTER FUNCTION public.testpis(par character varying) OWNER TO postgres;
+
+--
+-- TOC entry 242 (class 1255 OID 24742)
+-- Name: tg_fp_log_booking_changes(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.tg_fp_log_booking_changes() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+--TG_OP is an function to check which operation the trigger do
+	IF (TG_OP = 'DELETE') THEN
+            INSERT INTO booking_audits SELECT
+			uuid_generate_v4(), --New change id
+			OLD.*,
+			now(), --the action time and date
+			'DEL'; --the action is DEL because an rom is DELETED
+            RETURN OLD;
+        ELSIF (TG_OP = 'INSERT') THEN
+            INSERT INTO booking_audits SELECT
+			uuid_generate_v4(), --New change id
+			NEW.*,
+			now(), --the action time and date
+			'INS'; --the action is INS because an room is INSERT
+            RETURN NEW;
+        END IF;
+        RETURN NULL; -- if nothing of them is true then return nothing
+	RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.tg_fp_log_booking_changes() OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -340,12 +373,31 @@ CREATE TABLE public.booking (
     pk_reservation_id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     fk_room_id integer,
     fk_customer_email character varying,
-    chek_in_date date NOT NULL,
+    check_in_date date NOT NULL,
     check_out_date date NOT NULL
 );
 
 
 ALTER TABLE public.booking OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 24730)
+-- Name: booking_audits; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.booking_audits (
+    pk_change_id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
+    reservation_id uuid NOT NULL,
+    room_id integer,
+    customer_email character varying,
+    check_in_date date NOT NULL,
+    check_out_date date NOT NULL,
+    actiondate timestamp without time zone DEFAULT now() NOT NULL,
+    action character varying
+);
+
+
+ALTER TABLE public.booking_audits OWNER TO postgres;
 
 --
 -- TOC entry 203 (class 1259 OID 16752)
@@ -376,19 +428,6 @@ CREATE TABLE public.customer (
 
 
 ALTER TABLE public.customer OWNER TO postgres;
-
---
--- TOC entry 211 (class 1259 OID 24699)
--- Name: datetesttable; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.datetesttable (
-    testdate date,
-    testuuid uuid
-);
-
-
-ALTER TABLE public.datetesttable OWNER TO postgres;
 
 --
 -- TOC entry 205 (class 1259 OID 16768)
@@ -442,7 +481,7 @@ CREATE TABLE public.test123 (
 ALTER TABLE public.test123 OWNER TO postgres;
 
 --
--- TOC entry 2890 (class 0 OID 16802)
+-- TOC entry 2897 (class 0 OID 16802)
 -- Dependencies: 207
 -- Data for Name: additional_services; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -457,17 +496,26 @@ INSERT INTO public.additional_services (pk_supplement_id, description, price) VA
 
 
 --
--- TOC entry 2889 (class 0 OID 16773)
+-- TOC entry 2896 (class 0 OID 16773)
 -- Dependencies: 206
 -- Data for Name: booking; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, chek_in_date, check_out_date) VALUES ('c077a75a-3e71-42cc-948e-dd2b6d208558', 100, 'test', '2020-06-11', '2020-06-18');
-INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, chek_in_date, check_out_date) VALUES ('99d95d45-aaf8-4cff-a911-2977132929e6', 100, 'test', '2020-06-06', '2020-06-10');
+INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, check_in_date, check_out_date) VALUES ('c077a75a-3e71-42cc-948e-dd2b6d208558', 100, 'test', '2020-06-11', '2020-06-18');
+INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, check_in_date, check_out_date) VALUES ('99d95d45-aaf8-4cff-a911-2977132929e6', 100, 'test', '2020-06-06', '2020-06-10');
+INSERT INTO public.booking (pk_reservation_id, fk_room_id, fk_customer_email, check_in_date, check_out_date) VALUES ('711a0fa5-c01d-45b4-9bbf-50ddf1c03870', 105, 'test', '2020-06-17', '2020-06-30');
 
 
 --
--- TOC entry 2886 (class 0 OID 16752)
+-- TOC entry 2901 (class 0 OID 24730)
+-- Dependencies: 211
+-- Data for Name: booking_audits; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2893 (class 0 OID 16752)
 -- Dependencies: 203
 -- Data for Name: citycode; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1671,7 +1719,7 @@ INSERT INTO public.citycode (pk_zip_code, city) VALUES (9998, 'Borgerservice');
 
 
 --
--- TOC entry 2887 (class 0 OID 16760)
+-- TOC entry 2894 (class 0 OID 16760)
 -- Dependencies: 204
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1682,16 +1730,7 @@ INSERT INTO public.customer (pk_email, fullname, address, zip_code, phone_nr, pa
 
 
 --
--- TOC entry 2894 (class 0 OID 24699)
--- Dependencies: 211
--- Data for Name: datetesttable; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.datetesttable (testdate, testuuid) VALUES ('2020-06-16', 'b6b48c10-f9f1-474c-8987-e4d24d76b620');
-
-
---
--- TOC entry 2888 (class 0 OID 16768)
+-- TOC entry 2895 (class 0 OID 16768)
 -- Dependencies: 205
 -- Data for Name: room; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1750,7 +1789,7 @@ INSERT INTO public.room (pk_room_id, price, "Status") VALUES (510, 695.00, 1);
 
 
 --
--- TOC entry 2891 (class 0 OID 16810)
+-- TOC entry 2898 (class 0 OID 16810)
 -- Dependencies: 208
 -- Data for Name: roomservices; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1872,7 +1911,7 @@ INSERT INTO public.roomservices (pk_fk_room_id, pk_fk_supplement_id) VALUES (510
 
 
 --
--- TOC entry 2892 (class 0 OID 24669)
+-- TOC entry 2899 (class 0 OID 24669)
 -- Dependencies: 209
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1883,7 +1922,7 @@ INSERT INTO public.test (test) VALUES ('test1');
 
 
 --
--- TOC entry 2893 (class 0 OID 24685)
+-- TOC entry 2900 (class 0 OID 24685)
 -- Dependencies: 210
 -- Data for Name: test123; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1942,7 +1981,7 @@ INSERT INTO public.test123 (serviceroom) VALUES ('Dobbeltseng, Badekar');
 
 
 --
--- TOC entry 2753 (class 2606 OID 16809)
+-- TOC entry 2757 (class 2606 OID 16809)
 -- Name: additional_services additional_services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1951,7 +1990,16 @@ ALTER TABLE ONLY public.additional_services
 
 
 --
--- TOC entry 2751 (class 2606 OID 16781)
+-- TOC entry 2761 (class 2606 OID 24739)
+-- Name: booking_audits booking_audits_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.booking_audits
+    ADD CONSTRAINT booking_audits_pkey PRIMARY KEY (pk_change_id);
+
+
+--
+-- TOC entry 2755 (class 2606 OID 16781)
 -- Name: booking booking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1960,7 +2008,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2745 (class 2606 OID 16759)
+-- TOC entry 2749 (class 2606 OID 16759)
 -- Name: citycode citycode_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1969,7 +2017,7 @@ ALTER TABLE ONLY public.citycode
 
 
 --
--- TOC entry 2747 (class 2606 OID 16767)
+-- TOC entry 2751 (class 2606 OID 16767)
 -- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1978,7 +2026,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- TOC entry 2749 (class 2606 OID 16772)
+-- TOC entry 2753 (class 2606 OID 16772)
 -- Name: room room_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1987,7 +2035,7 @@ ALTER TABLE ONLY public.room
 
 
 --
--- TOC entry 2755 (class 2606 OID 16814)
+-- TOC entry 2759 (class 2606 OID 16814)
 -- Name: roomservices roomservices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1996,7 +2044,15 @@ ALTER TABLE ONLY public.roomservices
 
 
 --
--- TOC entry 2757 (class 2606 OID 16787)
+-- TOC entry 2766 (class 2620 OID 24743)
+-- Name: booking tg_booking_changes; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER tg_booking_changes AFTER INSERT OR DELETE ON public.booking FOR EACH ROW EXECUTE FUNCTION public.tg_fp_log_booking_changes();
+
+
+--
+-- TOC entry 2763 (class 2606 OID 16787)
 -- Name: booking booking_fk_customer_email_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2005,7 +2061,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2756 (class 2606 OID 16782)
+-- TOC entry 2762 (class 2606 OID 16782)
 -- Name: booking booking_fk_room_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2014,7 +2070,7 @@ ALTER TABLE ONLY public.booking
 
 
 --
--- TOC entry 2758 (class 2606 OID 16815)
+-- TOC entry 2764 (class 2606 OID 16815)
 -- Name: roomservices roomservices_pk_fk_room_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2023,7 +2079,7 @@ ALTER TABLE ONLY public.roomservices
 
 
 --
--- TOC entry 2759 (class 2606 OID 16820)
+-- TOC entry 2765 (class 2606 OID 16820)
 -- Name: roomservices roomservices_pk_fk_supplement_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2031,7 +2087,7 @@ ALTER TABLE ONLY public.roomservices
     ADD CONSTRAINT roomservices_pk_fk_supplement_id_fkey FOREIGN KEY (pk_fk_supplement_id) REFERENCES public.additional_services(pk_supplement_id);
 
 
--- Completed on 2020-06-17 12:06:49
+-- Completed on 2020-06-19 08:53:33
 
 --
 -- PostgreSQL database dump complete
