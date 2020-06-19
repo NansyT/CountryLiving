@@ -11,6 +11,7 @@ namespace CountryLiving
 {
     public class SqlManager
     {
+        //make the connection string to database
         private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
         private static NpgsqlConnection con = new NpgsqlConnection(constring);
         
@@ -174,14 +175,24 @@ namespace CountryLiving
 
             return cmd;
         }
-        public NpgsqlDataReader SeeAllReservations()
+        public NpgsqlCommand SeeAllReservations()
         {
             SqlConnection(false);
             SqlConnection(true);
             var sql = "SELECT * FROM booking";
             var cmd = new NpgsqlCommand(sql, con);
 
-            return cmd.ExecuteReader();
+            return cmd;
         }
+        public NpgsqlCommand GetRoom(string roomid)
+        {
+            SqlConnection(false);
+            SqlConnection(true);
+            var sql = $"SELECT * FROM room WHERE pk_room_id = {roomid}";
+            var cmd = new NpgsqlCommand(sql, con);
+
+            return cmd;
+        }
+       
     }
 }

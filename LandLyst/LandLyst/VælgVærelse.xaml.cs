@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace LandLyst
     {
         
         List<string> items;
-        Decimal roomid;
+        int roomid;
         Decimal pricetotal;
 
         public VælgVærelse()
@@ -61,10 +62,9 @@ namespace LandLyst
                 
                 CheckFilter();
                 searchedRooms.ItemsSource = null;
-
-                //Hvis man søger igen kommer der ikke nye resultater, den viser det gamle
-                searchedRooms.ItemsSource = MainWindow.cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader();
-                
+                ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader());
+                data.Refresh();
+                searchedRooms.ItemsSource = data;
             }
             else
             {
@@ -92,14 +92,14 @@ namespace LandLyst
         {
             GetInfoFromCells(e);
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Booking(startDato.SelectedDate, slutDato.SelectedDate, roomid, pricetotal));
+            ns.Navigate(new Booking(startDato.SelectedDate.Value, slutDato.SelectedDate.Value, roomid, pricetotal));
 
         }
         //Får informationen fra de nødvendige celler i kolonnen
         private void GetInfoFromCells(RoutedEventArgs e)
         {
             IDataRecord dataRowView = (IDataRecord)((Button)e.Source).DataContext;
-            roomid = (Decimal)dataRowView[0];
+            roomid = (int)dataRowView[0];
             pricetotal = (Decimal)dataRowView[3];
         }
         //Går til værelses siden og sender nødvendig info med
@@ -107,7 +107,7 @@ namespace LandLyst
         {
             GetInfoFromCells(e);
             NavigationService ns = NavigationService.GetNavigationService(this);
-            ns.Navigate(new Booking(startDato.SelectedDate, slutDato.SelectedDate, roomid, pricetotal));
+            ns.Navigate(new VærelsesInfo(startDato.SelectedDate.Value, slutDato.SelectedDate.Value, roomid, pricetotal));
         }
     }
 }

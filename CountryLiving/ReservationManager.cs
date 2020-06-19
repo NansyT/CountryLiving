@@ -7,28 +7,27 @@ using System.Threading.Tasks;
 
 namespace CountryLiving
 {
-    public class ReservationManager : SqlManager
+    public class ReservationManager
     {
+        SqlManager con = new SqlManager(); // make an conection to sqlmanager 
+
         public void CreateReservation(DateTime from, DateTime to, int roomID, Customer customer)
         {
-            Reservation newreservation = new Reservation(roomID, customer.Email, to, from);
-            CreateReservationSQL(newreservation);
-            Debug.WriteLine("Reservation created");
+            Reservation newreservation = new Reservation(roomID, customer.Email, to, from); //create an reservation
+            con.CreateReservationSQL(newreservation); //call mothod to insert an reservation in database
+            //Debug.WriteLine("Reservation created");
         }
         
         public void SeeReservation(int reservationID)
         {
-            
-            Debug.WriteLine("Looking at reservation");
+            //har ikke nået at implementere 
+            //Debug.WriteLine("Looking at reservation");
         }
 
-        public void EditReservation()
-        {
-            Debug.WriteLine("Editing reservation");
-        }
 
         public void DeleteReservation(int reservationID, Reservation sas)
         {
+            //har ikke nået at implementere 
             //Debug.WriteLine("Reservation deleted");
         }
 

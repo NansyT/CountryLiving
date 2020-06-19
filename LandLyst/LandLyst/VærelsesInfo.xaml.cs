@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,22 +23,28 @@ namespace LandLyst
     /// </summary>
     public partial class VærelsesInfo : Page
     {
-        Decimal roomid;
-        Decimal pricetotal;
-        public VærelsesInfo(DateTime? startDato, DateTime? slutDato, Decimal roomId, Decimal priceTotal)
+        int roomid;
+        DateTime datoStart;
+        DateTime datoSlut;
+        Decimal totalPrice;
+        public VærelsesInfo(DateTime startDato, DateTime slutDato, int roomId, Decimal priceTotal)
         {
             InitializeComponent();
-            datoStart.Text = startDato.ToString();
-            datoSlut.Text = slutDato.ToString();
-            totalPris.Text = priceTotal.ToString();
-            pricetotal = priceTotal;
             roomid = roomId;
-            //Tjek om man kan booke værelset ved hjælp af booking table roomid og datoer
+            datoStart = startDato;
+            datoSlut = slutDato;
+            totalPrice = priceTotal;
+            roominfo.ItemsSource = null;
+            ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.GetRoom(roomId.ToString()).ExecuteReader());
+            data.Refresh();
+            roominfo.ItemsSource = data;
+
+            
         }
-        // NEED TO FIGURE THIS SHIT OUT!
+        
         private void Bookroombtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Booking(datoStart.SelectedDate, datoSlut.SelectedDate, roomid, pricetotal));
+            NavigationService.Navigate(new Booking(datoStart, datoSlut, roomid, totalPrice));
         }
     }
 }

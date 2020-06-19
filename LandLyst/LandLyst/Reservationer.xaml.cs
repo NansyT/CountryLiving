@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -29,19 +30,14 @@ namespace LandLyst
         {
             InitializeComponent();
 
-            using (NpgsqlDataReader reader = MainWindow.cnn.SeeAllReservations())
-            {
-                if (reader != null)
-                {
-                    foreach (var item in reader)
-                    {
-                        IDataRecord record = (IDataRecord)item;
-                        roomIdC.Binding = "pkreservation_id";
-                        reservationer.Items.Add(record);
-
-                    }
-                }
-            }
+            reservationer.ItemsSource = null;
+            ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SeeAllReservations().ExecuteReader());
+            data.Refresh();
+            reservationer.ItemsSource = data;
+        }
+        private void Sletbtn_Click(object sender, RoutedEventArgs e)
+        {
+            //manager.DeleteReservation();
         }
     }
 }
