@@ -93,5 +93,5 @@
 </body>
 <script src="CalendarPlugin/datetimepicker/jquery.js"></script>
 <script src="CalendarPlugin/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-<script src="Calendar.js"></script>
+<script src="Scripts/Calendar.js"></script>
 </html>
