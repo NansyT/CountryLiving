@@ -11,6 +11,7 @@ namespace CountryLiving
 {
     public class SqlManager
     {
+        //make the connection string to database
         private static string constring = "Host=localhost;Port=6666;Username=postgres;Password=Kode1234;Database=landlyst";
         private static NpgsqlConnection con = new NpgsqlConnection(constring);
         
