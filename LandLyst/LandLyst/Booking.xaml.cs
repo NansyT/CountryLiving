@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,5 +54,31 @@ namespace LandLyst
                 MessageBox.Show("Udfyld alle felterne");
             }
         }
+        //Fjerner ´placeholder teksten fra teksboxene
+        private void Textbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= Textbox_GotFocus;
+        }
+        //Checker om textboxene overholder kravene
+        private bool CheckTexBox()
+        {
+            if (datoStart.Text != null && datoSlut.Text != null && navn.Text != "Navn" && email.Text != "Email" && telefon.Text != "Telefon nr." && postnr.Text != "Post nr." && addr.Text != "Adresse")
+            {
+                if (navn.Text != "" && email.Text != "" && telefon.Text != "" && postnr.Text != "" && addr.Text != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }   
     }
 }
