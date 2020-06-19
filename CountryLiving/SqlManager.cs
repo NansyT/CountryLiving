@@ -164,12 +164,8 @@ namespace CountryLiving
         {
             SqlConnection(false);
             SqlConnection(true);
-            var sql = "SELECT * FROM testpis(@email)";
+            var sql = "SELECT * FROM fp_get_customerinfo(@email)";
             var cmd = new NpgsqlCommand(sql, con);
-
-            //NpgsqlParameter parcheckin= new NpgsqlParameter(":checkin", NpgsqlTypes.NpgsqlDbType.Date);
-            //parcheckin.Value = DateTime.Now;
-
             cmd.Parameters.AddWithValue("email", emailinput);
 
             return cmd;
