@@ -34,6 +34,7 @@ namespace LandLyst
             totalPris.Text = priceTotal.ToString();
             roomId = roomid;
             roominfo.ItemsSource = null;
+            //henter data fra database og putter den ind i datagrid
             ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.Roominformation(roomId, startDato, slutDato).ExecuteReader());
             data.Refresh();
             roominfo.ItemsSource = data;

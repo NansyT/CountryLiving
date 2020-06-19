@@ -31,6 +31,7 @@ namespace LandLyst
             InitializeComponent();
 
             reservationer.ItemsSource = null;
+            //henter data fra database og putter den ind i datagrid
             ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SeeAllReservations().ExecuteReader());
             data.Refresh();
             reservationer.ItemsSource = data;

@@ -62,6 +62,7 @@ namespace LandLyst
                 
                 CheckFilter();
                 searchedRooms.ItemsSource = null;
+                //henter data fra database og putter den ind i datagrid
                 ICollectionView data = CollectionViewSource.GetDefaultView(MainWindow.cnn.SelectAvailableRooms(startDato.ToString(), slutDato.ToString(), items[0], items[1], items[2], items[3], items[4], items[5], items[6]).ExecuteReader());
                 data.Refresh();
                 searchedRooms.ItemsSource = data;

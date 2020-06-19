@@ -42,6 +42,7 @@ namespace Website
             {
                 reservation.CreateReservation(Convert.ToDateTime(Request.QueryString.Get("start")), Convert.ToDateTime(Request.QueryString.Get("slut")), Convert.ToInt32(Request.QueryString.Get("roomID")), customer.CreateCustomerObjFromSQL(Session["mail"].ToString()));
             }
+            Response.Redirect("Default.aspx");
         } 
     }
 }
