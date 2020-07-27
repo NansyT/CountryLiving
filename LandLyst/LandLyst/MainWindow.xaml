@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LandLyst"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--REMEMBER TO GET RID OF THESE FUCKING COLOURS!!-->
+    
     <Grid x:Name="grid">
         <DockPanel>
             <StackPanel Background="Brown" Orientation="Horizontal" DockPanel.Dock="Top" Height="40">
